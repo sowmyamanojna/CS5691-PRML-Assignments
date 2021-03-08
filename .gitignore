@@ -277,3 +277,6 @@ TSWLatexianTemp*
 
 # All .zip files
 *.zip
+
+# ipynb checkpoint notebooks
+*.ipynb_checkpoints
