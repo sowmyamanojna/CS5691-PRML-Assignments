@@ -280,3 +280,4 @@ TSWLatexianTemp*
 
 # ipynb checkpoint notebooks
 *.ipynb_checkpoints
+*__pycache__
