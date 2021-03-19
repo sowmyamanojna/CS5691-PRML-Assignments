@@ -64,7 +64,7 @@ class GaussianBasis():
                     plt.grid()
                     if show:
                         plt.show()
-                    fname = "fit_1_k_"+str(num_clusters)+"_lmbda_"+str(lmbda)+".png"
+                    fname = "fit_1_k_"+str(n_clu)+"_lmbda_"+str(lmbda)+".png"
                     plt.savefig("images/q3/"+fname)
 
                     plt.figure(figsize=[16,9])
