@@ -1,4 +1,4 @@
-################################################################### [markdown]
+###################################################################
 # ## CS5691 PRML Assignment 1
 # **Team 1**  
 # **Team Members:**  
@@ -8,10 +8,10 @@
 
 ###################################################################
 # Install required Packages
-# Uncomment if you are running for the firts time
+# Uncomment if you are running for the first time
 # !pip install -r requirements.txt
 # try:
-#     !mkdir images
+#     !mkdir images/q1
 # except:
 #     pass
 
