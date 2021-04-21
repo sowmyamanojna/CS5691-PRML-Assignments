@@ -43,6 +43,9 @@ class GMM():
         for i in range(self.q):
             self.C[i] = (1/self.Nq[i])*(self.gamma[:,i].reshape(-1,1)*(self.X-self.mu[i,:])).T@(self.X-self.mu[i,:])
 
+            if self.covariance_type == "diag":
+                self.C[i] = np.diag(self.C[i])
+
 
     def expectation(self):
         self.gamma = np.zeros((self.n, self.q))
@@ -58,6 +61,10 @@ class GMM():
         
         for i in range(self.q):
             self.C[i] = (1/self.Nq[i])*(self.gamma[:,i].reshape(-1,1)*(self.X-self.mu[i,:])).T@(self.X-self.mu[i,:])
+
+            if self.covariance_type == "diag":
+                self.C[i] = np.diag(self.C[i])
+                
         self.weights = self.Nq/self.n
 
     def log_likelihood(self, X_test):
