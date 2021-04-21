@@ -79,16 +79,47 @@
 \subsubsection{Same Covariance Matrix ($C$)}
 \subsubsection{Different Covariance Matrix}
 
+\break
 \section{Dataset 1B}
 \subsection{K-nearest Neighbors Classifier}
 \subsection{Bayes Classifier, GMM, full covariance}
+Based on the accuracies obtained on the training, validation and test dataset, the best $q_i$ for the three classes has been chosen as $5$.
+\subsubsection{Training and Validation Accuracy}
+The training and validation accuracies obtained for varying $q_i$ for each class is as follows:
+\begin{figure}[H]
+    \hspace{-2em}
+    \includegraphics[scale=0.5]{images/1b_full_train.png}
+    \includegraphics[scale=0.5]{images/1b_full_val.png}
+    \caption{Training and Validation accuracy across $q_i$, on the left and right respectively}
+\end{figure}
+
+\subsubsection{Testing Accuracy}
+The testing accuracy obtained for varying $q_i$ for each class is as follows:
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.5]{images/1b_full_test.png}
+    \caption{Testing accuracy across $q_i$}
+\end{figure}
+
+\subsubsection{Contour Maps and Decision Surfaces}
+The contour maps and decision surfaces obtained, with $q_i=5$ are as follows:
+\begin{figure}[H]
+    \hspace{-1em}
+    \includegraphics[scale=0.5]{images/1b_full_contours.png}
+    \includegraphics[scale=0.5]{images/1b_full_decision_surfaces.png}
+    \caption{Contour Maps and Decision Surfaces obtained for $q_i=5$, on the left and right respectively}
+\end{figure}
+
+
 \subsection{Bayes Classifier, GMM, diagonal covariance}
 \subsection{Bayes Classifier, KNN}
 
+\break
 \section{Dataset 2A}
 \subsection{Bayes Classifier, GMM, full covariance}
 \subsection{Bayes Classifier, GMM, diagonal covariance}
 
+\break
 \section{Dataset 2B}
 \subsection{Bayes Classifier, GMM, full covariance}
 \subsection{Bayes Classifier, GMM, diagonal covariance}
