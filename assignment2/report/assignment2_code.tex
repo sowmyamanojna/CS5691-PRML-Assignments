@@ -1,0 +1,127 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{makeidx}
+\usepackage{graphicx}
+\usepackage{wrapfig}
+\usepackage{enumerate}
+\usepackage{pdfpages}
+\usepackage{tocloft}
+\usepackage{setspace}
+\usepackage{mathtools}
+\usepackage{hyperref}
+\definecolor{linkcolour}{rgb}{0,0.2,0.6} % Link color
+\hypersetup{colorlinks,breaklinks,urlcolor=linkcolour,linkcolor=linkcolour}
+
+\usepackage[left=2cm,right=2cm,top=1.5cm,bottom=1.5cm]{geometry}
+
+\usepackage{xcolor}
+
+\usepackage{color,soul}
+\usepackage{fontspec}
+\setmainfont{Cambria}
+
+\usepackage{caption}
+\captionsetup[figure]{font=small, labelfont={bf}}
+\captionsetup[table]{font=small, labelfont={bf}}
+
+\usepackage{float}
+\usepackage{multirow}
+\usepackage{longtable}
+
+\usepackage[nottoc]{tocbibind}
+\usepackage[framed,numbered,autolinebreaks,useliterate]{mcode}
+
+\newcommand{\spa}{\vspace{1.25em}}
+\newcommand{\noi}{\noindent}
+\def\dul#1{\underline{\underline{#1}}}
+\def\cpt#1#2{{\begin{center}\small\textbf{\textcolor{blue}{Figure #1:}} #2\end{center}}}
+\def\tt#1{\texttt{#1}}
+
+% for dots in the content
+\usepackage{tocloft}
+\renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
+
+\begin{document}
+    \begin{titlepage} 
+        \begin{center}
+        \large{ASSIGNMENT 2}\\
+        \vspace{2em}
+        \large {CS5691 Pattern Recognition and Machine Learning}
+        \vspace{3em}
+        
+        \rule{0.9\linewidth}{0.5mm} \\[0.4cm]
+        {\Large{\bfseries{CS5691 Assignment 2}}} \\
+        \rule{0.9\linewidth}{0.5mm} \\[3 em]    
+        
+        Team Members: \\
+        \vspace{0.5em}
+        \input{team_details}
+
+        \vspace{1em}
+
+        Indian Institute of Technology, Madras\\    
+        
+        \vspace{5em}    
+        
+            \includegraphics[scale = 0.09]{images/iitmlogo.png}
+        \end{center}
+    \end{titlepage}
+
+{\hypersetup{linkcolor=black}
+ \tableofcontents}
+\break
+
+\noi
+\textcolor{blue}{All codes excluding the modules are converted to \tt{.py} files from IPython Notebooks}
+\section{Dataset 1A}
+The code written for analyzing Dataset 1A is as follows:\vspace{-1em}
+\lstinputlisting[language=Python]{codes/dataset1a.py}
+
+\section{Dataset 1B}
+\subsection{Bayes Classification, GMM, Full Covariance}
+The GMM full covariance model code is as follows: \vspace{-1em}
+\lstinputlisting[language=Python]{codes/1b-full-covariance.py}
+
+\noi
+The GMM class module is as follows:\vspace{-1em}
+\lstinputlisting[language=Python]{codes/gmm.py}
+
+\subsection{Bayes Classification, GMM, Diagonal Covariance}
+The GMM full covariance model code is as follows: \vspace{-1em}
+\lstinputlisting[language=Python]{codes/Assignment2.py}
+
+\noi
+The accuracy module is as follows:\vspace{-1em}
+\lstinputlisting[language=Python]{codes/accuracy.py}
+
+\subsection{Bayes Classification, KNN}
+\lstinputlisting[language=Python]{codes/dataset1b.py}
+
+\section{Dataset 2A}
+\subsection{Bayes Classification, GMM, Full Covariance}
+The GMM full covariance model code is as follows: \vspace{-1em}
+\lstinputlisting[language=Python]{codes/2a-full-covariance.py}
+
+\noi
+The GMM class module is as follows:\vspace{-1em}
+\lstinputlisting[language=Python]{codes/gmm.py}
+
+\noi
+The utils script is as follows:\vspace{-1em}
+\lstinputlisting[language=Python]{codes/utils.py}
+
+
+\subsection{Bayes Classification, GMM, Diagonal Covariance}
+The GMM full covariance model code is as follows: \vspace{-1em}
+\lstinputlisting[language=Python]{codes/Assignment2-2a.py}
+
+\section{Dataset 2B}
+The GMM class module is as follows:\vspace{-1em}
+\lstinputlisting[language=Python]{codes/gmm.py}
+
+The code used is as follows:\vspace{-1em}
+\lstinputlisting[language=Python]{codes/2b-full-covariance.py}
+
+\end{document}
