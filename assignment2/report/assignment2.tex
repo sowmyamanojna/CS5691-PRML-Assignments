@@ -172,12 +172,14 @@ The decision region plot for the best model is figure \ref{fig:dec1bGMMdiag}
 \subsubsection{Training and Validation Accuracy}
 The accuracy obtained on training the data 2A on GMM model with diagonal covariance matrix is as in table \ref{tab:acc2a}. The plot of the same is in figure \ref{fig:acc2adiag}. The tolerence used was 1e-3.
 \input{acc2a}
-\begin{figure}
+
+\begin{figure}[H]
     \centering
     \includegraphics[scale = 0.5]{acc_2a.png}
-    \caption{accuracy for training and validation set for 2A}
+    \caption{Accuracy for training and validation set for 2A}
     \label{fig:acc2adiag}
 \end{figure}
+
 \subsection{Best model on test data}
 The highest accuracy on validation data set is for 7 gaussian components. Applying this model to predict the test data, we get an accuracy of \textbf{0.37}. The confusion matrices for this model on training and test data are tables \ref{tab:conf_train2a} and \ref{tab:conf_test2a}.
 \input{conf_train_2a}
