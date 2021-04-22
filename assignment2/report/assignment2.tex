@@ -14,12 +14,12 @@
 \definecolor{linkcolour}{rgb}{0,0.2,0.6} % Link color
 \hypersetup{colorlinks,breaklinks,urlcolor=linkcolour,linkcolor=linkcolour}
 
-\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+\usepackage[left=2cm,right=2cm,top=1.5cm,bottom=1.5cm]{geometry}
 
 \usepackage{xcolor}
 
-%\usepackage{fontspec}
-%\setmainfont{Cambria}
+\usepackage{fontspec}
+\setmainfont{Cambria}
 
 \usepackage{caption}
 \captionsetup[figure]{font=small, labelfont={bf}}
@@ -104,7 +104,9 @@ The parameters are then updated sequentially through the:
 The stopping criterion used is $\Delta(\text{likelihood})<\tt{tol}$. The \tt{tol} we considered is $10^{-5}$.\\
 
 \noi
-Based on the accuracies obtained on the training, validation and test dataset, the best $q_i$ for the three classes has been chosen as $5$.
+Based on the accuracies obtained on the training, validation and test dataset, the best $q_i$ for the three classes has been chosen as $5$. The accuracies obtained in tabular format is as follows:
+\input{acc1b_full}
+
 \subsubsection{Training and Validation Accuracy}
 The training and validation accuracies obtained for varying $q_i$ for each class is as follows:
 \begin{figure}[H]
@@ -118,7 +120,7 @@ The training and validation accuracies obtained for varying $q_i$ for each class
 The testing accuracy obtained for varying $q_i$ for each class is as follows:
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.5]{images/1b_full_test.png}
+    \includegraphics[scale=0.45]{images/1b_full_test.png}
     \caption{Testing accuracy across $q_i$}
 \end{figure}
 
@@ -126,9 +128,15 @@ The testing accuracy obtained for varying $q_i$ for each class is as follows:
 The contour maps and decision surfaces obtained, with $q_i=5$ are as follows:
 \begin{figure}[H]
     \hspace{-1em}
-    \includegraphics[scale=0.5]{images/1b_full_contours.png}
-    \includegraphics[scale=0.5]{images/1b_full_decision_surfaces.png}
-    \caption{Contour Maps and Decision Surfaces obtained for $q_i=5$, on the left and right respectively}
+    \includegraphics[scale=0.45]{images/1b_full_contours.png}
+    \includegraphics[scale=0.45]{images/1b_full_decision_surfaces.png}
+    \caption{Contour Maps, Decision Surfaces obtained for $q_i=5$, on the left and right respectively.}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.45]{images/1b_full_ds_contours.png}
+    \caption{Overlap plot of the decision surface and contours.}
 \end{figure}
 
 
@@ -136,7 +144,7 @@ The contour maps and decision surfaces obtained, with $q_i=5$ are as follows:
 \subsubsection{Training and Validation accuracy}
 Gaussian multi-modal training function (with threshold of the increment in total log-likelihood functions as 0.01 since there was no significant improvement for a smaller threshold than this) with diagonal covariance matrix over the hyperparameter values of the number of gaussian components Q = {2,3,4,5,6,7,8,9} to estimate the parameters - $\mu_q$, $C_q$, $N_q$ and $w_q$ for each gaussian component - and predict the classes of the training data (train.csv) and cross-validation (70\% of dev.csv), we get the table \ref{tab:cv1b}
 \input{acc1b_cv}
-\begin{figure}
+\begin{figure}[H]
     \centering
     \includegraphics[scale=0.5]{images/acc_1b.png}
     \caption{Plot of Hyperparameter value Vs Accuracy using the GMM model with diagonal covariance matrix on Dataset 1B}
@@ -149,7 +157,7 @@ The confusion matrices for the training and test datasets using the best model a
 \input{conf_test_1b}
 
 The decision region plot for the best model is figure \ref{fig:dec1bGMMdiag}
-\begin{figure}
+\begin{figure}[H]
     \centering
     \includegraphics[scale = 0.5]{images/decisionReg_ds2.png}
     \caption{Decision region plot for Bayesian GMM model using diagonal covariance matrix and 5 gaussian components on dataset 1B}
