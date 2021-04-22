@@ -18,8 +18,8 @@
 
 \usepackage{xcolor}
 
-\usepackage{fontspec}
-\setmainfont{Cambria}
+%\usepackage{fontspec}
+%\setmainfont{Cambria}
 
 \usepackage{caption}
 \captionsetup[figure]{font=small, labelfont={bf}}
@@ -133,16 +133,51 @@ The contour maps and decision surfaces obtained, with $q_i=5$ are as follows:
 
 
 \subsection{Bayes Classifier, GMM, diagonal covariance}
+\subsubsection{Training and Validation accuracy}
+Gaussian multi-modal training function (with threshold of the increment in total log-likelihood functions as 0.01 since there was no significant improvement for a smaller threshold than this) with diagonal covariance matrix over the hyperparameter values of the number of gaussian components Q = {2,3,4,5,6,7,8,9} to estimate the parameters - $\mu_q$, $C_q$, $N_q$ and $w_q$ for each gaussian component - and predict the classes of the training data (train.csv) and cross-validation (70\% of dev.csv), we get the table \ref{tab:cv1b}
+\input{acc1b_cv}
+\begin{figure}
+    \centering
+    \includegraphics[scale=0.5]{images/acc_1b.png}
+    \caption{Plot of Hyperparameter value Vs Accuracy using the GMM model with diagonal covariance matrix on Dataset 1B}
+    \label{fig:acc1bGMMdiag}
+\end{figure}
+\subsubsection{Best model output}
+As we can see in the tables and figure \ref{fig:acc1bGMM}, the best accuracy is when the number of Gaussian components is 5. Using the parameters of the model for 5 gaussian components and predicting for the test dataset (30\% of dev.csv), the accuracy obtained was \textbf{1.0}.\\
+The confusion matrices for the training and test datasets using the best model are tables \ref{tab:conf_train1b} and \ref{tab:conf_test1b}.\\
+\input{conf_train_1b}
+\input{conf_test_1b}
+
+The decision region plot for the best model is figure \ref{fig:dec1bGMMdiag}
+\begin{figure}
+    \centering
+    \includegraphics[scale = 0.5]{images/decisionReg_ds2.png}
+    \caption{Decision region plot for Bayesian GMM model using diagonal covariance matrix and 5 gaussian components on dataset 1B}
+    \label{fig:dec1bGMMdiag}
+\end{figure}
 \subsection{Bayes Classifier, KNN}
 
 \break
 \section{Dataset 2A}
 \subsection{Bayes Classifier, GMM, full covariance}
 \subsection{Bayes Classifier, GMM, diagonal covariance}
-
+\subsubsection{Training and Validation Accuracy}
+The accuracy obtained on training the data 2A on GMM model with diagonal covariance matrix is as in table \ref{tab:acc2a}. The plot of the same is in figure \ref{fig:acc2adiag}. The tolerence used was 1e-3.
+\input{acc2a}
+\begin{figure}
+    \centering
+    \includegraphics[scale = 0.5]{acc_2a.png}
+    \caption{accuracy for training and validation set for 2A}
+    \label{fig:acc2adiag}
+\end{figure}
+\subsection{Best model on test data}
+The highest accuracy on validation data set is for 7 gaussian components. Applying this model to predict the test data, we get an accuracy of \textbf{0.37}. The confusion matrices for this model on training and test data are tables \ref{tab:conf_train2a} and \ref{tab:conf_test2a}.
+\input{conf_train_2a}
+\input{conf_test_2a}
 \break
 \section{Dataset 2B}
 \subsection{Bayes Classifier, GMM, full covariance}
 \subsection{Bayes Classifier, GMM, diagonal covariance}
+
 
 \end{document}
