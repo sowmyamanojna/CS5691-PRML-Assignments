@@ -83,6 +83,27 @@
 \section{Dataset 1B}
 \subsection{K-nearest Neighbors Classifier}
 \subsection{Bayes Classifier, GMM, full covariance}
+\subsubsection{Equations}
+Th initialization is done as follows for each class:
+\begin{itemize}
+    \itemsep0em
+    \item Cluster initialization is using \tt{kmeans} clustering.
+    \item The relative number of points in each cluster $N_q$ and weightage $w_q$ for each cluster is calculated.
+    \item The responsibility $\gamma_{n,q}$ is then calculated, followed by mean $\mu_q$ and covariance $C_q$ is calculated.
+\end{itemize}
+
+\noi
+The parameters are then updated sequentially through the:
+\begin{itemize}
+    \itemsep0em
+    \item Expectation-step: $\gamma_{n,q}$ is updated.
+    \item Maximization-step: $\mu_q$, $C_q$, $N_q$ and $w_q$ are updated.
+\end{itemize}
+
+\noi
+The stopping criterion used is $\Delta(\text{likelihood})<\tt{tol}$. The \tt{tol} we considered is $10^{-5}$.\\
+
+\noi
 Based on the accuracies obtained on the training, validation and test dataset, the best $q_i$ for the three classes has been chosen as $5$.
 \subsubsection{Training and Validation Accuracy}
 The training and validation accuracies obtained for varying $q_i$ for each class is as follows:
