@@ -24,12 +24,15 @@ class GMM():
             self.expectation()
             self.maximization()
             new_lk = self.log_likelihood(self.X)
-            if new_lk - self.lglk_list[-1] < tol:
+            diff = new_lk - self.lglk_list[-1]
+            if  diff < tol:
+                if diff < 0: print("Difference is less than 0")
                 break
 
 
     def initialization(self):
-        kmeans = KMeans(n_clusters=self.q, random_state=0).fit(self.X)
+        # kmeans = KMeans(n_clusters=self.q, random_state=0).fit(self.X)
+        kmeans = KMeans(n_clusters=self.q).fit(self.X)
         labels = kmeans.labels_
         unique, counts = np.unique(labels, return_counts=True)
 
@@ -51,7 +54,10 @@ class GMM():
         self.gamma = np.zeros((self.n, self.q))
 
         for i in range(self.q):
-            self.gamma[:,i] = self.weights[i]*mvn.pdf(self.X, self.mu[i], self.C[i])
+            try:
+                self.gamma[:,i] = self.weights[i]*mvn.pdf(self.X, self.mu[i], self.C[i])
+            except:
+                self.gamma[:,i] = self.weights[i]*mvn.pdf(self.X, self.mu[i], self.C[i]+np.eye(self.C[i].shape[0])*1e-7)
         self.gamma = self.gamma/np.sum(self.gamma, axis=1).reshape(-1,1)
 
     def maximization(self):
@@ -64,7 +70,7 @@ class GMM():
 
             if self.covariance_type == "diag":
                 self.C[i] = np.diag(self.C[i])
-                
+
         self.weights = self.Nq/self.n
 
     def log_likelihood(self, X_test):
@@ -73,7 +79,10 @@ class GMM():
         for i in range(n):
             val = 0
             for j in range(self.q):
-                val += self.weights[j]*mvn.pdf(X_test[i], self.mu[j], self.C[j])
+                try:
+                    val += self.weights[j]*mvn.pdf(X_test[i], self.mu[j], self.C[j])
+                except:
+                    val += self.weights[j]*mvn.pdf(X_test[i], self.mu[j], self.C[j]+np.eye(self.C[j].shape[0])*1e-7)
             lk += np.log(val)
 
         return lk
@@ -84,7 +93,19 @@ class GMM():
         for i in range(n):
             val = 0
             for j in range(self.q):
-                val += self.weights[j]*mvn.pdf(X_test[i], self.mu[j], self.C[j])
+                try:
+                    val += self.weights[j]*mvn.pdf(X_test[i], self.mu[j], self.C[j])
+                except:
+                    val += self.weights[j]*mvn.pdf(X_test[i], self.mu[j], self.C[j]+np.eye(self.C[j].shape[0])*1e-7)
             lk[i] = np.log(val)
 
         return lk
+
+    def gaussian_val(self, X_test):
+        n, d = X_test.shape
+        val = np.zeros((n, self.q))
+
+        for i in range(self.q):
+            val[:,i] = self.weights[i]*mvn.pdf(X_test, self.mu[i], self.C[i])
+
+        return np.sum(val, axis=1)
