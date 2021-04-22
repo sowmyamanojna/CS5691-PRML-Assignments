@@ -201,8 +201,31 @@ To reduce the number of parameters to be calculated, we assume that
     \sigma^{2}=\frac{\sum_{i=1}^{d}\sum_{k=1}^{K}\sigma^{2}_{ik}}{K*d}
 \end{equation}
 Where, K is the number of classes (4 for data set 1a) and d is the dimension of feature vector (2 for data set 1a)
+\noi
+Substituting (\ref{casea_nb}) in equation \ref{gaussian}, $p(\vec{x}/y_{i})$ is calculated and used for predicting the class labels. 
+This is also called the naive-bayes classifier since we assume the features to be conditionally independent. 
+The decision boundary obtained is linear, while the level curves are circles. 
 
-Substituting \ref{casea_nb} in equation \ref{gaussian}, $p(\vec{x}/y_{i})$ is calculated and used for predicting the class labels. 
+\subsubsection{Case b : Same Co-variance Matrix ($C$)}
+
+The covariance matrix C is calculated as: 
+\begin{equation}
+    C=\frac{\sum_{k}^{K}C_{k}}{K}
+\end{equation}
+Where $C_{k}$ is the co-variance matrix corresponding to the kth class.
+
+With this assumption, the decision boundary is linear, while the level curves are ellipses with equal length of principal axes, proportional to the eigen-vectors of C.
+
+\subsubsection{Case c : Different Co-variance Matrix}
+
+In this case, the decision surfaces are hyper-quadrics.
+
+
+\subsubsection{Accuracy table and Confusion Matrix}
+
+We obtain that irrespective of our assumption of the co-variance matrices, the accuracy over train, validation and test set is 1. 
+
+\input{acc1a_nb}
 
 \subsubsection{ Case b : Same Covariance Matrix ($C$)}
 \subsubsection{ Case c : Different Covariance Matrix}
