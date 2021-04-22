@@ -18,6 +18,7 @@
 
 \usepackage{xcolor}
 
+\usepackage{color,soul}
 \usepackage{fontspec}
 \setmainfont{Cambria}
 
@@ -79,6 +80,7 @@ The K Nearest Neighbour is a statistically non-parametric model that can be used
 \noi
 Crucial steps in a K-Nearest Neighbour classifier are:
 \begin{itemize}
+    \itemsep0em
     \item A distance metric is first specified, the most commonly used metric is the euclidean distance:
     \begin{equation}
         d=||\vec{x_{1}}-\Vec{x_{2}}||
@@ -92,6 +94,7 @@ Crucial steps in a K-Nearest Neighbour classifier are:
 \noi
 Advantages of KNN are:
 \begin{itemize}
+    \itemsep0em
     \item KNN does not require a training period, it just stores the training dataset and learns from it at the time of making a prediction, hence it is generally much faster than other classification algorithm.
     \item Since the algorithm does not require prior training, new data points can be added seamlessly. 
     \item Easy to implement,the number of parameters are just 2- k and the distance metric to be used 
@@ -100,26 +103,31 @@ Advantages of KNN are:
 \noi
 Disadvantages of KNN are:
 \begin{itemize}
+    \itemsep0em
     \item Computationally expensive for large data sets or high number of features, since the distance is evaluated between test point and all the points in the training data set. 
     \item Sensitive to noisy data and outliers. Generally, increasing the value of k reduces the effect of noise.
 \end{itemize}
 
 \subsubsection{Pre-processing}
 
-The data set 1a has 4 unique class labels - {1.0,0.0,2.0,3.0} as shown in the figure. Number of examples corresponding to each class label is 200.
-The train data set is of dimension (800,3) while the dev data set is of dimension (120,3).The 3rd column in both data sets is the class label, while the first two columns are the real valued feature vectors- $x_{1}$ and $x_{2}$
-\begin{enumerate}
+The data set 1A has 4 unique class labels - $\{0.0, 1.0, 2.0, 3.0\}$ as shown in Figure \ref{fig:1a_cm_knn}. Number of examples corresponding to each class label is $200$.
+The \tt{train} data set is of dimension $(800,3)$ while the \tt{dev} data set is of dimension $(120,3)$.The third column in both data sets is the class label, while the first two columns are the real valued feature vectors- $x_{1}$ and $x_{2}$.
+\begin{itemize}
+    \itemsep0em
     \item There are no null values in the data sets. 
     \item The rows of dev data set are shuffled and further split into cross-validation and test data in the ratio of 70:30
-    \item Range of $x_1$ is (-11,11) and range of $x_2$ is (-12,7). Since the ranges are almost similar, no feature scaling is required.  
-\end{enumerate}
+    \item Range of $x_1$ is $(-11,11)$ and range of $x_2$ is $(-12,7)$. Since the ranges are almost similar, no feature scaling is required.  
+\end{itemize}
 
 \subsubsection{Model performance for varying values of k}
-The model was evaluated for k values = {1,7,15}. We find that irrespective of the value of hyper-parameter k, the model obtained an accuracy of 1 over training data, cross-validation data as well as the test data. Since model performance is best irrespective of k, the accuracy table, confusion matrix and decision boundary plot are all evaluated using k=1 as to minimize the run time.
+The model was evaluated for $k$ values: $\{1,7,15\}$. We find that irrespective of the value of hyper-parameter $k$, the model obtained an accuracy of 1 over training data, cross-validation data as well as the test data. \\
+
+\noi
+Since model performance is best irrespective of $k$, the accuracy table, confusion matrix and decision boundary plot are all evaluated using $k=1$ as to minimize the run time.
 
 \noi
 The accuracy table and confusion matrix are: 
-% \input{acc1a_knn}
+\input{acc1a_knn}
 
 \begin{figure}[H]
     \centering
@@ -149,12 +157,17 @@ The Bayes Classifiers are probabilistic classifiers based on the Bayes theorem:
     p(y_{i}/\vec{x})=\frac{p(\vec{x}/y_{i})*p(y_{i})}{p(\vec{x})}
 \end{equation}\\
 
-Here, \\ 
-$p(y_{i})$ : prior probability for $y=y_{i}$. \\
-$p(\vec{x}/y_{i})$ : Class conditional probability density function or class conditional likelihood function. \\
-$p(y_{i}/\vec{x})$ : Posterior probability for $y=y_{i}$ given $\vec{x}$.\\
-$p(\vec{x})$ : Evidence or normalization factor.\\
+\noi
+Here,
+\begin{itemize}
+    \itemsep0em
+    \item $p(y_{i})$ : prior probability for $y=y_{i}$.
+    \item $p(\vec{x}/y_{i})$ : Class conditional probability density function or class conditional likelihood function.
+    \item $p(y_{i}/\vec{x})$ : Posterior probability for $y=y_{i}$ given $\vec{x}$
+    \item $p(\vec{x})$ : Evidence or normalization factor
+\end{itemize}
 
+\spa
 \noi
 Equation \ref{eqn nb} can be re-written as:
 \begin{equation} \label{normalized_nb}
@@ -175,11 +188,11 @@ Step-wise approach:
 \end{itemize}
 
 \noi
-For the discussion that follows for data set 1a, we assume that $p(\vec{x}/y_{i})$ is given by a gaussian distribution:
+For the discussion that follows for data set 1A, we assume that $p(\vec{x}/y_{i})$ is given by a gaussian distribution:
 
 \begin{equation}
 \label{gaussian}
-    p(\vec{x}/y_{i})=\frac{exp[-(\vec{x}-\vec{\mu_{i}})^{t}*C_{i}^{-1}*(\vec{x}-\vec{\mu_{i}})/2]}{(2\pi)^{d/2}*|C_{i}|^{1/2}}
+    p(\vec{x}/y_{i})=\frac{exp[-(\vec{x}-\vec{\mu_{i}})^{T}*C_{i}^{-1}*(\vec{x}-\vec{\mu_{i}})/2]}{(2\pi)^{d/2}*|C_{i}|^{1/2}}
 \end{equation}
 
 \noi
@@ -190,7 +203,7 @@ In the above equation:
     \item $C_{i}$ is the d*d co-variance matrix corresponding to the class $y_{i}$. Since it is symmetric, number of parameters to be calculated per class = $\frac{d(d+1)}{2}$. Total parameters for co-variance = $\frac{k*d(d+1)}{2}$
 \end{itemize}
 
-\subsubsection{ Case a : Same Covariance Matrix ($\sigma^2I$)}
+\subsubsection{Case a : Same Covariance Matrix ($\sigma^2I$)}
 
 To reduce the number of parameters to be calculated, we assume that
 \begin{equation}
@@ -203,7 +216,6 @@ To reduce the number of parameters to be calculated, we assume that
 Where, K is the number of classes (4 for data set 1a) and d is the dimension of feature vector (2 for data set 1a)
 \noi
 Substituting (\ref{casea_nb}) in equation \ref{gaussian}, $p(\vec{x}/y_{i})$ is calculated and used for predicting the class labels. 
-\\
 This is also called the naive-bayes classifier since we assume the features to be conditionally independent. 
 The decision boundary obtained is linear, while the level curves are circles. 
 
@@ -213,8 +225,8 @@ The covariance matrix C is calculated as:
 \begin{equation}
     C=\frac{\sum_{k}^{K}C_{k}}{K}
 \end{equation}
-Where $C_{k}$ is the co-variance matrix corresponding to the kth class.
-
+Where $C_{k}$ is the co-variance matrix corresponding to the $k^{th}$ class.\\
+\noi
 With this assumption, the decision boundary is linear, while the level curves are ellipses with equal length of principal axes, proportional to the eigen-vectors of C.
 
 \subsubsection{Case c : Different Co-variance Matrix}
@@ -225,21 +237,21 @@ In this case, the decision surfaces are hyper-quadrics.
 \subsubsection{Accuracy table and Confusion Matrix}
 
 We obtain that irrespective of our assumption of the co-variance matrices, the accuracy over train, validation and test set is 1. 
-% \input{acc1a_nb}
+\input{acc1a_nb}
 
 \break
 \section{Dataset 1B}
-
 \subsection{K Nearest Neighbour Classifier} 
 
-Similar to section \ref{1.1}, K Nearest Neighbour classifier is used to predict class labels for data set 2a. \\The data set 1b has 3 unique class labels - [0.0,1.0,2.0] as shown in the figure, it is also non-linearly separable. The train data set is of dimension (800,3) while the dev data set is of dimension (90,3). Similar pre-processing steps are performed as in section \ref{1.1.1}
+Similar to section \ref{1.1}, K Nearest Neighbour classifier is used to predict class labels for data set 2A. \\The data set 1B has 3 unique class labels - [0.0,1.0,2.0] as shown in the figure, it is also non-linearly separable. The train data set is of dimension (800,3) while the dev data set is of dimension (90,3). Similar preprocessing steps are performed as in section \ref{1.1.1}
 
 \subsubsection{Model performance for varying values of K}
 
-Unlike data set 1a, we observe that the accuracy over validation set decreases on increasing the value of hyper-parameter k. This happens because the data set 1b is non-linear, a higher k value includes points from other class labels resulting in misjudgement.
-\\The accuracy table is as follows:
+Unlike data set 1A, we observe that the accuracy over validation set decreases on increasing the value of hyper-parameter k. This happens because the data set 1b is non-linear, a higher k value includes points from other class labels resulting in misjudgement.
+\\
 
-\input{acc1b_knn}
+The accuracy table is as follows:
+% \input{acc1b_knn}
 
 \noi 
 Hence, the best configuration of the model exists for k=1.The confusion matrix in this case is:
@@ -289,9 +301,9 @@ The stopping criterion used is $\Delta(\text{likelihood})<\tt{tol}$. The \tt{tol
 The training and validation accuracies obtained for varying $q_i$ for each class is as follows:
 \begin{figure}[H]
     \hspace{-2em}
-    \includegraphics[scale=0.5]{images/1b_full_train.png}
-    \includegraphics[scale=0.5]{images/1b_full_val.png}
-    \caption{Training and Validation accuracy across $q_i$, on the left and right respectively}
+    \includegraphics[scale=0.45]{images/1b_full_train.png}
+    \includegraphics[scale=0.45]{images/1b_full_val.png}
+    \caption{Training and Validation accuracy across $q_i$, on the left and right respectively, using a GMM model with full covariance matrix.}
 \end{figure}
 
 \subsubsection{Testing Accuracy}
@@ -299,7 +311,7 @@ The testing accuracy obtained for varying $q_i$ for each class is as follows:
 \begin{figure}[H]
     \centering
     \includegraphics[scale=0.45]{images/1b_full_test.png}
-    \caption{Testing accuracy across $q_i$}
+    \caption{Testing accuracy across $q_i$, using a GMM model with full covariance matrix.}
 \end{figure}
 
 \subsubsection{Best Model}
@@ -311,13 +323,13 @@ The confusion matrix obtained for the model with $q_i=5$ are as follows:
 \begin{figure}[H]
     \includegraphics[scale=0.5]{images/1b_full_train_conf.png}
     \includegraphics[scale=0.5]{images/1b_full_val_conf.png}
-    \caption{Training and Validation confusion matrices for the best model with $q_i=5$, on the left and right respectively}
+    \caption{Confusion matrices corresponding to training and validation data, with $q_i=5$, on the left and right respectively, using GMM model with full covariance.}
 \end{figure}
 
 \begin{figure}[H]
     \centering
     \includegraphics[scale=0.5]{images/1b_full_test_conf.png}
-    \caption{Testing confusion matrix for the best model with $q_i=5$.}
+    \caption{Confusion matrix corresponding to the testing data, with $q_i=5$, using GMM model with full covariance.}
 \end{figure}
 
 \subsubsection{Contour Maps and Decision Surfaces}
@@ -337,17 +349,17 @@ The contour maps and decision surfaces obtained, with $q_i=5$ are as follows:
 
 \subsection{Bayes Classifier, GMM, diagonal covariance}
 \subsubsection{Training and Validation accuracy}
-Gaussian multi-modal training function (with threshold of the increment in total log-likelihood functions as 0.01 since there was no significant improvement for a smaller threshold than this) with diagonal covariance matrix over the hyperparameter values of the number of gaussian components Q = {2,3,4,5,6,7,8,9} to estimate the parameters - $\mu_q$, $C_q$, $N_q$ and $w_q$ for each gaussian component - and predict the classes of the training data (train.csv) and cross-validation (70\% of dev.csv), we get the table \ref{tab:cv1b}
+Gaussian multi-modal training function (with threshold of the increment in total log-likelihood functions as 0.01) with diagonal covariance matrix over the hyperparameter values of the number of gaussian components Q = {2,3,4,5,6,7,8,9} to estimate the parameters - $\mu_q$, $C_q$, $N_q$ and $w_q$ for each gaussian component - and predict the classes of the training data (train.csv) and cross-validation (70\% of dev.csv), we get the table \ref{tab:cv1b}
 \input{acc1b_cv}
 \begin{figure}[H]
     \centering
     \includegraphics[scale=0.5]{images/acc_1b.png}
-    \caption{Plot of Hyperparameter value Vs Accuracy using the GMM model with diagonal covariance matrix on Dataset 1B}
+    \caption{Training and Validation accuracy across $q_i$, using the GMM model with diagonal covariance matrix on Dataset 1B}
     \label{fig:acc1bGMMdiag}
 \end{figure}
 
 \subsubsection{Best model output}
-As we can see in the tables and figure \ref{fig:acc1bGMM}, the best accuracy is when the number of Gaussian components is 5. Using the parameters of the model for 5 gaussian components and predicting for the test dataset (30\% of dev.csv), the accuracy obtained was \textbf{1.0}.\\
+As we can see in the tables and figure \ref{fig:acc1bGMMdiag}, the best accuracy is when the number of Gaussian components is 5. Using the parameters of the model for 5 gaussian components and predicting for the test dataset (30\% of dev.csv), the accuracy obtained was \textbf{1.0}.\\
 The confusion matrices for the training and test datasets using the best model are tables \ref{tab:conf_train1b} and \ref{tab:conf_test1b}.\\
 \input{conf_train_1b}
 \input{conf_test_1b}
@@ -359,6 +371,7 @@ The decision region plot for the best model is figure \ref{fig:dec1bGMMdiag}
     \caption{Decision region plot for Bayesian GMM model using diagonal covariance matrix and 5 gaussian components on dataset 1B}
     \label{fig:dec1bGMMdiag}
 \end{figure}
+
 \subsection{Bayes Classifier, KNN}
 
 \break
@@ -407,7 +420,7 @@ The accuracy obtained on training the data 2A on GMM model with diagonal covaria
 
 \begin{figure}[H]
     \centering
-    \includegraphics[scale = 0.5]{acc_2a.png}
+    \includegraphics[scale = 0.5]{images/acc_2a.png}
     \caption{Accuracy for training and validation set for 2A}
     \label{fig:acc2adiag}
 \end{figure}
