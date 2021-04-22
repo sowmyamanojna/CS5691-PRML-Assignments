@@ -74,6 +74,52 @@
 
 \section{Dataset 1A}
 \subsection{K-nearest Neighbors Classifier}
+
+The K Nearest Neighbour is a statistically non-parametric model that can be used for regression as well as for classification. It assumes that similar things exist in close proximity.  
+\noi
+Crucial steps in a K-Nearest Neighbour classifier are:
+\begin{itemize}
+    \item A distance metric is first specified, the most commonly used metric is the euclidean distance:
+    \begin{equation}
+        d=||\vec{x_{1}}-\Vec{x_{2}}||
+    \end{equation}
+    
+    where $||.||$ denotes the norm function. Other commonly used distance metrics are the Manhattan distance and cosine similarity. For our application, euclidean distance is used. 
+    \item Using the specified distance metric, the distance between the test instance and each training example is evaluated.
+    \item The class label that occurs most frequently amongst the nearest k training examples is assigned to the test instance\\
+\end{itemize}
+\\
+Advantages of KNN are:
+
+\begin{itemize}
+    \item KNN does not require a training period, it just stores the training dataset and learns from it at the time of making a prediction, hence it is generally much faster than other classification algorithm.
+    \item Since the algorithm does not require prior training, new data points can be added seamlessly. 
+    \item Easy to implement,the number of parameters are just 2- k and the distance metric to be used 
+\end{itemize}
+\\
+Disdvantages of KNN are:
+
+\begin{itemize}
+    \item Computationally expensive for large data sets or high number of features, since the distance is evaluated between test point and all the points in the training data set. 
+    \item Sensitive to noisy data and outliers. Generally, increasing the value of k reduces the effect of noise.
+\end{itemize}
+
+\subsubsection{Pre-processing}
+
+The data set 1a has 4 unique class labels - {1.0,0.0,2.0,3.0} as shown in the figure. Number of examples corresponding to each class label is 200.
+The train data set is of dimension (800,3) while the dev data set is of dimension (120,3).The 3rd column in both data sets is the class label, while the first two columns are the real valued feature vectors- $x_{1} and x_{2}$
+\begin{enumerate}
+    \item There are no null values in the data sets. 
+    \item The rows of dev data set are shuffled and further split into cross-validation and test data in the ratio of 70:30
+    \item Range of $x_1$ is (-11,11) and range of $x_2$ is (-12,7). Since the ranges are almost similar, no feature scaling is required.  
+\end{enumerate}
+
+\subsubsection{Model performance for varying values of k}
+
+The model was evaluated for k values = {1,7,15}. We find that irrespective of the value of hyper-parameter k, the model obtained an accuracy of 1 over training data, cross-validation data as well as the test data. //
+
+The confusion matrix is therefore: 
+
 \subsection{Naive-Bayes classifier}
 \subsubsection{Same Covariance Matrix ($\sigma^2I$)}
 \subsubsection{Same Covariance Matrix ($C$)}
