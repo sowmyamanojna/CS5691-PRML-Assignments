@@ -88,17 +88,17 @@ Crucial steps in a K-Nearest Neighbour classifier are:
     \item Using the specified distance metric, the distance between the test instance and each training example is evaluated.
     \item The class label that occurs most frequently amongst the nearest k training examples is assigned to the test instance\\
 \end{itemize}
-\\
-Advantages of KNN are:
 
+\noi
+Advantages of KNN are:
 \begin{itemize}
     \item KNN does not require a training period, it just stores the training dataset and learns from it at the time of making a prediction, hence it is generally much faster than other classification algorithm.
     \item Since the algorithm does not require prior training, new data points can be added seamlessly. 
     \item Easy to implement,the number of parameters are just 2- k and the distance metric to be used 
 \end{itemize}
-\\
-Disdvantages of KNN are:
 
+\noi
+Disadvantages of KNN are:
 \begin{itemize}
     \item Computationally expensive for large data sets or high number of features, since the distance is evaluated between test point and all the points in the training data set. 
     \item Sensitive to noisy data and outliers. Generally, increasing the value of k reduces the effect of noise.
@@ -115,9 +115,9 @@ The train data set is of dimension (800,3) while the dev data set is of dimensio
 \end{enumerate}
 
 \subsubsection{Model performance for varying values of k}
+The model was evaluated for k values = {1,7,15}. We find that irrespective of the value of hyper-parameter k, the model obtained an accuracy of 1 over training data, cross-validation data as well as the test data. Since model performance is best irrespective of k, the accuracy table, confusion matrix and decision boundary plot are all evaluated using k=1 as to minimize the run time.
 
-The model was evaluated for k values = {1,7,15}. We find that irrespective of the value of hyper-parameter k, the model obtained an accuracy of 1 over training data, cross-validation data as well as the test data. Since model performance is best irrespective of k, the accuracy table, confusion matrix and decision boundary plot are all evaluated using k=1 as to minimize the run time. 
-\noindent
+\noi
 The accuracy table and confusion matrix are: 
 \input{acc1a_knn}
 
@@ -142,37 +142,38 @@ The decision boundary obtained (with k=1) is linear in form.
 
 
 \subsection{Naive-Bayes classifier with Gaussian distribution for each class}
-
 The Bayes Classifiers are probabilistic classifiers based on the Bayes theorem:
 
 \begin{equation}
 \label{eqn nb}
     p(y_{i}/\vec{x})=\frac{p(\vec{x}/y_{i})*p(y_{i})}{p(\vec{x})}
-\end{equation}
-\\
+\end{equation}\\
+
 Here, \\ 
 $p(y_{i})$ : prior probability for $y=y_{i}$. \\
 $p(\vec{x}/y_{i})$ : Class conditional probability density function or class conditional likelihood function. \\
 $p(y_{i}/\vec{x})$ : Posterior probability for $y=y_{i}$ given $\vec{x}$.\\
-$p(\vec{x})$ : Evidence or normalization factor.
-\noindent
-\\
+$p(\vec{x})$ : Evidence or normalization factor.\\
+
+\noi
 Equation \ref{eqn nb} can be re-written as:
 \begin{equation} \label{normalized_nb}
     p(y_{i}/\vec{x})=\frac{p(\vec{x}/y_{i})*p(y_{i})}{\sum_{i}p(\vec{x}/y_{i})*p(y_{i})}
-\end{equation}
+\end{equation}\\
 
-\\
-\noindent
-Hence, the probability that $\vec{x}$ belongs to the class $y_{i}$ is $\propto$ $p(\vec{x}/y_{i})*p(y_{i})$. \\
+\noi
+Hence, the probability that $\vec{x}$ belongs to the class $y_{i}$ is $\propto$ $p(\vec{x}/y_{i})*p(y_{i})$.\\
+
 \noi
 Step-wise approach:
 \begin{itemize}
+    \itemsep0em
     \item $p(y_{i})$ is calculated from the train data set, for data set 1a, we find that all the classes have equal prior probability.
     \item The probability $p(\vec{x}/y_{i})$ can be calculated by various parametric and non-parametric means. For data set 1a, we use parametric means as described later.
     \item $p(y_{i}/\vec{x})$ is calculated for all the classes using equation \ref{normalized_nb}.
     \item The class label with maximum posterior probability is chosen as the class label for $\vec{x}$.
 \end{itemize}
+
 \subsubsection{Same Covariance Matrix ($\sigma^2I$)}
 \subsubsection{Same Covariance Matrix ($C$)}
 \subsubsection{Different Covariance Matrix}
@@ -180,6 +181,7 @@ Step-wise approach:
 \break
 \section{Dataset 1B}
 \subsection{K-nearest Neighbors Classifier}
+
 \subsection{Bayes Classifier, GMM, full covariance}
 \subsubsection{Equations}
 Th initialization is done as follows for each class:
@@ -201,10 +203,6 @@ The parameters are then updated sequentially through the:
 \noi
 The stopping criterion used is $\Delta(\text{likelihood})<\tt{tol}$. The \tt{tol} we considered is $10^{-5}$.\\
 
-\noi
-Based on the accuracies obtained on the training, validation and test dataset, the best $q_i$ for the three classes has been chosen as $5$. The accuracies obtained in tabular format is as follows:
-\input{acc1b_full}
-
 \subsubsection{Training and Validation Accuracy}
 The training and validation accuracies obtained for varying $q_i$ for each class is as follows:
 \begin{figure}[H]
@@ -222,6 +220,24 @@ The testing accuracy obtained for varying $q_i$ for each class is as follows:
     \caption{Testing accuracy across $q_i$}
 \end{figure}
 
+\subsubsection{Best Model}
+Based on the accuracies obtained on the training, validation and test dataset, the best $q_i$ for the three classes has been chosen as $5$. The accuracies obtained in tabular format is as follows:
+\input{acc1b_full}
+
+\noi
+The confusion matrix obtained for the model with $q_i=5$ are as follows:
+\begin{figure}[H]
+    \includegraphics[scale=0.5]{images/1b_full_train_conf.png}
+    \includegraphics[scale=0.5]{images/1b_full_val_conf.png}
+    \caption{Training and Validation confusion matrices for the best model with $q_i=5$, on the left and right respectively}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.5]{images/1b_full_test_conf.png}
+    \caption{Testing confusion matrix for the best model with $q_i=5$.}
+\end{figure}
+
 \subsubsection{Contour Maps and Decision Surfaces}
 The contour maps and decision surfaces obtained, with $q_i=5$ are as follows:
 \begin{figure}[H]
@@ -236,8 +252,6 @@ The contour maps and decision surfaces obtained, with $q_i=5$ are as follows:
     \includegraphics[scale=0.45]{images/1b_full_ds_contours.png}
     \caption{Overlap plot of the decision surface and contours.}
 \end{figure}
-
-
 \subsection{Bayes Classifier, GMM, diagonal covariance}
 \subsubsection{Training and Validation accuracy}
 Gaussian multi-modal training function (with threshold of the increment in total log-likelihood functions as 0.01 since there was no significant improvement for a smaller threshold than this) with diagonal covariance matrix over the hyperparameter values of the number of gaussian components Q = {2,3,4,5,6,7,8,9} to estimate the parameters - $\mu_q$, $C_q$, $N_q$ and $w_q$ for each gaussian component - and predict the classes of the training data (train.csv) and cross-validation (70\% of dev.csv), we get the table \ref{tab:cv1b}
