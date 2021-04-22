@@ -174,9 +174,38 @@ Step-wise approach:
     \item The class label with maximum posterior probability is chosen as the class label for $\vec{x}$.
 \end{itemize}
 
-\subsubsection{Same Covariance Matrix ($\sigma^2I$)}
-\subsubsection{Same Covariance Matrix ($C$)}
-\subsubsection{Different Covariance Matrix}
+\noi
+For the discussion that follows for data set 1a, we assume that $p(\vec{x}/y_{i})$ is given by a gaussian distribution:
+
+\begin{equation}
+\label{gaussian}
+    p(\vec{x}/y_{i})=\frac{exp[-(\vec{x}-\vec{\mu_{i}})^{t}*C_{i}^{-1}*(\vec{x}-\vec{\mu_{i}})/2]}{(2\pi)^{d/2}*|C_{i}|^{1/2}}
+\end{equation}
+
+\noi
+In the above equation: 
+
+\begin{itemize}
+    \item $\mu_{i}$ is the mean corresponding to examples in the class $y_{i}$, its dimension is d*1, where d is the number of features. Hence, if there are k classes, number of parameters to be estimated for mean = k*d
+    \item $C_{i}$ is the d*d co-variance matrix corresponding to the class $y_{i}$. Since it is symmetric, number of parameters to be calculated per class = $\frac{d(d+1)}{2}$. Total parameters for co-variance = $\frac{k*d(d+1)}{2}$
+\end{itemize}
+
+\subsubsection{ Case a : Same Covariance Matrix ($\sigma^2I$)}
+
+To reduce the number of parameters to be calculated, we assume that
+\begin{equation}
+    C_{i}=C_{j}=\sigma^{2}I
+\end{equation}
+\begin{equation}
+\label{casea_nb}
+    \sigma^{2}=\frac{\sum_{i=1}^{d}{\sum_{k=1}^{K}\sigma^{2}_{ik}}{K*d}}
+\end{equation}
+Where, K is the number of classes (4 for data set 1a) and d is the dimension of feature vector (2 for data set 1a)
+
+Substituting \ref{casea_nb} in equation \ref{gaussian}, $p(\vec{x}/y_{i})$ is calculated and used for predicting the class labels. 
+
+\subsubsection{ Case b : Same Covariance Matrix ($C$)}
+\subsubsection{ Case c : Different Covariance Matrix}
 
 \break
 \section{Dataset 1B}
