@@ -379,8 +379,48 @@ The decision region plot and the contour plot for the best model is figure \ref{
     \label{fig:dec1bGMMdiag}
 \end{figure}
 
-\subsection{Bayes Classifier, KNN}
+\subsection{Bayes Classifier with knn}
 
+While the main principle remains the same as discussed in section \ref{1.2}, we now use non-parametric methods to evaluate the class conditional probability $p(\vec{x}/y_{i})$.
+\\Suppose the number of data points in the hyper-volume v around $\vec{x}$ be N, the number of data point corresponding to class i be $N_i$, then:
+
+\begin{equation}
+    p(\vec{x}/y_{i})=\frac{N_{i}}{N*V}
+\end{equation}
+
+The probability density can be estimated in two ways :
+
+\begin{itemize}
+    \item Specifying the volume V, number of point $N_i$ and $N$ are calculated
+    \item Specifying N, the volume V and $N_i$ are calculated. Here, the radius of hyper sphere is the distance of the point belonging to N farthest from $\vec{x}$, this is called knn method.  
+\end{itemize}
+\noi
+For this case, we use the knn method to evaluate the class conditional probability densities.
+\\ The class label i that maximizes equation \ref{eqn nb} is chosen as the label for $\vec{x}$. 
+
+\subsubsection{Model Performance for varying values of k}
+
+The model is tested for k=10 and k=20. The accuracy table and confusion matrix are as follows:
+
+\input{acc1b_nb}
+Since the accuracy is higher for k=10, it is used to further evaluate the confusion matrix and decision boundary plot. 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.5]{images/1b_cm_nb_train.jpg}
+    \includegraphics[scale=0.5]{images/1b_cm_nb_test.jpg}
+    \caption{Confusion matrices for k=10, for train data and test data on left and right respectively.}
+    \label{fig:1b_cm_nb}
+\end{figure}
+
+\subsubsection{Decision boundary plot}
+\begin{figure}[H]
+    \centering
+    \includegraphics{images/1b_nb_decision_region.jpg}
+    \caption{Decision boundary for k=10}
+    \label{fig:1b_decreg_nb}
+\end{figure}
+While the shape of decision boundary is almost similar as figure \ref{fig:1b_decreg_knn}, there are still some differences, especially near the edges. 
 \break
 \section{Dataset 2A}
 \subsection{Bayes Classifier, GMM, full covariance}
