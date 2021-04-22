@@ -107,7 +107,7 @@ Disadvantages of KNN are:
 \subsubsection{Pre-processing}
 
 The data set 1a has 4 unique class labels - {1.0,0.0,2.0,3.0} as shown in the figure. Number of examples corresponding to each class label is 200.
-The train data set is of dimension (800,3) while the dev data set is of dimension (120,3).The 3rd column in both data sets is the class label, while the first two columns are the real valued feature vectors- $x_{1} and x_{2}$
+The train data set is of dimension (800,3) while the dev data set is of dimension (120,3).The 3rd column in both data sets is the class label, while the first two columns are the real valued feature vectors- $x_{1}$ and $x_{2}$
 \begin{enumerate}
     \item There are no null values in the data sets. 
     \item The rows of dev data set are shuffled and further split into cross-validation and test data in the ratio of 70:30
@@ -203,6 +203,7 @@ To reduce the number of parameters to be calculated, we assume that
 Where, K is the number of classes (4 for data set 1a) and d is the dimension of feature vector (2 for data set 1a)
 \noi
 Substituting (\ref{casea_nb}) in equation \ref{gaussian}, $p(\vec{x}/y_{i})$ is calculated and used for predicting the class labels. 
+\\
 This is also called the naive-bayes classifier since we assume the features to be conditionally independent. 
 The decision boundary obtained is linear, while the level curves are circles. 
 
@@ -228,7 +229,40 @@ We obtain that irrespective of our assumption of the co-variance matrices, the a
 
 \break
 \section{Dataset 1B}
-\subsection{K-nearest Neighbors Classifier}
+
+\subsection{K Nearest Neighbour Classifier} 
+
+Similar to section \ref{1.1}, K Nearest Neighbour classifier is used to predict class labels for data set 2a. \\The data set 1b has 3 unique class labels - [0.0,1.0,2.0] as shown in the figure, it is also non-linearly separable. The train data set is of dimension (800,3) while the dev data set is of dimension (90,3). Similar pre-processing steps are performed as in section \ref{1.1.1}
+
+\subsubsection{Model performance for varying values of K}
+
+Unlike data set 1a, we observe that the accuracy over validation set decreases on increasing the value of hyper-parameter k. This happens because the data set 1b is non-linear, a higher k value includes points from other class labels resulting in misjudgement.
+\\The accuracy table is as follows:
+
+\input{acc1b_knn}
+
+\noi 
+Hence, the best configuration of the model exists for k=1.The confusion matrix in this case is:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.5]{images/1b_cm_knn_train.jpg}
+    \includegraphics[scale=0.5]{images/1b_cm_knn_test.jpg}
+    \caption{Confusion matrix for k=1, for Train and Test data on left and right respectively }
+    \label{fig:1b_cm_knn}
+\end{figure}
+
+\subsubsection{Decision Boundary plot}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics{images/1b_knn_decision_region.jpg}
+    \caption{Decision boundary plot for k=1}
+    \label{fig:1b_decreg_knn}
+\end{figure}
+
+\noi
+The decision boundary obtained is non-linear in form and not smooth. 
 
 \subsection{Bayes Classifier, GMM, full covariance}
 \subsubsection{Equations}
