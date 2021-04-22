@@ -19,8 +19,8 @@
 \usepackage{xcolor}
 
 \usepackage{color,soul}
-\usepackage{fontspec}
-\setmainfont{Cambria}
+%\usepackage{fontspec}
+%\setmainfont{Cambria}
 
 \usepackage{caption}
 \captionsetup[figure]{font=small, labelfont={bf}}
@@ -360,14 +360,21 @@ Gaussian multi-modal training function (with threshold of the increment in total
 
 \subsubsection{Best model output}
 As we can see in the tables and figure \ref{fig:acc1bGMMdiag}, the best accuracy is when the number of Gaussian components is 5. Using the parameters of the model for 5 gaussian components and predicting for the test dataset (30\% of dev.csv), the accuracy obtained was \textbf{1.0}.\\
-The confusion matrices for the training and test datasets using the best model are tables \ref{tab:conf_train1b} and \ref{tab:conf_test1b}.\\
-\input{conf_train_1b}
-\input{conf_test_1b}
+The confusion matrices for the training and test datasets using the best model is figure \ref{fig:conf_1b_diag}\\
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale = 0.5]{images/conf_test1b.png}
+    \includegraphics[scale = 0.5]{images/conf_train1b.png}
+    \caption{Confusion matrices for data 1B - diagonal covariance matrices}
+    \label{fig:conf_1b_diag}
+\end{figure}
 
-The decision region plot for the best model is figure \ref{fig:dec1bGMMdiag}
+The decision region plot and the contour plot for the best model is figure \ref{fig:dec1bGMMdiag}
 \begin{figure}[H]
     \centering
     \includegraphics[scale = 0.5]{images/decisionReg_ds2.png}
+    \includegraphics[scale = 0.5]{images/contour1b.png}
+
     \caption{Decision region plot for Bayesian GMM model using diagonal covariance matrix and 5 gaussian components on dataset 1B}
     \label{fig:dec1bGMMdiag}
 \end{figure}
@@ -501,7 +508,7 @@ The confusion matrices obtained are as follows:
 
 \subsection{Bayes Classifier, GMM, diagonal covariance}
 \subsubsection{Training and Validation Accuracy}
-The accuracy obtained on training the data 2A on GMM model with diagonal covariance matrix is as in table \ref{tab:acc2a}. The plot of the same is in figure \ref{fig:acc2adiag}. The tolerence used was 1e-3.
+The accuracy obtained on training the data 2A on GMM model with diagonal covariance matrix is as in table \ref{tab:acc2a}. The plot of the same is in figure \ref{fig:acc2adiag}. The tolerance used was 1e-3.
 \input{acc2a}
 
 \begin{figure}[H]
@@ -512,9 +519,15 @@ The accuracy obtained on training the data 2A on GMM model with diagonal covaria
 \end{figure}
 
 \subsubsection{Best model on test data}
-The highest accuracy on validation data set is for 7 gaussian components. Applying this model to predict the test data, we get an accuracy of \textbf{0.37}. The confusion matrices for this model on training and test data are tables \ref{tab:conf_train2a} and \ref{tab:conf_test2a}.
-\input{conf_train_2a}
-\input{conf_test_2a}
+The highest accuracy on validation data set is for 7 gaussian components. Applying this model to predict the test data, we get an accuracy of \textbf{0.37}. The confusion matrices for this model on training and test data is figure \ref{fig:conf_2a_diag} .
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale = 0.5]{images/conf_test2a.png}
+    \includegraphics[scale = 0.5]{images/conf_train2a.png}
+    \caption{Confusion matrices for data 2A - diagonal covariance matrices}
+    \label{fig:conf_2a_diag}
+\end{figure}
+
 
 \break
 \section{Dataset 2B}
