@@ -19,8 +19,8 @@
 \usepackage{xcolor}
 
 \usepackage{color,soul}
-%\usepackage{fontspec}
-%\setmainfont{Cambria}
+\usepackage{fontspec}
+\setmainfont{Cambria}
 
 \usepackage{caption}
 \captionsetup[figure]{font=small, labelfont={bf}}
@@ -362,7 +362,6 @@ Gaussian multi-modal training function (with threshold of the increment in total
 As we can see in the tables and figure \ref{fig:acc1bGMMdiag}, the best accuracy is when the number of Gaussian components is 5. Using the parameters of the model for 5 gaussian components and predicting for the test dataset (30\% of dev.csv), the accuracy obtained was \textbf{1.0}.\\
 The confusion matrices for the training and test datasets using the best model is figure \ref{fig:conf_1b_diag}\\
 \begin{figure}[H]
-    \centering
     \includegraphics[scale = 0.5]{images/conf_test1b.png}
     \includegraphics[scale = 0.5]{images/conf_train1b.png}
     \caption{Confusion matrices for data 1B - diagonal covariance matrices}
@@ -396,13 +395,15 @@ The probability density can be estimated in two ways :
 \end{itemize}
 \noi
 For this case, we use the knn method to evaluate the class conditional probability densities.
-\\ The class label i that maximizes equation \ref{eqn nb} is chosen as the label for $\vec{x}$. 
+\\ 
+The class label i that maximizes equation \ref{eqn nb} is chosen as the label for $\vec{x}$. 
 
 \subsubsection{Model Performance for varying values of k}
 
 The model is tested for k=10 and k=20. The accuracy table and confusion matrix are as follows:
-
 \input{acc1b_nb}
+
+\noi
 Since the accuracy is higher for k=10, it is used to further evaluate the confusion matrix and decision boundary plot. 
 
 \begin{figure}[H]
@@ -416,7 +417,7 @@ Since the accuracy is higher for k=10, it is used to further evaluate the confus
 \subsubsection{Decision boundary plot}
 \begin{figure}[H]
     \centering
-    \includegraphics{images/1b_nb_decision_region.jpg}
+    % \includegraphics{images/1b_nb_decision_region.jpg}
     \caption{Decision boundary for k=10}
     \label{fig:1b_decreg_nb}
 \end{figure}
@@ -521,7 +522,6 @@ The accuracy obtained on training the data 2A on GMM model with diagonal covaria
 \subsubsection{Best model on test data}
 The highest accuracy on validation data set is for 7 gaussian components. Applying this model to predict the test data, we get an accuracy of \textbf{0.37}. The confusion matrices for this model on training and test data is figure \ref{fig:conf_2a_diag} .
 \begin{figure}[H]
-    \centering
     \includegraphics[scale = 0.5]{images/conf_test2a.png}
     \includegraphics[scale = 0.5]{images/conf_train2a.png}
     \caption{Confusion matrices for data 2A - diagonal covariance matrices}
@@ -531,8 +531,19 @@ The highest accuracy on validation data set is for 7 gaussian components. Applyi
 
 \break
 \section{Dataset 2B}
-\subsection{Bayes Classifier, GMM, full covariance}
-\subsection{Bayes Classifier, GMM, diagonal covariance}
+The varying length classification is done as follows:
+\begin{itemize}
+    \itemsep0em
+    \item Each image has a $36*23$ feature parameters.
+    \item Each of these $36$ rows are considered as instances of the class and a GMM (full covariance/diagonal covariance) is fit on the dataset.
+    \item The E-step and M-step are done as is in case of static length pattern.
+    \item However, for each of these images, 
+    \begin{equation}
+    p (X|\lambda_i ) = \prod_{t=1}^T p(x_t|\lambda_i) = \prod_{t=1}^T \sum_{q=1}^Q w_{iq}\mathcal{N}(x_t|\mu_{iq}, \Sigma_{iq})
+    \end{equation}
+    is calculated to perform classification.
+\end{itemize}
 
-
+\noi
+Due to the size of the dataset, we weren't able to completely train the models of the five classes. 
 \end{document}
