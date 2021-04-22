@@ -673,7 +673,9 @@ grid
 # In[115]:
 
 
-
+yhat_nb=[]
+for i in range(len(grid)):
+    yhat_nb.append(predictor1(grid[i,:])[1])
 
 
 # In[118]:
