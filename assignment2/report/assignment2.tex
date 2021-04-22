@@ -141,7 +141,38 @@ The accuracy table and confusion matrix are:
 The decision boundary obtained (with k=1) is linear in form. 
 
 
-\subsection{Naive-Bayes classifier}
+\subsection{Naive-Bayes classifier with Gaussian distribution for each class}
+
+The Bayes Classifiers are probabilistic classifiers based on the Bayes theorem:
+
+\begin{equation}
+\label{eqn nb}
+    p(y_{i}/\vec{x})=\frac{p(\vec{x}/y_{i})*p(y_{i})}{p(\vec{x})}
+\end{equation}
+\\
+Here, \\ 
+$p(y_{i})$ : prior probability for $y=y_{i}$. \\
+$p(\vec{x}/y_{i})$ : Class conditional probability density function or class conditional likelihood function. \\
+$p(y_{i}/\vec{x})$ : Posterior probability for $y=y_{i}$ given $\vec{x}$.\\
+$p(\vec{x})$ : Evidence or normalization factor.
+\noindent
+\\
+Equation \ref{eqn nb} can be re-written as:
+\begin{equation} \label{normalized_nb}
+    p(y_{i}/\vec{x})=\frac{p(\vec{x}/y_{i})*p(y_{i})}{\sum_{i}p(\vec{x}/y_{i})*p(y_{i})}
+\end{equation}
+
+\\
+\noindent
+Hence, the probability that $\vec{x}$ belongs to the class $y_{i}$ is $\propto$ $p(\vec{x}/y_{i})*p(y_{i})$. \\
+\noi
+Step-wise approach:
+\begin{itemize}
+    \item $p(y_{i})$ is calculated from the train data set, for data set 1a, we find that all the classes have equal prior probability.
+    \item The probability $p(\vec{x}/y_{i})$ can be calculated by various parametric and non-parametric means. For data set 1a, we use parametric means as described later.
+    \item $p(y_{i}/\vec{x})$ is calculated for all the classes using equation \ref{normalized_nb}.
+    \item The class label with maximum posterior probability is chosen as the class label for $\vec{x}$.
+\end{itemize}
 \subsubsection{Same Covariance Matrix ($\sigma^2I$)}
 \subsubsection{Same Covariance Matrix ($C$)}
 \subsubsection{Different Covariance Matrix}
