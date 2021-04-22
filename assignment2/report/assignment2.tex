@@ -19,8 +19,8 @@
 \usepackage{xcolor}
 
 \usepackage{color,soul}
-%\usepackage{fontspec}
-%\setmainfont{Cambria}
+\usepackage{fontspec}
+\setmainfont{Cambria}
 
 \usepackage{caption}
 \captionsetup[figure]{font=small, labelfont={bf}}
@@ -245,16 +245,16 @@ We obtain that irrespective of our assumption of the co-variance matrices, the a
 
 Similar to section \ref{1.1}, K Nearest Neighbour classifier is used to predict class labels for data set 2A. \\The data set 1B has 3 unique class labels - [0.0,1.0,2.0] as shown in the figure, it is also non-linearly separable. The train data set is of dimension (800,3) while the dev data set is of dimension (90,3). Similar preprocessing steps are performed as in section \ref{1.1.1}
 
-\subsubsection{Model performance for varying values of K}
-
-Unlike data set 1A, we observe that the accuracy over validation set decreases on increasing the value of hyper-parameter k. This happens because the data set 1b is non-linear, a higher k value includes points from other class labels resulting in misjudgement.
+\subsubsection{Model performance for varying values of $k$}
+Unlike data set 1A, we observe that the accuracy over validation set decreases on increasing the value of hyper-parameter k. This happens because the data set 1B is non-linear, a higher k value includes points from other class labels resulting in mis-judgment.
 \\
 
+\noi
 The accuracy table is as follows:
-% \input{acc1b_knn}
+\input{acc1b_knn}
 
 \noi 
-Hence, the best configuration of the model exists for k=1.The confusion matrix in this case is:
+Hence, the best configuration of the model exists for $k=1$.The confusion matrix in this case is:
 
 \begin{figure}[H]
     \centering
@@ -362,7 +362,6 @@ Gaussian multi-modal training function (with threshold of the increment in total
 As we can see in the tables and figure \ref{fig:acc1bGMMdiag}, the best accuracy is when the number of Gaussian components is 5. Using the parameters of the model for 5 gaussian components and predicting for the test dataset (30\% of dev.csv), the accuracy obtained was \textbf{1.0}.\\
 The confusion matrices for the training and test datasets using the best model is figure \ref{fig:conf_1b_diag}\\
 \begin{figure}[H]
-    \centering
     \includegraphics[scale = 0.5]{images/conf_test1b.png}
     \includegraphics[scale = 0.5]{images/conf_train1b.png}
     \caption{Confusion matrices for data 1B - diagonal covariance matrices}
@@ -379,7 +378,7 @@ The decision region plot and the contour plot for the best model is figure \ref{
     \label{fig:dec1bGMMdiag}
 \end{figure}
 
-\subsection{Bayes Classifier with knn}
+\subsection{Bayes Classifier with KNN}
 
 While the main principle remains the same as discussed in section \ref{1.2}, we now use non-parametric methods to evaluate the class conditional probability $p(\vec{x}/y_{i})$.
 \\Suppose the number of data points in the hyper-volume v around $\vec{x}$ be N, the number of data point corresponding to class i be $N_i$, then:
@@ -396,28 +395,29 @@ The probability density can be estimated in two ways :
 \end{itemize}
 \noi
 For this case, we use the knn method to evaluate the class conditional probability densities.
-\\ The class label i that maximizes equation \ref{eqn nb} is chosen as the label for $\vec{x}$. 
+\\ 
+The class label i that maximizes equation \ref{eqn nb} is chosen as the label for $\vec{x}$. 
 
-\subsubsection{Model Performance for varying values of k}
-
-The model is tested for k=10 and k=20. The accuracy table and confusion matrix are as follows:
-
+\subsubsection{Model Performance for varying values of $k$}
+The model is tested for $k=10$ and $k=20$. The accuracy table and confusion matrix are as follows:
 \input{acc1b_nb}
-Since the accuracy is higher for k=10, it is used to further evaluate the confusion matrix and decision boundary plot. 
+
+\noi
+Since the accuracy is higher for $k=10$, it is used to further evaluate the confusion matrix and decision boundary plot. 
 
 \begin{figure}[H]
     \centering
     \includegraphics[scale=0.5]{images/1b_cm_nb_train.jpg}
     \includegraphics[scale=0.5]{images/1b_cm_nb_test.jpg}
-    \caption{Confusion matrices for k=10, for train data and test data on left and right respectively.}
+    \caption{Confusion matrices for $k=10$, for train data and test data on left and right respectively.}
     \label{fig:1b_cm_nb}
 \end{figure}
 
 \subsubsection{Decision boundary plot}
 \begin{figure}[H]
     \centering
-    \includegraphics{images/1b_nb_decision_region.jpg}
-    \caption{Decision boundary for k=10}
+    % \includegraphics{images/1b_nb_decision_region.jpg}
+    \caption{Decision boundary for $k=10$}
     \label{fig:1b_decreg_nb}
 \end{figure}
 While the shape of decision boundary is almost similar as figure \ref{fig:1b_decreg_knn}, there are still some differences, especially near the edges.
@@ -521,7 +521,6 @@ The accuracy obtained on training the data 2A on GMM model with diagonal covaria
 \subsubsection{Best model on test data}
 The highest accuracy on validation data set is for 7 gaussian components. Applying this model to predict the test data, we get an accuracy of \textbf{0.37}. The confusion matrices for this model on training and test data is figure \ref{fig:conf_2a_diag} .
 \begin{figure}[H]
-    \centering
     \includegraphics[scale = 0.5]{images/conf_test2a.png}
     \includegraphics[scale = 0.5]{images/conf_train2a.png}
     \caption{Confusion matrices for data 2A - diagonal covariance matrices}
@@ -531,8 +530,19 @@ The highest accuracy on validation data set is for 7 gaussian components. Applyi
 
 \break
 \section{Dataset 2B}
-\subsection{Bayes Classifier, GMM, full covariance}
-\subsection{Bayes Classifier, GMM, diagonal covariance}
+The varying length classification is done as follows:
+\begin{itemize}
+    \itemsep0em
+    \item Each image has a $36*23$ feature parameters.
+    \item Each of these $36$ rows are considered as instances of the class and a GMM (full covariance/diagonal covariance) is fit on the dataset.
+    \item The E-step and M-step are done as is in case of static length pattern.
+    \item However, for each of these images, 
+    \begin{equation}
+    p (X|\lambda_i ) = \prod_{t=1}^T p(x_t|\lambda_i) = \prod_{t=1}^T \sum_{q=1}^Q w_{iq}\mathcal{N}(x_t|\mu_{iq}, \Sigma_{iq})
+    \end{equation}
+    is calculated to perform classification.
+\end{itemize}
 
-
+\noi
+Due to the size of the dataset, we weren't able to completely train the models of the five classes. 
 \end{document}
