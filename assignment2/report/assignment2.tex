@@ -116,11 +116,63 @@ The train data set is of dimension (800,3) while the dev data set is of dimensio
 
 \subsubsection{Model performance for varying values of k}
 
-The model was evaluated for k values = {1,7,15}. We find that irrespective of the value of hyper-parameter k, the model obtained an accuracy of 1 over training data, cross-validation data as well as the test data. //
+The model was evaluated for k values = {1,7,15}. We find that irrespective of the value of hyper-parameter k, the model obtained an accuracy of 1 over training data, cross-validation data as well as the test data. Since model performance is best irrespective of k, the accuracy table, confusion matrix and decision boundary plot are all evaluated using k=1 as to minimize the run time. 
+\noindent
+The accuracy table and confusion matrix are: 
+\input{acc1a_knn}
 
-The confusion matrix is therefore: 
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.5]{images/1a_cm_knn_train.jpg}
+    \includegraphics[scale=0.5]{images/1a_cm_knn_test.jpg}
+    \caption{Confusion matrix for k=1, Train and Test data set on left and right respectively}
+    \label{fig:1a_cm_knn}
+\end{figure}
 
-\subsection{Naive-Bayes classifier}
+\subsubsection{Decision region plot with training data superposed}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.5]{images/1a_knn_decision_region.jpg}
+    \caption{Decision region superimposed with training data set}
+    \label{fig:1a_decreg_knn}
+\end{figure}
+
+The decision boundary obtained (with k=1) is linear in form. 
+
+
+\subsection{Naive-Bayes classifier with Gaussian distribution for each class}
+
+The Bayes Classifiers are probabilistic classifiers based on the Bayes theorem:
+
+\begin{equation}
+\label{eqn nb}
+    p(y_{i}/\vec{x})=\frac{p(\vec{x}/y_{i})*p(y_{i})}{p(\vec{x})}
+\end{equation}
+\\
+Here, \\ 
+$p(y_{i})$ : prior probability for $y=y_{i}$. \\
+$p(\vec{x}/y_{i})$ : Class conditional probability density function or class conditional likelihood function. \\
+$p(y_{i}/\vec{x})$ : Posterior probability for $y=y_{i}$ given $\vec{x}$.\\
+$p(\vec{x})$ : Evidence or normalization factor.
+\noindent
+\\
+Equation \ref{eqn nb} can be re-written as:
+\begin{equation} \label{normalized_nb}
+    p(y_{i}/\vec{x})=\frac{p(\vec{x}/y_{i})*p(y_{i})}{\sum_{i}p(\vec{x}/y_{i})*p(y_{i})}
+\end{equation}
+
+\\
+\noindent
+Hence, the probability that $\vec{x}$ belongs to the class $y_{i}$ is $\propto$ $p(\vec{x}/y_{i})*p(y_{i})$. \\
+\noi
+Step-wise approach:
+\begin{itemize}
+    \item $p(y_{i})$ is calculated from the train data set, for data set 1a, we find that all the classes have equal prior probability.
+    \item The probability $p(\vec{x}/y_{i})$ can be calculated by various parametric and non-parametric means. For data set 1a, we use parametric means as described later.
+    \item $p(y_{i}/\vec{x})$ is calculated for all the classes using equation \ref{normalized_nb}.
+    \item The class label with maximum posterior probability is chosen as the class label for $\vec{x}$.
+\end{itemize}
 \subsubsection{Same Covariance Matrix ($\sigma^2I$)}
 \subsubsection{Same Covariance Matrix ($C$)}
 \subsubsection{Different Covariance Matrix}
