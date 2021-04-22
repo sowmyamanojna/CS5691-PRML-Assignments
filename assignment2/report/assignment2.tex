@@ -108,7 +108,7 @@ Disadvantages of KNN are:
     \item Sensitive to noisy data and outliers. Generally, increasing the value of k reduces the effect of noise.
 \end{itemize}
 
-\subsubsection{Pre-processing}
+\subsubsection{Pre-Processing}
 
 The data set 1A has 4 unique class labels - $\{0.0, 1.0, 2.0, 3.0\}$ as shown in Figure \ref{fig:1a_cm_knn}. Number of examples corresponding to each class label is $200$.
 The \tt{train} data set is of dimension $(800,3)$ while the \tt{dev} data set is of dimension $(120,3)$.The third column in both data sets is the class label, while the first two columns are the real valued feature vectors- $x_{1}$ and $x_{2}$.
@@ -413,7 +413,8 @@ Since the accuracy is higher for k=10, it is used to further evaluate the confus
     \caption{Decision boundary for k=10}
     \label{fig:1b_decreg_nb}
 \end{figure}
-While the shape of decision boundary is almost similar as figure \ref{fig:1b_decreg_knn}, there are still some differences, especially near the edges. 
+While the shape of decision boundary is almost similar as figure \ref{fig:1b_decreg_knn}, there are still some differences, especially near the edges.
+
 \break
 \section{Dataset 2A}
 \subsection{Bayes Classifier, GMM, full covariance}
@@ -450,6 +451,51 @@ The confusion matrix obtained for the model with $q_i=6$ are as follows:
     \centering
     \includegraphics[scale=0.5]{images/2a_full_test_conf.png}
     \caption{Testing confusion matrix for the best model with $q_i=6$.}
+\end{figure}
+
+\noi
+In addition to just taking the same number of clusters for all classes, a parameter sweep was done to identify the best combination of cluster numbers for the dataset. The accuracies obtained from the parameter sweeps are as follows:
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.35]{images/2a_parameter_sweep.png}
+    \caption{Parameter Sweep Results for the dataset 2A.}
+\end{figure}
+
+\noi
+From the graph above, the parameter combination that resulted in the best validation accuracy is:
+\begin{itemize}
+    \itemsep0em
+    \item $q_1: 2$
+    \item $q_2: 2$
+    \item $q_3: 2$
+    \item $q_4: 6$
+    \item $q_5: 3$
+\end{itemize}
+
+\noi
+The accuracies obtained are as follows:
+\begin{itemize}
+    \itemsep0em
+    \item Training accuracy: 0.7853658536585366
+    \item Validation accuracy: 0.4939271255060729
+    \item Testing accuracy: 0.46226415094339623
+\end{itemize}
+
+\noi
+From the results above, we can see that the validation and test accuracies are higher in this case, however, the train accuracy is low.\\
+
+\noi
+The confusion matrices obtained are as follows:
+\begin{figure}[H]
+    \includegraphics[scale=0.5]{images/2a_full_cross_train.png}
+    \includegraphics[scale=0.5]{images/2a_full_cross_val.png}
+    \caption{Training and Validation confusion matrices for the model with varying $q_i$, on the left and right respectively}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.5]{images/2a_full_cross_test.png}
+    \caption{Testing confusion matrix for the model with varying $q_i$.}
 \end{figure}
 
 
