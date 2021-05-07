@@ -37,6 +37,7 @@
 \def\dul#1{\underline{\underline{#1}}}
 \def\cpt#1#2{{\begin{center}\small\textbf{\textcolor{blue}{Figure #1:}} #2\end{center}}}
 \def\tt#1{\texttt{#1}}
+\def\colortt#1{\textcolor{blue}{\texttt{#1}}}
 
 % for dots in the content
 \usepackage{tocloft}
@@ -74,23 +75,109 @@
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Dataset 1A}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Perceptron}
-\subsection{MLFFNN}
 
-
-\subsection{Linear SVM}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\break
-\section{Dataset 1B}
 \subsection{MLFFNN}
+The classification accuracies on the training and validation datasets are as follows:
+\input{1A_MLFFNN}
+
+\noi
+In addition, the parameter combination were sorted based on minimum fitting time (least fitting time - first) and the model that gave the best accuracy the fastest was chosen. Hence the best parameter combination chosen is:
+\begin{itemize}
+    \itemsep0em
+    \item hidden\_layer\_sizes: 5
+    \item activation: tanh
+    \item solver: lbfgs
+    \item batch\_size: 200
+    \item alpha: 0.0001
+    \item learning\_rate: adaptive
+\end{itemize}
+
+\noi
+The classification accuracy of the best model on the testing data is: $100\%$. The confusion matrices obtained are as follows:
+\begin{figure}[H]
+    \includegraphics[scale=0.4]{images/1A_MLFFNN_train_confmat.png}
+    \includegraphics[scale=0.4]{images/1A_MLFFNN_val_confmat.png}
+    \caption{Training and Validation confusion matrices obtained for the best parameter combination, on the left and right respectively.}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.4]{images/1A_MLFFNN_test_confmat.png}
+    \caption{Testing confusion matrices obtained for the best parameter combination.}
+\end{figure}
+
+\noi
+The decision region plots obtained is as follows:
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.6]{images/1A_MLFFNN_Decision_Plot.png}
+    \caption{Decision Region Plot obtained for the best parameter combination.}
+\end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Linear SVM}
+
+\break
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Dataset 1B}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{MLFFNN}
+The classification accuracies on the training and validation datasets are as follows:
+\input{1B_MLFFNN}
+
+\noi
+In addition, the parameter combination were sorted based on minimum fitting time (least fitting time - first) and the model that gave the best accuracy the fastest was chosen. Hence the best parameter combination chosen is:
+\begin{itemize}
+    \itemsep0em
+    \item hidden\_layer\_sizes: (8, 8)
+    \item activation: relu
+    \item batch\_size: 50
+    \item early\_stopping: False
+    \item learning\_rate: adaptive
+    \item alpha: 0.01
+\end{itemize}
+
+\noi
+The classification accuracy of the best model on the testing data is: $96.296\%$. The confusion matrices obtained are as follows:
+\begin{figure}[H]
+    \includegraphics[scale=0.4]{images/1B_MLFFNN_train_confmat.png}
+    \includegraphics[scale=0.4]{images/1B_MLFFNN_val_confmat.png}
+    \caption{Training and Validation confusion matrices obtained for the best parameter combination, on the left and right respectively.}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.4]{images/1B_MLFFNN_test_confmat.png}
+    \caption{Testing confusion matrices obtained for the best parameter combination.}
+\end{figure}
+
+\noi
+The decision region plots obtained is as follows:
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.6]{images/1B_MLFFNN_Decision_Plot.png}
+    \caption{Decision Region Plot obtained for the best parameter combination.}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Non-Linear SVM}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \break
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Dataset 2A}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{MLFFNN}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Gaussian-kernel SVM}
 
 \end{document}
