@@ -43,6 +43,14 @@
 \usepackage{tocloft}
 \renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
 
+\usepackage{titlesec}
+\setcounter{secnumdepth}{4}
+\setcounter{tocdepth}{4}
+\titleformat{\paragraph}
+{\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
+\titlespacing*{\paragraph}
+{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+
 \begin{document}
 	\begin{titlepage} 
 		\begin{center}
@@ -84,11 +92,12 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{MLFFNN}
+\subsubsection{Classification Accuracies}
 The classification accuracies on the training and validation datasets are as follows:
 \input{1A_MLFFNN}
 
-\noi
-In addition, the parameter combination were sorted based on minimum fitting time (least fitting time - first) and the model that gave the best accuracy the fastest was chosen. Hence the best parameter combination chosen is:
+\subsubsection{Best Model}
+The parameter combination were additionally sorted based on minimum fitting time (least fitting time - first) and the model that gave the best accuracy the fastest was chosen. Hence the best parameter combination chosen is:
 \begin{itemize}
     \itemsep0em
     \item hidden\_layer\_sizes: 5
@@ -102,8 +111,9 @@ In addition, the parameter combination were sorted based on minimum fitting time
 \noi
 The classification accuracy of the best model on the testing data is: $100\%$. The confusion matrices obtained are as follows:
 \begin{figure}[H]
-    \includegraphics[scale=0.4]{images/1A_MLFFNN_train_confmat.png}
-    \includegraphics[scale=0.4]{images/1A_MLFFNN_val_confmat.png}
+    \centering
+    \includegraphics[scale=0.35]{images/1A_MLFFNN_train_confmat.png}
+    \includegraphics[scale=0.35]{images/1A_MLFFNN_val_confmat.png}
     \caption{Training and Validation confusion matrices obtained for the best parameter combination, on the left and right respectively.}
 \end{figure}
 
@@ -113,7 +123,7 @@ The classification accuracy of the best model on the testing data is: $100\%$. T
     \caption{Testing confusion matrices obtained for the best parameter combination.}
 \end{figure}
 
-\noi
+\subsubsection{Decision Region}
 The decision region plots obtained is as follows:
 \begin{figure}[H]
     \centering
@@ -131,11 +141,12 @@ The decision region plots obtained is as follows:
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{MLFFNN}
+\subsubsection{Classification Accuracies}
 The classification accuracies on the training and validation datasets are as follows:
 \input{1B_MLFFNN}
 
-\noi
-In addition, the parameter combination were sorted based on minimum fitting time (least fitting time - first) and the model that gave the best accuracy the fastest was chosen. Hence the best parameter combination chosen is:
+\subsubsection{Best Model}
+The parameter combination were additionally sorted based on minimum fitting time (least fitting time - first) and the model that gave the best accuracy the fastest was chosen. Hence the best parameter combination chosen is:
 \begin{itemize}
     \itemsep0em
     \item hidden\_layer\_sizes: (8, 8)
@@ -149,8 +160,9 @@ In addition, the parameter combination were sorted based on minimum fitting time
 \noi
 The classification accuracy of the best model on the testing data is: $96.296\%$. The confusion matrices obtained are as follows:
 \begin{figure}[H]
-    \includegraphics[scale=0.4]{images/1B_MLFFNN_train_confmat.png}
-    \includegraphics[scale=0.4]{images/1B_MLFFNN_val_confmat.png}
+    \centering
+    \includegraphics[scale=0.5]{images/1B_MLFFNN_train_confmat.png}
+    \includegraphics[scale=0.5]{images/1B_MLFFNN_val_confmat.png}
     \caption{Training and Validation confusion matrices obtained for the best parameter combination, on the left and right respectively.}
 \end{figure}
 
@@ -160,13 +172,236 @@ The classification accuracy of the best model on the testing data is: $96.296\%$
     \caption{Testing confusion matrices obtained for the best parameter combination.}
 \end{figure}
 
-\noi
+\subsubsection{Decision Region}
 The decision region plots obtained is as follows:
 \begin{figure}[H]
     \centering
     \includegraphics[scale=0.6]{images/1B_MLFFNN_Decision_Plot.png}
     \caption{Decision Region Plot obtained for the best parameter combination.}
 \end{figure}
+
+\subsubsection{Surface Plots}
+The neuron-wise surface plots obtained for the hidden and output layers is as follows:
+\paragraph{Hidden Layer 1, Node 1}
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.4]{images/1B_MLFFNN_E1_HL1_N1.png}
+    \includegraphics[scale=0.4]{images/1B_MLFFNN_E5_HL1_N1.png}
+    \includegraphics[scale=0.4]{images/1B_MLFFNN_E20_HL1_N1.png}
+    \includegraphics[scale=0.4]{images/1B_MLFFNN_E100_HL1_N1.png}
+    \includegraphics[scale=0.4]{images/1B_MLFFNN_conv_HL1_N1.png}
+    \caption{Surface Plots obtained for Hidden Layer 1, Neuron 1, across epochs.}
+    \label{HL1N1}
+\end{figure}
+
+\paragraph{Hidden Layer 1, Node 2}
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.4]{images/1B_MLFFNN_E1_HL1_N2.png}
+    \includegraphics[scale=0.4]{images/1B_MLFFNN_E5_HL1_N2.png}
+    \includegraphics[scale=0.4]{images/1B_MLFFNN_E20_HL1_N2.png}
+    \includegraphics[scale=0.4]{images/1B_MLFFNN_E100_HL1_N2.png}
+    \includegraphics[scale=0.4]{images/1B_MLFFNN_conv_HL1_N2.png}
+    \caption{Surface Plots obtained for Hidden Layer 1, Neuron 2, across epochs.}
+\end{figure}
+
+\paragraph{Hidden Layer 1, Node 3}
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.4]{images/1B_MLFFNN_E1_HL1_N3.png}
+    \includegraphics[scale=0.4]{images/1B_MLFFNN_E5_HL1_N3.png}
+    \includegraphics[scale=0.4]{images/1B_MLFFNN_E20_HL1_N3.png}
+    \includegraphics[scale=0.4]{images/1B_MLFFNN_E100_HL1_N3.png}
+    \includegraphics[scale=0.4]{images/1B_MLFFNN_conv_HL1_N3.png}
+    \caption{Surface Plots obtained for Hidden Layer 1, Neuron 3, across epochs.}
+\end{figure}
+
+\paragraph{Hidden Layer 1, Node 4}
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.4]{images/1B_MLFFNN_E1_HL1_N4.png}
+    \includegraphics[scale=0.4]{images/1B_MLFFNN_E5_HL1_N4.png}
+    \includegraphics[scale=0.4]{images/1B_MLFFNN_E20_HL1_N4.png}
+    \includegraphics[scale=0.4]{images/1B_MLFFNN_E100_HL1_N4.png}
+    \includegraphics[scale=0.4]{images/1B_MLFFNN_conv_HL1_N4.png}
+    \caption{Surface Plots obtained for Hidden Layer 1, Neuron 4, across epochs.}
+\end{figure}
+
+\paragraph{Hidden Layer 1, Node 5}
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.4]{images/1B_MLFFNN_E1_HL1_N5.png}
+    \includegraphics[scale=0.4]{images/1B_MLFFNN_E5_HL1_N5.png}
+    \includegraphics[scale=0.4]{images/1B_MLFFNN_E20_HL1_N5.png}
+    \includegraphics[scale=0.4]{images/1B_MLFFNN_E100_HL1_N5.png}
+    \includegraphics[scale=0.4]{images/1B_MLFFNN_conv_HL1_N5.png}
+    \caption{Surface Plots obtained for Hidden Layer 1, Neuron 5, across epochs.}
+\end{figure}
+
+\paragraph{Hidden Layer 1, Node 6}
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.4]{images/1B_MLFFNN_E1_HL1_N6.png}
+    \includegraphics[scale=0.4]{images/1B_MLFFNN_E5_HL1_N6.png}
+    \includegraphics[scale=0.4]{images/1B_MLFFNN_E20_HL1_N6.png}
+    \includegraphics[scale=0.4]{images/1B_MLFFNN_E100_HL1_N6.png}
+    \includegraphics[scale=0.4]{images/1B_MLFFNN_conv_HL1_N6.png}
+    \caption{Surface Plots obtained for Hidden Layer 1, Neuron 6, across epochs.}
+\end{figure}
+
+\paragraph{Hidden Layer 1, Node 7}
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.4]{images/1B_MLFFNN_E1_HL1_N7.png}
+    \includegraphics[scale=0.4]{images/1B_MLFFNN_E5_HL1_N7.png}
+    \includegraphics[scale=0.4]{images/1B_MLFFNN_E20_HL1_N7.png}
+    \includegraphics[scale=0.4]{images/1B_MLFFNN_E100_HL1_N7.png}
+    \includegraphics[scale=0.4]{images/1B_MLFFNN_conv_HL1_N7.png}
+    \caption{Surface Plots obtained for Hidden Layer 1, Neuron 7, across epochs.}
+\end{figure}
+
+\paragraph{Hidden Layer 1, Node 8}
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.4]{images/1B_MLFFNN_E1_HL1_N8.png}
+    \includegraphics[scale=0.4]{images/1B_MLFFNN_E5_HL1_N8.png}
+    \includegraphics[scale=0.4]{images/1B_MLFFNN_E20_HL1_N8.png}
+    \includegraphics[scale=0.4]{images/1B_MLFFNN_E100_HL1_N8.png}
+    \includegraphics[scale=0.4]{images/1B_MLFFNN_conv_HL1_N8.png}
+    \caption{Surface Plots obtained for Hidden Layer 1, Neuron 8, across epochs.}
+\end{figure}
+
+\paragraph{Hidden Layer 2, Node 1}
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.4]{images/1B_MLFFNN_E1_HL2_N1.png}
+    \includegraphics[scale=0.4]{images/1B_MLFFNN_E5_HL2_N1.png}
+    \includegraphics[scale=0.4]{images/1B_MLFFNN_E20_HL2_N1.png}
+    \includegraphics[scale=0.4]{images/1B_MLFFNN_E100_HL2_N1.png}
+    \includegraphics[scale=0.4]{images/1B_MLFFNN_conv_HL2_N1.png}
+    \caption{Surface Plots obtained for Hidden Layer 2, Neuron 1, across epochs.}
+\end{figure}
+
+\paragraph{Hidden Layer 2, Node 2}
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.4]{images/1B_MLFFNN_E1_HL2_N2.png}
+    \includegraphics[scale=0.4]{images/1B_MLFFNN_E5_HL2_N2.png}
+    \includegraphics[scale=0.4]{images/1B_MLFFNN_E20_HL2_N2.png}
+    \includegraphics[scale=0.4]{images/1B_MLFFNN_E100_HL2_N2.png}
+    \includegraphics[scale=0.4]{images/1B_MLFFNN_conv_HL2_N2.png}
+    \caption{Surface Plots obtained for Hidden Layer 2, Neuron 2, across epochs.}
+\end{figure}
+
+\paragraph{Hidden Layer 2, Node 3}
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.4]{images/1B_MLFFNN_E1_HL2_N3.png}
+    \includegraphics[scale=0.4]{images/1B_MLFFNN_E5_HL2_N3.png}
+    \includegraphics[scale=0.4]{images/1B_MLFFNN_E20_HL2_N3.png}
+    \includegraphics[scale=0.4]{images/1B_MLFFNN_E100_HL2_N3.png}
+    \includegraphics[scale=0.4]{images/1B_MLFFNN_conv_HL2_N3.png}
+    \caption{Surface Plots obtained for Hidden Layer 2, Neuron 3, across epochs.}
+\end{figure}
+
+\paragraph{Hidden Layer 2, Node 4}
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.4]{images/1B_MLFFNN_E1_HL2_N4.png}
+    \includegraphics[scale=0.4]{images/1B_MLFFNN_E5_HL2_N4.png}
+    \includegraphics[scale=0.4]{images/1B_MLFFNN_E20_HL2_N4.png}
+    \includegraphics[scale=0.4]{images/1B_MLFFNN_E100_HL2_N4.png}
+    \includegraphics[scale=0.4]{images/1B_MLFFNN_conv_HL2_N4.png}
+    \caption{Surface Plots obtained for Hidden Layer 2, Neuron 4, across epochs.}
+\end{figure}
+
+\paragraph{Hidden Layer 2, Node 5}
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.4]{images/1B_MLFFNN_E1_HL2_N5.png}
+    \includegraphics[scale=0.4]{images/1B_MLFFNN_E5_HL2_N5.png}
+    \includegraphics[scale=0.4]{images/1B_MLFFNN_E20_HL2_N5.png}
+    \includegraphics[scale=0.4]{images/1B_MLFFNN_E100_HL2_N5.png}
+    \includegraphics[scale=0.4]{images/1B_MLFFNN_conv_HL2_N5.png}
+    \caption{Surface Plots obtained for Hidden Layer 2, Neuron 5, across epochs.}
+\end{figure}
+
+\paragraph{Hidden Layer 2, Node 6}
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.4]{images/1B_MLFFNN_E1_HL2_N6.png}
+    \includegraphics[scale=0.4]{images/1B_MLFFNN_E5_HL2_N6.png}
+    \includegraphics[scale=0.4]{images/1B_MLFFNN_E20_HL2_N6.png}
+    \includegraphics[scale=0.4]{images/1B_MLFFNN_E100_HL2_N6.png}
+    \includegraphics[scale=0.4]{images/1B_MLFFNN_conv_HL2_N6.png}
+    \caption{Surface Plots obtained for Hidden Layer 2, Neuron 6, across epochs.}
+\end{figure}
+
+\paragraph{Hidden Layer 2, Node 7}
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.4]{images/1B_MLFFNN_E1_HL2_N7.png}
+    \includegraphics[scale=0.4]{images/1B_MLFFNN_E5_HL2_N7.png}
+    \includegraphics[scale=0.4]{images/1B_MLFFNN_E20_HL2_N7.png}
+    \includegraphics[scale=0.4]{images/1B_MLFFNN_E100_HL2_N7.png}
+    \includegraphics[scale=0.4]{images/1B_MLFFNN_conv_HL2_N7.png}
+    \caption{Surface Plots obtained for Hidden Layer 2, Neuron 7, across epochs.}
+\end{figure}
+
+\paragraph{Hidden Layer 2, Node 8}
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.4]{images/1B_MLFFNN_E1_HL2_N8.png}
+    \includegraphics[scale=0.4]{images/1B_MLFFNN_E5_HL2_N8.png}
+    \includegraphics[scale=0.4]{images/1B_MLFFNN_E20_HL2_N8.png}
+    \includegraphics[scale=0.4]{images/1B_MLFFNN_E100_HL2_N8.png}
+    \includegraphics[scale=0.4]{images/1B_MLFFNN_conv_HL2_N8.png}
+    \caption{Surface Plots obtained for Hidden Layer 2, Neuron 8, across epochs.}
+\end{figure}
+
+\paragraph{Output Layer, Node 1}
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.4]{images/1B_MLFFNN_E1_OP_N1.png}
+    \includegraphics[scale=0.4]{images/1B_MLFFNN_E5_OP_N1.png}
+    \includegraphics[scale=0.4]{images/1B_MLFFNN_E20_OP_N1.png}
+    \includegraphics[scale=0.4]{images/1B_MLFFNN_E100_OP_N1.png}
+    \includegraphics[scale=0.4]{images/1B_MLFFNN_conv_OP_N1.png}
+    \caption{Surface Plots obtained for Output Layer, Neuron 1, across epochs.}
+\end{figure}
+
+\paragraph{Output Layer, Node 2}
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.4]{images/1B_MLFFNN_E1_OP_N2.png}
+    \includegraphics[scale=0.4]{images/1B_MLFFNN_E5_OP_N2.png}
+    \includegraphics[scale=0.4]{images/1B_MLFFNN_E20_OP_N2.png}
+    \includegraphics[scale=0.4]{images/1B_MLFFNN_E100_OP_N2.png}
+    \includegraphics[scale=0.4]{images/1B_MLFFNN_conv_OP_N2.png}
+    \caption{Surface Plots obtained for Output Layer, Neuron 2, across epochs.}
+\end{figure}
+
+\paragraph{Output Layer, Node 3}
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.4]{images/1B_MLFFNN_E1_OP_N3.png}
+    \includegraphics[scale=0.4]{images/1B_MLFFNN_E5_OP_N3.png}
+    \includegraphics[scale=0.4]{images/1B_MLFFNN_E20_OP_N3.png}
+    \includegraphics[scale=0.4]{images/1B_MLFFNN_E100_OP_N3.png}
+    \includegraphics[scale=0.4]{images/1B_MLFFNN_conv_OP_N3.png}
+    \caption{Surface Plots obtained for Output Layer, Neuron 3, across epochs.}
+    \label{OPN3}
+\end{figure}
+
+\noi
+From \autoref{HL1N1}-\autoref{OPN3}, we observe the following:
+\begin{itemize}
+    \itemsep0em 
+    \item First hidden layer surface plot is linear (activation function is \tt{ReLU}).
+    \item Non-Linearity is introduced in the surface plot of second hidden layer.
+    \item The surface plot of the output neurons shows the selection cum localization of different classes in the latent space.
+\end{itemize}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Non-Linear SVM}
 
