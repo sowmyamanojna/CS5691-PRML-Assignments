@@ -8,7 +8,7 @@
 # - Thakkar Riya Anandbhai (PH17B010)
 # - Chaithanya Krishna Moorthy (PH17B011)
 
-# ## Import Essential Libraries
+# ## Importing Essential Libraries
 
 # In[1]:
 
@@ -16,8 +16,10 @@
 import numpy as np
 import pandas as pd
 import seaborn as sns
+from sklearn.pipeline import Pipeline
 from sklearn.metrics import confusion_matrix
 from sklearn.neural_network import MLPClassifier
+from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import GridSearchCV
 from sklearn.model_selection import train_test_split
 from sklearn.model_selection import StratifiedShuffleSplit
@@ -34,6 +36,8 @@ get_ipython().run_line_magic('autoreload', '2')
 
 import warnings
 warnings.filterwarnings("ignore")
+
+from gridsearch import GridSearch1A
 
 
 # ## Reading the data, Splitting it
@@ -56,13 +60,13 @@ display(df_test.head())
 # In[3]:
 
 
-X_train = df[["x1", "x2"]].to_numpy()
+X_train = df.drop("y", axis=1).to_numpy()
 y_train = df["y"].to_numpy().astype("int")
 
-X_val = df_val[["x1", "x2"]].to_numpy()
+X_val = df_val.drop("y", axis=1).to_numpy()
 y_val = df_val["y"].to_numpy().astype("int")
 
-X_test = df_test[["x1", "x2"]].to_numpy()
+X_test = df_test.drop("y", axis=1).to_numpy()
 y_test = df_test["y"].to_numpy().astype("int")
 
 
@@ -71,26 +75,29 @@ y_test = df_test["y"].to_numpy().astype("int")
 # In[4]:
 
 
-parameters = {"hidden_layer_sizes":[5,8,10,15], "activation":["logistic", "tanh", "relu"],               "solver":["lbfgs", "sgd", "adam"], "batch_size":[100, 200, "auto"],               "alpha":[0, 0.0001], "learning_rate":["constant", "adaptive", "invscaling"],              }
+parameters = {"hidden_layer_sizes":[5,8,10,15], "activation":["logistic", "tanh", "relu"],               "solver":["lbfgs", "sgd", "adam"], "batch_size":[100, 200],               "alpha":[0, 0.0001], "learning_rate":["constant", "adaptive", "invscaling"],              }
 
 mlp = MLPClassifier(random_state=1)
 
-clf = GridSearchCV(mlp, parameters, verbose=1, n_jobs=6)
-clf.fit(X_train, y_train)
+clf = GridSearch1A(mlp, parameters)
+clf.fit(X_train, y_train, X_val, y_val)
 result_df = pd.DataFrame(clf.cv_results_)
-result_df.to_csv("../parameter_search/1A_MLFFNN.csv")
-result_df = result_df.sort_values(by=["rank_test_score", "mean_fit_time"])
+result_df.to_csv("../parameter_search/1A_MLFFNN_train_val.csv")
 result_df.head()
 
 
 # In[5]:
 
 
-best_mlp = clf.best_estimator_
 print("Best Parameters Choosen:")
 for i in clf.best_params_:
-    print("  - ", i, ": ", clf.best_params_[i], sep="")
+    print("   - ", i, ": ", clf.best_params_[i], sep="")
 
+best_mlp = MLPClassifier(random_state=1, **clf.best_params_)
+best_mlp.fit(X_train, y_train)
+
+
+# ## Best Model Predictions
 
 # In[6]:
 
@@ -142,7 +149,7 @@ xx, yy = np.meshgrid(np.arange(x_min, x_max, h), np.arange(y_min, y_max, h))
 Z_pro = np.argmax(best_mlp.predict_proba(np.c_[xx.ravel(), yy.ravel()]), axis=1)
 Z_pro = Z_pro.reshape(xx.shape)
 
-color_list = ["springgreen", "gold", "palevioletred", "cyan"]
+color_list = ["springgreen", "gold", "palevioletred", "royalblue"]
 plt.title("1A - Decision Region Plot (MLFFNN)")
 plt.contourf(xx, yy, Z_pro, np.unique(Z_pro).size-1, colors=color_list, alpha=0.1)
 plt.contour(xx, yy, Z_pro, np.unique(Z_pro).size-1, colors=color_list, alpha=1)
