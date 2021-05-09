@@ -19,8 +19,8 @@
 \usepackage{xcolor}
 
 \usepackage{color,soul}
-\usepackage{fontspec}
-\setmainfont{Cambria}
+%\usepackage{fontspec}
+%\setmainfont{Cambria}
 
 \usepackage{caption}
 \captionsetup[figure]{font=small, labelfont={bf}}
@@ -85,10 +85,125 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Dataset 1A}
+This dataset contains data for four classes - 0, 1, 2 and 3. The classes are linearly separable and the dimension of the feature space is 2.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Perceptron}
+Varying the hyperparameter : Learning Rate ($\eta$) for the Perceptron model, the accuracies on the training and validation (30\% of the file "dev.csv") data for all possible pairings of the classes (leading to a total of 6 pairs ) were obtained and the best $\eta$ value based on CV accuracies was chosen as follows:
+\subsubsection{For Classes 0 and 1}
+\input{acc_01_perc}
+The accuracy is 100\% for all values of the hyperparameters. Taking the default value of 0.01, the accuracy on the test data is \textbf{100\%}. The confusion matrices for the training and test data are as in figure \ref{fig:perc_conf_01}.
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.27]{images/perceptron_training classes 0 and 1_confmat.png}
+    \includegraphics[scale = 0.27]{images/perceptron_testclasses0and1_confmat.png}
+    \caption{Confusion matrices for training and test data belonging to classes 0 and 1 of data 1A using perceptron classifier}
+    \label{fig:perc_conf_01}
+\end{figure}
+The decision region plot for the perceptron classifier is in figure \ref{fig:perc_dec_reg_01}.
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale = 0.35]{images/training classes 0 and 1dec_reg_perceptron.png}
+    \caption{Decision region plot for classes 0 and 1 of data 1A using perceptron classifier}
+    \label{fig:perc_dec_reg_01}
+\end{figure}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{For Classes 0 and 2}
+\input{acc_02_perc}
+The accuracy is 100\% for all values of the hyperparameters. Taking the default value of 0.01, the accuracy on the test data is \textbf{100\%}. The confusion matrices for the training and test data are as in figure \ref{fig:perc_conf_02}.
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.27]{images/perceptron_training classes 0 and 2_confmat.png}
+    \includegraphics[scale = 0.27]{images/perceptron_test classes 0 and 2_confmat.png}
+    \caption{Confusion matrices for training and test data belonging to classes 0 and 2 of data 1A using perceptron classifier}
+    \label{fig:perc_conf_02}
+\end{figure}
+The decision region plot for the perceptron classifier is in figure \ref{fig:perc_dec_reg_02}.
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale = 0.35]{images/training classes 0 and 2dec_reg_perceptron.png}
+    \caption{Decision region plot for classes 0 and 2 of data 1A using perceptron classifier}
+    \label{fig:perc_dec_reg_02}
+\end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{For Classes 0 and 3}
+\input{acc_03_perc}
+The accuracy is 100\% for all values of the hyperparameters. Taking the default value of 0.01, the accuracy on the test data is \textbf{100\%}. The confusion matrices for the training and test data are as in figure \ref{fig:perc_conf_03}.
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.27]{images/perceptron_training classes 0 and 3_confmat.png}
+    \includegraphics[scale = 0.27]{images/perceptron_test classes 0 and 3_confmat.png}
+    \caption{Confusion matrices for training and test data belonging to classes 0 and 3 of data 1A using perceptron classifier}
+    \label{fig:perc_conf_03}
+\end{figure}
+The decision region plot for the perceptron classifier is in figure \ref{fig:perc_dec_reg_03}.
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale = 0.35]{images/training classes 0 and 3dec_reg_perceptron.png}
+    \caption{Decision region plot for classes 0 and 3 of data 1A using perceptron classifier}
+    \label{fig:perc_dec_reg_03}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{For Classes 1 and 2}
+\input{acc_12_perc}
+The accuracy on the CV data is best for $\eta = 0.05$. Using this value for the perceptron model, the accuracy on the test data is \textbf{100\%}. The confusion matrices for the training and test data are as in figure \ref{fig:perc_conf_12}.
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.27]{images/perceptron_training classes 1 and 2_confmat.png}
+    \includegraphics[scale = 0.27]{images/perceptron_test classes 1 and 2_confmat.png}
+    \caption{Confusion matrices for training and test data belonging to classes 1 and 2 of data 1A using perceptron classifier}
+    \label{fig:perc_conf_12}
+\end{figure}
+The decision region plot for the perceptron classifier is in figure \ref{fig:perc_dec_reg_12}.
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale = 0.35]{images/training classes 1 and 2dec_reg_perceptron.png}
+    \caption{Decision region plot for classes 1 and 2 of data 1A using perceptron classifier}
+    \label{fig:perc_dec_reg_12}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{For Classes 1 and 3}
+\input{acc_13_perc}
+The accuracy is 100\% for all values of the hyperparameters. Taking the default value of 0.01, the accuracy on the test data is \textbf{100\%}. The confusion matrices for the training and test data are as in figure \ref{fig:perc_conf_13}.
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.27]{images/perceptron_training classes 1 and 3_confmat.png}
+    \includegraphics[scale = 0.27]{images/perceptron_test classes 1 and 3_confmat.png}
+    \caption{Confusion matrices for training and test data belonging to classes 1 and 3 of data 1A using perceptron classifier}
+    \label{fig:perc_conf_13}
+\end{figure}
+The decision region plot for the perceptron classifier is in figure \ref{fig:perc_dec_reg_13}.
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale = 0.35]{images/training classes 1 and 3dec_reg_perceptron.png}
+    \caption{Decision region plot for classes 1 and 3 of data 1A using perceptron classifier}
+    \label{fig:perc_dec_reg_13}
+\end{figure}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{For Classes 2 and 3}
+\input{acc_23_perc}
+The accuracy on the CV data is best for $\eta$ greater than or equal to 0.005. Using the default value of $\eta = 0.01$ for the perceptron model, the accuracy on the test data is \textbf{100\%}. The confusion matrices for the training and test data are as in figure \ref{fig:perc_conf_23}.
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.27]{images/perceptron_training classes 2 and 3_confmat.png}
+    \includegraphics[scale = 0.27]{images/perceptron_test classes 2 and 3_confmat.png}
+    \caption{Confusion matrices for training and test data belonging to classes 2 and 3 of data 1A using perceptron classifier}
+    \label{fig:perc_conf_23}
+\end{figure}
+The decision region plot for the perceptron classifier is in figure \ref{fig:perc_dec_reg_23}.
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale = 0.3]{images/training classes 2 and 3dec_reg_perceptron.png}
+    \caption{Decision region plot for classes 2 and 3 of data 1A using perceptron classifier}
+    \label{fig:perc_dec_reg_23}
+\end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{MLFFNN}
