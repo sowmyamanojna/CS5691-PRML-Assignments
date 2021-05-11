@@ -89,8 +89,12 @@ This dataset contains data for four classes - 0, 1, 2 and 3. The classes are lin
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Perceptron}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Varying the hyperparameter : Learning Rate ($\eta$) for the Perceptron model, the accuracies on the training and validation (30\% of the file \colortt{dev.csv}) data for all possible pairings of the classes (leading to a total of 6 pairs ) were obtained and the best $\eta$ value based on CV accuracies was chosen as follows:
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Classes 0 and 1}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \input{1A_perceptron_acc_01}
 
 \noi
@@ -114,6 +118,7 @@ The decision region plot for the perceptron classifier is in \autoref{fig:perc_d
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Classes 0 and 2}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \input{1A_perceptron_acc_02}
 
 \noi
@@ -137,6 +142,7 @@ The decision region plot for the perceptron classifier is in \autoref{fig:perc_d
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Classes 0 and 3}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \input{1A_perceptron_acc_03}
 
 The accuracy is 100\% for all values of the hyperparameters. Taking the default value of 0.01, the accuracy on the test data is \textbf{100\%}. The confusion matrices for the training and test data are as in \autoref{fig:perc_conf_03}.
@@ -154,8 +160,10 @@ The decision region plot for the perceptron classifier is in \autoref{fig:perc_d
     \caption{Decision region plot for classes 0 and 3 of data 1A using perceptron classifier}
     \label{fig:perc_dec_reg_03}
 \end{figure}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Classes 1 and 2}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \input{1A_perceptron_acc_12}
 
 The accuracy on the CV data is best for $\eta = 0.05$. Using this value for the perceptron model, the accuracy on the test data is \textbf{100\%}. The confusion matrices for the training and test data are as in \autoref{fig:perc_conf_12}.
@@ -174,8 +182,10 @@ The decision region plot for the perceptron classifier is in \autoref{fig:perc_d
     \caption{Decision region plot for classes 1 and 2 of data 1A using perceptron classifier}
     \label{fig:perc_dec_reg_12}
 \end{figure}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Classes 1 and 3}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \input{1A_perceptron_acc_13}
 The accuracy is 100\% for all values of the hyperparameters. Taking the default value of 0.01, the accuracy on the test data is \textbf{100\%}. The confusion matrices for the training and test data are as in \autoref{fig:perc_conf_13}.
 \begin{figure}[H]
@@ -198,6 +208,7 @@ The decision region plot for the perceptron classifier is in \autoref{fig:perc_d
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Classes 2 and 3}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \input{1A_perceptron_acc_23}
 The accuracy on the CV data is best for $\eta$ greater than or equal to 0.005. Using the default value of $\eta = 0.01$ for the perceptron model, the accuracy on the test data is \textbf{100\%}. The confusion matrices for the training and test data are as in \autoref{fig:perc_conf_23}.
 \begin{figure}[H]
@@ -218,9 +229,8 @@ The decision region plot for the perceptron classifier is in \autoref{fig:perc_d
 \end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{MLFFNN}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 The hyperparameters vaired as sweeped for are - \tt{hidden layer size}, \tt{optimizer}, \tt{batch size}, \tt{learning rate}, \tt{L2 regularization $\alpha$}.
 
 \subsubsection{Classification Accuracies}
@@ -243,14 +253,14 @@ The parameter combination were additionally sorted based on minimum fitting time
 The classification accuracy of the best model on the testing data is: $100\%$. The confusion matrices obtained are as follows:
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.35]{images/1A_MLFFNN_train_confmat.png}
-    \includegraphics[scale=0.35]{images/1A_MLFFNN_val_confmat.png}
+    \includegraphics[scale=0.4]{images/1A_MLFFNN_train_confmat.png}
+    \includegraphics[scale=0.4]{images/1A_MLFFNN_val_confmat.png}
     \caption{Training and Validation confusion matrices obtained for the best parameter combination, on the left and right respectively.}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.4]{images/1A_MLFFNN_test_confmat.png}
+    \includegraphics[scale=0.45]{images/1A_MLFFNN_test_confmat.png}
     \caption{Testing confusion matrices obtained for the best parameter combination.}
 \end{figure}
 
@@ -264,6 +274,7 @@ The decision region plots obtained is as follows:
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Linear SVM}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \break
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -273,6 +284,7 @@ This dataset contains data for three classes - 0, 1 and 2. The classes are non-l
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{MLFFNN}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 The hyperparameters vaired as sweeped for are - \tt{hidden layer size}, \tt{activation function}, \tt{batch size}, \tt{learning rate}, \tt{L2 regularization $\alpha$}.
 
 \subsubsection{Classification Accuracies}
@@ -295,14 +307,14 @@ The parameter combination were additionally sorted based on minimum fitting time
 The classification accuracy of the best model on the testing data is: $96.296\%$. The confusion matrices obtained are as follows:
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.45]{images/1B_MLFFNN_train_confmat.png}
-    \includegraphics[scale=0.45]{images/1B_MLFFNN_val_confmat.png}
+    \includegraphics[scale=0.55]{images/1B_MLFFNN_train_confmat.png}
+    \includegraphics[scale=0.55]{images/1B_MLFFNN_val_confmat.png}
     \caption{Training and Validation confusion matrices obtained for the best parameter combination, on the left and right respectively.}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.35]{images/1B_MLFFNN_test_confmat.png}
+    \includegraphics[scale=0.45]{images/1B_MLFFNN_test_confmat.png}
     \caption{Testing confusion matrices obtained for the best parameter combination.}
 \end{figure}
 
@@ -310,7 +322,7 @@ The classification accuracy of the best model on the testing data is: $96.296\%$
 The decision region plots obtained is as follows:
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.45]{images/1B_MLFFNN_Decision_Plot.png}
+    \includegraphics[scale=0.55]{images/1B_MLFFNN_Decision_Plot.png}
     \caption{Decision Region Plot obtained for the best parameter combination.}
 \end{figure}
 
