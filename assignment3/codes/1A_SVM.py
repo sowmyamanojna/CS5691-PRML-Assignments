@@ -283,7 +283,3 @@ linear_ovo_plot(2,3,train_data,"images/1A_ovo_23.png","Support vectors and Bound
 
 
 # In[ ]:
-
-
-
-
