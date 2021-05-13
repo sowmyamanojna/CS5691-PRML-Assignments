@@ -191,8 +191,8 @@ The decision region plot for the perceptron classifier is in \autoref{fig:perc_d
 The accuracy is 100\% for all values of the hyperparameters. Taking the default value of 0.01, the accuracy on the test data is \textbf{100\%}. The confusion matrices for the training and test data are as in \autoref{fig:perc_conf_13}.
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.3]{images/1A_perceptron_training_classes_1_and_3_confmat.png}
-    \includegraphics[scale=0.3]{images/1A_perceptron_test_classes_1_and_3_confmat.png}
+    \includegraphics[scale=0.35]{images/1A_perceptron_training_classes_1_and_3_confmat.png}
+    \includegraphics[scale=0.35]{images/1A_perceptron_test_classes_1_and_3_confmat.png}
     \caption{Confusion matrices for training and test data belonging to classes 1 and 3 of data 1A using perceptron classifier}
     \label{fig:perc_conf_13}
 \end{figure}
@@ -232,7 +232,19 @@ The decision region plot for the perceptron classifier is in \autoref{fig:perc_d
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{MLFFNN}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-The hyperparameters varied and sweeped for are - \tt{hidden layer size}, \tt{optimizer}, \tt{batch size}, \tt{learning rate}, \tt{L2 regularization $\alpha$}.
+The hyperparameters varied and sweeped for are - \tt{hidden layer size}, \tt{optimizer}, \tt{batch size}, \tt{learning rate}, \tt{L2 regularization $\alpha$}. They were varied as follows:
+\begin{itemize}
+    \itemsep0em
+    \item \tt{hidden\_layer\_sizes}: 5,8,10,15
+    \item \tt{activation}: \tt{logistic}, \tt{tanh}, \tt{relu}
+    \item \tt{solver}: \tt{lbfgs}, \tt{sgd}, \tt{adam}
+    \item \tt{batch\_size}: 100, 200
+    \item \tt{alpha}: 0, 0.0001
+    \item \tt{learning\_rate}: \tt{constant}, \tt{adaptive}, \tt{invscaling}
+\end{itemize}
+
+\noi
+Hence, a total of 432 parameter combinations were sweeped for and analyzed.
 
 \subsubsection{Classification Accuracies}
 The classification accuracies on the training and validation datasets (30\% of the \colortt{dev.csv}) are as follows:
@@ -251,7 +263,7 @@ The parameter combination were additionally sorted based on minimum fitting time
 \end{itemize}
 
 \noi
-The classification accuracy of the best model on the testing data is: $100\%$. The confusion matrices obtained are as follows:
+The classification accuracy of the best model on the testing data is: \textbf{100\%}. The confusion matrices obtained are as follows:
 \begin{figure}[H]
     \centering
     \includegraphics[scale=0.4]{images/1A_MLFFNN_train_confmat.png}
@@ -346,7 +358,7 @@ The task is now to find $\vec{\alpha}$ for which $L_D(\vec{\alpha)}$ is optimal 
 \subsubsection{svm.SVC() function in the scikit-learn library}\label{subsubsection:svm module}
 The svm.SVC() is a pre-defined module for Support Vector Classification task. The important optional arguments of this classifier are: 
 \begin{enumerate}
-    \item "kernel" : Specifies the kernel type to be used in the algorithm, available options are: ["linear","poly","rbf","sigmoid","precomputed"].
+    \item ``kernel'' : Specifies the kernel type to be used in the algorithm, available options are: [``linear'',``poly'',``rbf'',``sigmoid'',``precomputed''].
     The default kernel is the rbf(/gaussian). 
     \begin{itemize}
         \item Linear kernel: $<x,x'>$
@@ -355,10 +367,10 @@ The svm.SVC() is a pre-defined module for Support Vector Classification task. Th
         \item sigmoid kernel: tanh$(\gamma<x,x'>+r)$
     \end{itemize} 
     For data-set 1a, linear kernel is used. 
-    \item "C" : strictly positive float. By default it is 1.0. The strength of regularization is inversely proportional to C. For data-set 1a, C is varied from 0.1 to 1000. 
-    \item "degree" : This is relevant only when the kernel is set to polynomial and is ignored by all other kernel values.
-    \item "Gamma" : float or ["scale","auto"]. Set to "scale" by default, it is the kernel coefficient for "rbf","poly" and "sigmoid".
-    \item "decision\_function\_shape" : ["ovr","ovo"]. It specifies whether one-versus-rest or one-versus-one methodology should be used for multi-class classification. By default, it is "ovr". 
+    \item ``C'': strictly positive float. By default it is 1.0. The strength of regularization is inversely proportional to C. For data-set 1a, C is varied from 0.1 to 1000. 
+    \item ``degree'': This is relevant only when the kernel is set to polynomial and is ignored by all other kernel values.
+    \item ``gamma'': float or [``scale'',``auto'']. Set to ``scale'' by default, it is the kernel coefficient for ``rbf'',``poly'' and ``sigmoid''.
+    \item ``decision\_function\_shape'': [``ovr'',``ovo'']. It specifies whether one-versus-rest or one-versus-one methodology should be used for multi-class classification. By default, it is ``ovr''. 
 \end{enumerate}
 
 \subsubsection{Building pairwise SVM for classes in data-set 1a}
@@ -385,8 +397,8 @@ Since the accuracy is independent of the value of hyper-parameter C, the default
 \subsubsection{Confusion matrices for Train and Test data}
 Since the accuracy obtained is 1.00, the confusion matrices are diagonal. 
 \begin{figure}[H]
-    \includegraphics[scale=0.25]{images/1a_confmatrix_train.png}
-    \includegraphics[scale=0.25]{images/1a_confmatrix_test.png}
+    \includegraphics[scale=0.4]{images/1A_confmatrix_train.png}
+    \includegraphics[scale=0.4]{images/1A_confmatrix_test.png}
     \caption{Confusion matrix for train and test data respectively}
 \end{figure}
 \noi 
@@ -395,44 +407,44 @@ Since the accuracy obtained is 1.00, the confusion matrices are diagonal.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.25]{images/1A_ovo_01.png}
+    \includegraphics[scale=0.55]{images/1A_ovo_01.png}
     \caption{Decision region for class y=0 and y=1}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.25]{images/1A_ovo_02.png}
+    \includegraphics[scale=0.55]{images/1A_ovo_02.png}
     \caption{Decision region for class y=0 and y=2}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.25]{images/1A_ovo_03.png}
+    \includegraphics[scale=0.55]{images/1A_ovo_03.png}
     \caption{Decision region for class y=0 and y=3}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.25]{images/1A_ovo_12.png}
+    \includegraphics[scale=0.55]{images/1A_ovo_12.png}
     \caption{Decision region for class y=1 and y=2}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.25]{images/1A_ovo_13.png}
+    \includegraphics[scale=0.55]{images/1A_ovo_13.png}
     \caption{Decision region for class y=1 and y=3}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.25]{images/1A_ovo_23.png}
+    \includegraphics[scale=0.55]{images/1A_ovo_23.png}
     \caption{Decision region for class y=2 and y=3}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.25]{images/1A_SVM_full_decision_plot.png}
-    \caption{The effective decision region for data-set 1a}
+    \includegraphics[scale=0.55]{images/1A_SVM_full_decision_plot.png}
+    \caption{The effective decision region for data-set 1A}
 \end{figure}
 
 \subsubsection{Conclusion}
@@ -453,7 +465,19 @@ This dataset contains data for three classes - 0, 1 and 2. The classes are non-l
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{MLFFNN}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-The hyperparameters varied and sweeped for are - \tt{hidden layer size}, \tt{activation function}, \tt{batch size}, \tt{learning rate}, \tt{L2 regularization $\alpha$}.
+The hyperparameters varied and sweeped for are - \tt{hidden layer size}, \tt{activation function}, \tt{batch size}, \tt{learning rate}, \tt{L2 regularization $\alpha$}. They were varied as follows:
+\begin{itemize}
+    \itemsep0em
+    \item \tt{hidden\_layer\_sizes}: (5,5), (6,6), (7,7), (8,8), (9,9), (10,10)
+    \item \tt{activation}: \tt{logistic}, \tt{relu}
+    \item \tt{batch\_size}: 50, 100, 200, 
+    \item \tt{early\_stopping}: \tt{True}, \tt{False}
+    \item \tt{learning\_rate}: \tt{constant}, \tt{adaptive}, \tt{invscaling}
+    \item \tt{alpha}: 0.01, 0.001
+\end{itemize}
+
+\noi
+Hence, a total of 432 parameter combinations were sweeped for and analyzed.
 
 \subsubsection{Classification Accuracies}
 The classification accuracies on the training and validation datasets (30\% of the \colortt{dev.csv}) are as follows:
@@ -472,7 +496,7 @@ The parameter combination were additionally sorted based on minimum fitting time
 \end{itemize}
 
 \noi
-The classification accuracy of the best model on the testing data is: $96.296\%$. The confusion matrices obtained are as follows:
+The classification accuracy of the best model on the testing data is: \textbf{96.296\%}. The confusion matrices obtained are as follows:
 \begin{figure}[H]
     \centering
     \includegraphics[scale=0.55]{images/1B_MLFFNN_train_confmat.png}
@@ -719,7 +743,7 @@ From \autoref{HL1N1}-\autoref{OPN3}, we observe the following:
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Non-Linear SVM}
 
-The module sklearn.svm.SVC() as described in section \ref{subsubsection:svm module} is used to build non-linear classifiers for data-set 1b with the parameter "decision\_function\_shape" set to "ovr". The module can carry out multi-class classification hence individual pair-wise models need not be built.  
+The module sklearn.svm.SVC() as described in section \ref{subsubsection:svm module} is used to build non-linear classifiers for data-set 1b with the parameter ``decision\_function\_shape'' set to ``ovr''. The module can carry out multi-class classification hence individual pair-wise models need not be built.  
 \noi
 The kernels used for classification are:
 \begin{enumerate}
@@ -748,7 +772,7 @@ The following values of hyper-parameters are tried resulting in $4*6*2*4=192$ di
     \item C: [1,10,100,1000]
     \item degree: [1,2,3,4,5,6]
     \item coef0: [10,100]
-    \item $\gamma$: [1,0.1,0.01,"auto"]
+    \item $\gamma$: [1,0.1,0.01,``auto'']
 \end{enumerate}
 
 \noi
@@ -762,8 +786,8 @@ Since the validation accuracy is highest for [C:1000,degree:5,gamma:0.1,Coef0:10
 
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.25]{images/1B_SVM_poly_train_confmat.png}
-    \includegraphics[scale=0.25]{images/1B_SVM_poly_Test_confmat.png}
+    \includegraphics[scale=0.4]{images/1B_SVM_poly_train_confmat.png}
+    \includegraphics[scale=0.4]{images/1B_SVM_poly_Test_confmat.png}
     \caption{Confusion matrix for Train and Test data respectively}
 \end{figure}
 
@@ -771,8 +795,8 @@ Since the validation accuracy is highest for [C:1000,degree:5,gamma:0.1,Coef0:10
 
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.25]{images/1B_SVM_poly_decision_plot.png}
-    \caption{Decision Region Plot for dataset 1b}
+    \includegraphics[scale=0.5]{images/1B_SVM_poly_decision_plot.png}
+    \caption{Decision Region Plot for dataset 1B}
     \label{myfig:poly_db}
 \end{figure}
 
@@ -781,7 +805,7 @@ Since the validation accuracy is highest for [C:1000,degree:5,gamma:0.1,Coef0:10
 While using this kernel, the number of hyper-parameters to be set are comparatively less.
 \begin{enumerate}
     \item misclassification penalty term, C; Varied over [0.1,1,10,100,1000]
-    \item Co-efficient $\gamma$,varied over: [1,0.01,0.001,0.0001]
+    \item Co-efficient $\gamma$, varied over: [1,0.01,0.001,0.0001]
 \end{enumerate}
 
 \subsubsection{Optimal hyper-parameters and accuracy: Gaussian Kernel}
@@ -790,14 +814,14 @@ Corresponding to different combinations of the above hyper-parameter values, 20 
 \noi
 \input{acc1b_rbfsvm}
 
-The validation accuracy is highest for [C:1.0, gamma:1.0]. Hence those hyper-parameters are used for further calculations. Accuracy on test data with those hyper-parameters is obtained to be \textbf{1.00}. 
+The validation accuracy is highest for [C:1.0, gamma:1.0]. Hence those hyper-parameters are used for further calculations. Accuracy on test data with those hyper-parameters is obtained to be \textbf{100\%}. 
 
 \subsubsection{Confusion matrices for Train and Test data: Gaussian Kernel}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.25]{images/1B_SVM_gauss_train_confmat.png}
-    \includegraphics[scale=0.25]{images/1B_SVM_gauss_Test_confmat.png}
+    \includegraphics[scale=0.4]{images/1B_SVM_gauss_train_confmat.png}
+    \includegraphics[scale=0.4]{images/1B_SVM_gauss_Test_confmat.png}
     \caption{Confusion Matrix for Train and Test data respectively}
 \end{figure}
 
@@ -805,12 +829,12 @@ The validation accuracy is highest for [C:1.0, gamma:1.0]. Hence those hyper-par
 
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.25]{images/1B_SVM_gauss_decision_plot.png}
-    \caption{Decision region plot for dataset 1b: SVM with Gaussian Kernel}
+    \includegraphics[scale=0.5]{images/1B_SVM_gauss_decision_plot.png}
+    \caption{Decision region plot for dataset 1B: SVM with Gaussian Kernel}
     \label{myfig:gauss_db}
 \end{figure}
 
-The distinguishing feature between figure \ref{myfig:gauss_db} and figure \ref{myfig:poly_db} is the behaviour at the edges. Also, the decision boundary obtained using polynomial kernel has a discontinuity in the region $x1 \epsilon (-0.5,0.5)$ and $x2 \epsilon (3,4)$
+The distinguishing feature between \autoref{myfig:gauss_db} and \autoref{myfig:poly_db} is the behavior at the edges. Also, the decision boundary obtained using polynomial kernel has a discontinuity in the region $x_1 \in (-0.5,0.5)$ and $x_2 \in (3,4)$
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \break
@@ -826,7 +850,19 @@ This dataset contains data for five classes. The classes assigned for our team a
 An initial parameter search by varying the parameters of the MLFFNN alone was done. However, the accuracy of the model couldn't be improved. In order to increase the accuracy of the model, PCA was used to reduce the dimensionality of the model.\\
 
 \noi
-The hyperparameters varied and sweeped for are - \tt{PCA \# components} \tt{MLFFNN hidden layer size}, \tt{MLFFNN batch size}, \tt{MLFFNN learning rate} and \tt{MLFFNN L2 regularization $\alpha$}.
+The hyperparameters varied and sweeped for are - \tt{PCA \# components} \tt{MLFFNN hidden layer size}, \tt{MLFFNN batch size}, \tt{MLFFNN learning rate} and \tt{MLFFNN L2 regularization $\alpha$}. They were varied as follows:
+\begin{itemize}
+    \itemsep0em
+    \item \tt{pca\_\_n\_components}: \tt{list(range(1,25))}
+    \item \tt{mlp\_\_hidden\_layer\_sizes}: (10,10), (25,25), (50,50), (75,75)
+    \item \tt{mlp\_\_batch\_size}: 50, 100, 200
+    \item \tt{mlp\_\_alpha}: 0.01, 0.001
+    \item \tt{mlp\_\_learning\_rate}: \tt{constant}, \tt{adaptive}, \tt{invscaling}
+\end{itemize}
+
+\noi
+Hence, a total of 1728 parameter combinations were sweeped for and analyzed.
+
 
 \subsubsection{Classification Accuracies}
 The classification accuracies on the training and validation datasets (30\% of the \colortt{dev.csv}) are as follows:
@@ -844,7 +880,7 @@ The parameter combination were additionally sorted based on minimum fitting time
 \end{itemize}
 
 \noi
-The classification accuracy of the best model on the testing data is: $49.06\%$. \\
+The classification accuracy of the best model on the testing data is: \textbf{49.06\%}. \\
 
 \noi
 The confusion matrices obtained are as follows:
@@ -878,8 +914,8 @@ The best hyper-parameter settings are: [c=1.0, gamma=1.0]. Test accuracy with th
 
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.25]{images/2A_SVM_gauss_train_confmat.png}
-    \includegraphics[scale=0.25]{images/2A_SVM_gauss_Test_confmat.png}
+    \includegraphics[scale=0.4]{images/2A_SVM_gauss_train_confmat.png}
+    \includegraphics[scale=0.4]{images/2A_SVM_gauss_Test_confmat.png}
     \caption{Confusion matrix for Train and Test data respectively, dataset 2a}
 \end{figure}
 
