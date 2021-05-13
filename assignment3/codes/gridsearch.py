@@ -151,12 +151,15 @@ class GridSearch2A():
                 for bs in parameters["mlp__batch_size"]:
                     for a in parameters["mlp__alpha"]:
                         for lr in parameters["mlp__learning_rate"]:
+                            for es in parameters["mlp__early_stopping"]:
                             params_list.append([{"n_components":nc},
                                                 {
                                                 "hidden_layer_sizes":hls, \
+                                                "early_stopping":es, \
                                                 "learning_rate":lr, \
                                                 "batch_size":bs, \
-                                                "alpha":a}])
+                                                "alpha":a, \
+                                                }])
 
         self.params_list = params_list
 
@@ -199,9 +202,10 @@ class GridSearch2A():
         self.cv_results_["val_accuracy"] = self.val_acc_list_
         self.cv_results_["sum_accuracy"] = self.cv_results_["accuracy"] + self.cv_results_["val_accuracy"]
         self.cv_results_["t_inv"] = self.t_inv_list_
-        self.cv_results_ = self.cv_results_.sort_values(by=["val_accuracy", "accuracy", "sum_accuracy", "t_inv"], ascending=False, ignore_index=True)
+        self.cv_results_ = self.cv_results_.sort_values(by=["sum_accuracy", "accuracy", "val_accuracy", "t_inv"], ascending=False, ignore_index=True)
 
         self.best_params_ = self.cv_results_.iloc[0].to_dict()
+        self.best_params_["early_stopping"] = bool(self.best_params_["early_stopping"])
         del self.best_params_["accuracy"]
         del self.best_params_["val_accuracy"]
         del self.best_params_["sum_accuracy"]

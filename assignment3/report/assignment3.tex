@@ -231,7 +231,7 @@ The decision region plot for the perceptron classifier is in \autoref{fig:perc_d
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{MLFFNN}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-The hyperparameters vaired as sweeped for are - \tt{hidden layer size}, \tt{optimizer}, \tt{batch size}, \tt{learning rate}, \tt{L2 regularization $\alpha$}.
+The hyperparameters varied and sweeped for are - \tt{hidden layer size}, \tt{optimizer}, \tt{batch size}, \tt{learning rate}, \tt{L2 regularization $\alpha$}.
 
 \subsubsection{Classification Accuracies}
 The classification accuracies on the training and validation datasets (30\% of the \colortt{dev.csv}) are as follows:
@@ -285,7 +285,7 @@ This dataset contains data for three classes - 0, 1 and 2. The classes are non-l
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{MLFFNN}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-The hyperparameters vaired as sweeped for are - \tt{hidden layer size}, \tt{activation function}, \tt{batch size}, \tt{learning rate}, \tt{L2 regularization $\alpha$}.
+The hyperparameters varied and sweeped for are - \tt{hidden layer size}, \tt{activation function}, \tt{batch size}, \tt{learning rate}, \tt{L2 regularization $\alpha$}.
 
 \subsubsection{Classification Accuracies}
 The classification accuracies on the training and validation datasets (30\% of the \colortt{dev.csv}) are as follows:
@@ -557,8 +557,55 @@ From \autoref{HL1N1}-\autoref{OPN3}, we observe the following:
 \section{Dataset 2A}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+This dataset contains data for five classes. The classes assigned for our team are: \tt{coast}, \tt{highway}, \tt{mountain}, \tt{opencountry} and \tt{tallbuilding}. These classes were assigned the class label 0, 1, 2, 3 and 4 respectively. The classes are non-linearly separable and the dimension of the feature space is 24.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{MLFFNN}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+An initial parameter search by varying the parameters of the MLFFNN alone was done. However, the accuracy of the model couldn't be improved. In order to increase the accuracy of the model, PCA was used to reduce the dimensionality of the model.\\
+
+\noi
+The hyperparameters varied and sweeped for are - \tt{PCA \# components} \tt{MLFFNN hidden layer size}, \tt{MLFFNN batch size}, \tt{MLFFNN learning rate} and \tt{MLFFNN L2 regularization $\alpha$}.
+
+\subsubsection{Classification Accuracies}
+The classification accuracies on the training and validation datasets (30\% of the \colortt{dev.csv}) are as follows:
+\input{2A_MLFFNN}
+
+\subsubsection{Best Model}
+The parameter combination were additionally sorted based on minimum fitting time (least fitting time - first) and the model that gave the best accuracy the fastest (and potentially the most minimal model that best fits the data), was chosen. Hence the best parameter combination chosen is:
+\begin{itemize}
+    \itemsep0em
+    \item n\_components: 16
+    \item hidden\_layer\_sizes: (50, 50)
+    \item batch\_size: 200
+    \item alpha: 0.0001
+    \item learning\_rate: invscaling
+\end{itemize}
+
+\noi
+The classification accuracy of the best model on the testing data is: $35.85\%$. The confusion matrices obtained are as follows:
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.4]{images/1A_MLFFNN_train_confmat.png}
+    \includegraphics[scale=0.4]{images/1A_MLFFNN_val_confmat.png}
+    \caption{Training and Validation confusion matrices obtained for the best parameter combination, on the left and right respectively.}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.45]{images/1A_MLFFNN_test_confmat.png}
+    \caption{Testing confusion matrices obtained for the best parameter combination.}
+\end{figure}
+
+\subsubsection{Decision Region}
+The decision region plots obtained is as follows:
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.6]{images/1A_MLFFNN_Decision_Plot.png}
+    \caption{Decision Region Plot obtained for the best parameter combination.}
+\end{figure}
+
+
 \subsection{Gaussian-kernel SVM}
 
 \end{document}
