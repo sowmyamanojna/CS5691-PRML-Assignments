@@ -18,6 +18,12 @@ plt.rcParams["font.serif"]="Cambria"
 plt.rcParams["font.family"]="serif"
 
 
+# In[31]:
+
+
+from statistics import mode
+
+
 # In[2]:
 
 
@@ -77,105 +83,11 @@ train_data.head()
 
 # ## Training the Model 
 
-# In[10]:
-
-
-C_list=[0.1,1,10,100,1000]
-cv_accuracy=[]
-train_accuracy=[]
-for i in C_list:
-    model=svm.SVC(kernel="linear",decision_function_shape="ovo",C=i)
-    model.fit(X_train,y_train)
-    ytrain_pred=model.predict(X_train)
-    ycv_pred=model.predict(X_cv)
-    train_accuracy.append(100*np.sum(ytrain_pred==y_train)/y_train.size)
-    cv_accuracy.append(100*np.sum(ycv_pred==y_cv)/y_cv.size)
-
-
-# In[11]:
-
-
-accuracy_table=pd.DataFrame()
-accuracy_table["C"]=C_list
-accuracy_table["training accuracy"]=train_accuracy
-accuracy_table["validation accuracy"]=cv_accuracy
-accuracy_table
-
-
-# ## we proceed with C=0.1: 
-
-# In[14]:
-
-
-best_svc=svm.SVC(kernel="linear",C=0.1,decision_function_shape="ovo")
-best_svc.fit(X_train,y_train)
-ytrain_pred=best_svc.predict(X_train)
-print(" Train Accuracy:",100*np.sum(ytrain_pred==y_train)/y_train.size)
-conf_mat=confusion_matrix(y_train,ytrain_pred)
-plt.figure()
-sns.heatmap(conf_mat,annot=True)
-plt.title("1A - Train Confusion Matrix (Linear SVM)")
-plt.xlabel("Predicted Class")
-plt.ylabel("Actual Class")
-plt.savefig("images/1A_SVM_train_confmat.png")
-plt.show()
-
-ycv_pred=best_svc.predict(X_cv)
-print(" Validation Accuracy:",100*np.sum(ycv_pred==y_cv)/y_cv.size)
-val_conf_mat=confusion_matrix(y_cv,ycv_pred)
-plt.figure()
-sns.heatmap(val_conf_mat,annot=True)
-plt.title("1A - Validation Confusion Matrix (Linear SVM)")
-plt.xlabel("Predicted Class")
-plt.ylabel("Actual Class")
-plt.savefig("images/1A_SVM_val_confmat.png")
-plt.show()
-
-ytest_pred=best_svc.predict(X_test)
-print(" Test Accuracy:",100*np.sum(ytest_pred==y_test)/y_test.size)
-test_conf_mat=confusion_matrix(y_test,ytest_pred)
-plt.figure()
-sns.heatmap(test_conf_mat,annot=True)
-plt.title("1A - Test Confusion Matrix (Linear SVM)")
-plt.xlabel("Predicted Class")
-plt.ylabel("Actual Class")
-plt.savefig("images/1A_SVM_Test_confmat.png")
-plt.show()
-
-
-
-# ## Visiualizing decision boundaries:
-
-# In[15]:
-
-
-h=0.1
-x1_min,x1_max=train_data["x1"].min()-1,train_data["x1"].max()+1
-x2_min,x2_max=train_data["x2"].min()-1,train_data["x2"].max()+1
-xx,yy=np.meshgrid(np.arange(x1_min,x1_max,h),np.arange(x2_min,x2_max,h))
-
-
-# In[16]:
-
-
-z=best_svc.predict(np.c_[xx.ravel(),yy.ravel()])
-z=z.reshape(xx.shape)
-plt.figure()
-plt.contour(xx,yy,z,np.unique(z).size-1,colors=color_list,alpha=1)
-plt.contourf(xx,yy,z,np.unique(z).size-1,colors=color_list,alpha=0.25)
-plt.scatter(train_data["x1"],train_data["x2"],c=[color_list[i] for i in y_train])
-plt.xlabel("X1")
-plt.ylabel("X2")
-plt.xlim(xx.min(),xx.max())
-plt.ylim(yy.min(),yy.max())
-plt.title("1A-Full Decision Region Plot(SVM)")
-plt.savefig("images/1A_SVM_full_decision_plot.png")
-plt.show()
-
+# ## we proceed with C=1: 
 
 # ## Linear SVM classifier for every pair of classes:
 
-# In[17]:
+# In[15]:
 
 
 def linear_ovo_plot(y1,y2,df,save_name,title,color,conf_title_train,conf_title_test,conf_train_save_name,conf_test_save_name,df_dev):
@@ -197,23 +109,24 @@ def linear_ovo_plot(y1,y2,df,save_name,title,color,conf_title_train,conf_title_t
     plt.figure()
     x2=np.linspace(xx.min(),xx.max())
     yx=a*x2-predictor.intercept_[0]/w[1]
-    plt.plot(x2,yx)
+    plt.plot(x2,yx,label="Decision Boundary")
     
     yx=a*x2-(predictor.intercept_[0]-1)/w[1]
-    plt.plot(x2,yx,"k--")
+    plt.plot(x2,yx,"k--", label="Support Vector")
     
     yx=a*x2-(predictor.intercept_[0]+1)/w[1]
-    plt.plot(x2,yx,"k--")
+    plt.plot(x2,yx,"k--",label="Support Vector")
     c1=color_list[y1]
     c2=color_list[y2]
     colors_list=[c1,c2]
 
     plt.contourf(xx,yy,z,np.unique(z).size-1,colors=color,alpha=0.25)
-    plt.scatter(df2["x1"],df2["x2"],c=[color_list[i] for i in df2["y"].astype(int)],label=(y1,y2))
+    plt.scatter(df2["x1"],df2["x2"],c=[color_list[i] for i in df2["y"].astype(int)])
     plt.xlabel("X1")
     plt.ylabel("X2")
     plt.xlim(xx.min(),xx.max())
     plt.ylim(yy.min(),yy.max())
+    plt.legend(loc="upper right")
     plt.savefig(save_name)
     plt.title(title)
     plt.show()
@@ -246,40 +159,172 @@ def linear_ovo_plot(y1,y2,df,save_name,title,color,conf_title_train,conf_title_t
             
 
 
-# In[18]:
+# In[16]:
 
 
 linear_ovo_plot(1,2,train_data,"images/1A_ovo_12.png","Support vectors and Boundary region between y=1.0 and y=2.0",color=[color_list[1],color_list[2]],conf_title_train="Confusion Matrix on train data",conf_title_test="Confusion matrix on test data",conf_train_save_name="images/1A_ovo_conf12_train.png",conf_test_save_name="images/1A_ovo_conf12_test.png",df_dev=dev_data)
 
 
-# In[19]:
+# In[17]:
 
 
 linear_ovo_plot(1,3,train_data,"images/1A_ovo_13.png","Support vectors and Boundary region between y=1.0 and y=3.0",color=[color_list[1],color_list[3]],conf_title_train="Confusion Matrix on train data",conf_title_test="Confusion matrix on test data",conf_train_save_name="images/1A_ovo_conf13_train.png",conf_test_save_name="images/1A_ovo_conf13_test.png",df_dev=dev_data)
 
 
-# In[20]:
+# In[18]:
 
 
 linear_ovo_plot(0,1,train_data,"images/1A_ovo_01.png","Support vectors and Boundary region between y=0.0 and y=1.0",color=[color_list[0],color_list[1]],conf_title_train="Confusion Matrix on train data",conf_title_test="Confusion matrix on test data",conf_train_save_name="images/1A_ovo_conf01_train.png",conf_test_save_name="images/1A_ovo_conf01_test.png",df_dev=dev_data)
 
 
-# In[21]:
+# In[19]:
 
 
 linear_ovo_plot(0,2,train_data,"images/1A_ovo_02.png","Support vectors and Boundary region between y=0.0 and y=2.0",color=[color_list[0],color_list[2]],conf_title_train="Confusion Matrix on train data",conf_title_test="Confusion matrix on test data",conf_train_save_name="images/1A_ovo_conf02_train.png",conf_test_save_name="images/1A_ovo_conf02_test.png",df_dev=dev_data)
 
 
-# In[22]:
+# In[20]:
 
 
 linear_ovo_plot(0,3,train_data,"images/1A_ovo_03.png","Support vectors and Boundary region between y=0.0 and y=3.0",color=[color_list[0],color_list[3]],conf_title_train="Confusion Matrix on train data",conf_title_test="Confusion matrix on test data",conf_train_save_name="images/1A_ovo_conf03_train.png",conf_test_save_name="images/1A_ovo_conf03_test.png",df_dev=dev_data)
 
 
-# In[23]:
+# In[21]:
 
 
 linear_ovo_plot(2,3,train_data,"images/1A_ovo_23.png","Support vectors and Boundary region between y=2.0 and y=3.0",color=[color_list[2],color_list[3]],conf_title_train="Confusion Matrix on train data",conf_title_test="Confusion matrix on test data",conf_train_save_name="images/1A_ovo_conf23_train.png",conf_test_save_name="images/1A_ovo_conf23_test.png",df_dev=dev_data)
 
 
+# # Using one-vs-one models to predict for a test sample:
+
+# In[28]:
+
+
+def class_model(df,y1,y2,C=1):
+    df2=df.loc[df["y"].isin([y1,y2])]
+    predictor=svm.SVC(kernel="linear",C=C,decision_function_shape="ovo").fit(df2.iloc[:,:-1],df2.iloc[:,-1])
+    return(predictor)
+
+
+# In[29]:
+
+
+model01=class_model(train_data,0,1)
+model02=class_model(train_data,0,2)
+model03=class_model(train_data,0,3)
+model12=class_model(train_data,1,2)
+model13=class_model(train_data,1,3)
+model23=class_model(train_data,2,3)
+
+
+# In[54]:
+
+
+from collections import Counter
+
+
+# In[57]:
+
+
+def ovo_predictor(x):
+    c=[]
+    c.append(model01.predict(x)[0])
+    c.append(model02.predict(x)[0])
+    c.append(model03.predict(x)[0])
+    c.append(model12.predict(x)[0])
+    c.append(model13.predict(x)[0])
+    c.append(model23.predict(x)[0])
+    count=Counter(c)
+    freq=0
+    label=0
+    for i in count.keys():
+        if count[i]>freq:
+            freq=count[i]
+            label=i
+    return label
+
+
+# In[58]:
+
+
+ytrain_pred=[]
+ycv_pred=[]
+ytest_pred=[]
+for i in range(len(X_train)):
+    x=X_train[i,:].reshape(1,-1)
+    ytrain_pred.append(ovo_predictor(x))
+for x in X_cv:
+    x=x.reshape(1,-1)
+    ycv_pred.append(ovo_predictor(x))
+for x in X_test:
+    x=x.reshape(1,-1)
+    ytest_pred.append(ovo_predictor(x))
+
+
+# In[59]:
+
+
+def accuracy(actual,predicted):
+    return 100*np.sum(predicted==actual)/actual.size
+
+
+# In[60]:
+
+
+accuracy(y_train,ytrain_pred)
+
+
+# In[67]:
+
+
+conf_mat=confusion_matrix(y_train,ytrain_pred)
+plt.figure()
+sns.heatmap(conf_mat,annot=True)
+plt.title("1a - Confusion matrix for train data" )
+plt.xlabel("Predicted Class")
+plt.ylabel("Actual Class")
+plt.savefig("images/1a_confmatrix_train.png" )
+plt.show()
+    
+conf_mat=confusion_matrix(y_test,ytest_pred)
+plt.figure()
+sns.heatmap(conf_mat,annot=True)
+plt.title("1a - Confusion matrix for test data")
+plt.xlabel("Predicted Class")
+plt.ylabel("Actual Class")
+plt.savefig("images/1a_confmatrix_test.png")
+plt.show()
+
+
+# In[64]:
+
+
+h=0.1
+x1_min,x1_max=train_data["x1"].min()-1,train_data["x1"].max()+1
+x2_min,x2_max=train_data["x2"].min()-1,train_data["x2"].max()+1
+xx,yy=np.meshgrid(np.arange(x1_min,x1_max,h),np.arange(x2_min,x2_max,h))
+X=np.c_[xx.ravel(),yy.ravel()]
+z=[]
+for i in X:
+    x=i.reshape(1,-1)
+    z.append(ovo_predictor(x))
+z=np.array(z)
+z=z.reshape(xx.shape)
+plt.figure()
+plt.contour(xx,yy,z,np.unique(z).size-1,colors=color_list,alpha=1)
+plt.contourf(xx,yy,z,np.unique(z).size-1,colors=color_list,alpha=0.25)
+plt.scatter(train_data["x1"],train_data["x2"],c=[color_list[i] for i in y_train])
+plt.xlabel("X1")
+plt.ylabel("X2")
+plt.xlim(xx.min(),xx.max())
+plt.ylim(yy.min(),yy.max())
+plt.title("1A-Full Decision Region Plot(SVM)")
+plt.savefig("images/1A_SVM_full_decision_plot.png")
+plt.show()
+
+
 # In[ ]:
+
+
+
+
