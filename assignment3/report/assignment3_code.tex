@@ -43,6 +43,15 @@
 \usepackage{tocloft}
 \renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
 
+% For getting paragraphs
+\usepackage{titlesec}
+\setcounter{secnumdepth}{4}
+\setcounter{tocdepth}{4}
+\titleformat{\paragraph}
+{\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
+\titlespacing*{\paragraph}
+{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+
 \begin{document}
     \begin{titlepage} 
         \begin{center}
@@ -78,13 +87,16 @@
 
 \section{Dataset 1A}
 \subsection{Perceptron}
+The code written for analyzing Dataset 1A, using Perceptron model is as follows:\vspace{-1em}
+\lstinputlisting[language=Python]{codes/1A_Perceptron.py}
+
 \subsection{MLFFNN}
 The code written for analyzing Dataset 1A, using an MLFFNN model is as follows:\vspace{-1em}
 \lstinputlisting[language=Python]{codes/1A_MLFFNN.py}
 
-\vspace{1em}
-\noi
+\subsubsection{Helper Function}
 The helper functions used are as follows:\vspace{-1em}
+\paragraph{Gridsearch}
 \lstinputlisting[language=Python]{codes/gridsearch.py}
 
 
@@ -95,17 +107,25 @@ The helper functions used are as follows:\vspace{-1em}
 The code written for analyzing Dataset 1B, using an MLFFNN model is as follows:\vspace{-1em}
 \lstinputlisting[language=Python]{codes/1B_MLFFNN.py}
 
-\vspace{1em}
-\noi
+\subsubsection{Helper Function}
 The helper functions used are as follows:\vspace{-1em}
+\paragraph{Gridsearch}
 \lstinputlisting[language=Python]{codes/gridsearch.py}
 
 \subsection{Non-Linear SVM}
 
 \section{Dataset 2A}
 \subsection{MLFFNN}
-The helper function used is as follows:\vspace{-1em}
+The code written for analyzing Dataset 2A, using an MLFFNN model is as follows:\vspace{-1em}
+\lstinputlisting[language=Python]{codes/2A_MLFFNN.py}
+
+\subsubsection{Helper Function}
+The helper functions used are as follows:\vspace{-1em}
+\paragraph{Data Consolidation}
 \lstinputlisting[language=Python]{codes/consolidate_2A.py}
+\paragraph{Gridsearch}
+\lstinputlisting[language=Python]{codes/gridsearch.py}
+
 
 \subsection{Gaussian-kernel SVM}
 
