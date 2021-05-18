@@ -1,0 +1,110 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{makeidx}
+\usepackage{graphicx}
+\usepackage{wrapfig}
+\usepackage{enumerate}
+\usepackage{pdfpages}
+\usepackage{tocloft}
+\usepackage{setspace}
+\usepackage{mathtools}
+\usepackage{hyperref}
+\definecolor{linkcolour}{rgb}{0,0.2,0.6} % Link color
+\hypersetup{colorlinks,breaklinks,urlcolor=linkcolour,linkcolor=linkcolour}
+
+\usepackage[framed,numbered,autolinebreaks,useliterate]{mcode}
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+
+\usepackage{xcolor}
+
+\usepackage{fontspec}
+\setmainfont{Cambria}
+
+\usepackage{caption}
+\captionsetup[figure]{font=small, labelfont={bf}}
+\captionsetup[table]{font=small, labelfont={bf}}
+
+\usepackage{float}
+\usepackage{multirow}
+\usepackage{longtable}
+
+\usepackage[nottoc]{tocbibind}
+
+\newcommand{\spa}{\vspace{1.25em}}
+\newcommand{\noi}{\noindent}
+\def\dul#1{\underline{\underline{#1}}}
+\def\cpt#1#2{{\begin{center}\small\textbf{\textcolor{blue}{Figure #1:}} #2\end{center}}}
+\def\tt#1{\texttt{#1}}
+
+% for dots in the content
+\usepackage{tocloft}
+\renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
+
+\begin{document}
+	\begin{titlepage} 
+		\begin{center}
+		\large{ASSIGNMENT}\\
+		\vspace{2em}
+		\large {CS5691 Pattern Recognition and Machine Learning}
+		\vspace{3em}
+		
+		\rule{0.9\linewidth}{0.5mm} \\[0.4cm]
+	    {\Large{\bfseries{CS5691 Assignment 1 - Code}}} \\
+	    \rule{0.9\linewidth}{0.5mm} \\[3 em]	
+	    
+	    Team Members: \\
+	    \vspace{0.5em}
+	   	\input{team_details}
+
+		\vspace{1em}
+
+		Indian Institute of Technology, Madras\\    
+		
+		\vspace{5em}    
+	    
+	    	\includegraphics[scale = 0.09]{images/iitmlogo.png}
+		\end{center}
+	\end{titlepage}
+
+{\hypersetup{linkcolor=black}
+ \tableofcontents}
+\break
+
+\section{Task 1}
+\subsection{Main Code}
+The code for Question 1 is as follows:\vspace{-1em}
+\lstinputlisting[language=Python]{codes/question_1.py}
+
+\subsection{Polynomial Regression Code}
+The helper class used to perform \tt{PolynomialRegression} is as follows: \vspace{-1em}
+\lstinputlisting[language=Python]{codes/regression.py}
+
+\subsection{Grid Search Code}
+The helper class used to perform \tt{Grid Search} are as follows:\vspace{-1em}
+\lstinputlisting[language=Python]{codes/gridsearch.py}
+
+\section{Task 2}
+The code for Question 2 is as follows:\vspace{-1em}
+\lstinputlisting[language=Python]{codes/Assignment1_task 2.py}
+
+
+\section{Task 3}
+\subsection{No Regularization, L2 Regularization}
+The code for Question 3, No Regularization and L2 Regularization is as follows:\vspace{-1em}
+\lstinputlisting[language=Python]{codes/question_3.py}
+
+\subsubsection{Pre-Processing}
+The helper class used to perform \tt{PreProcessing} is as follows: \vspace{-1em}
+\lstinputlisting[language=Python]{codes/preprocess.py}
+
+\subsubsection{Gaussian Basis}
+The helper class used to perform \tt{GaussianBasis} are as follows:\vspace{-1em}
+\lstinputlisting[language=Python]{codes/gaussianbasis.py}
+
+\subsection{Tikhonov Regularization}
+The code for Question 3, Tikhonov Regularization is as follows:\vspace{-1em}
+\lstinputlisting[language=Python]{codes/task3.py}
+
+\end{document}

@@ -1,0 +1,479 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{makeidx}
+\usepackage{graphicx}
+\usepackage{wrapfig}
+\usepackage{enumerate}
+\usepackage{pdfpages}
+\usepackage{tocloft}
+\usepackage{setspace}
+\usepackage{mathtools}
+\usepackage{hyperref}
+\definecolor{linkcolour}{rgb}{0,0.2,0.6} % Link color
+\hypersetup{colorlinks,breaklinks,urlcolor=linkcolour,linkcolor=linkcolour}
+\usepackage[left=2cm,right=2cm,top=1.5cm,bottom=1.5cm]{geometry}
+
+\usepackage{xcolor}
+\usepackage{fontspec}
+\setmainfont{Cambria}
+
+\usepackage{caption}
+\captionsetup[figure]{font=small, labelfont={bf}}
+\captionsetup[table]{font=small, labelfont={bf}}
+
+\usepackage{float}
+\usepackage{multirow}
+\usepackage{longtable}
+\usepackage[nottoc]{tocbibind}
+
+\usepackage{soul}
+
+\newcommand{\spa}{\vspace{1.25em}}
+\newcommand{\noi}{\noindent}
+\def\dul#1{\underline{\underline{#1}}}
+\def\cpt#1#2{{\begin{center}\small\textbf{\textcolor{blue}{Figure #1:}} #2\end{center}}}
+\def\tt#1{\texttt{#1}}
+% for dots in the content
+\usepackage{tocloft}
+\renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
+
+
+\begin{document}
+    \begin{titlepage} 
+        \begin{center}
+        \large{ASSIGNMENT 1}\\
+        \vspace{2em}
+        \large {CS5691 Pattern Recognition and Machine Learning}
+        \vspace{3em}
+        
+        \rule{0.9\linewidth}{0.5mm} \\[0.4cm]
+        {\Large{\bfseries{CS5691 Assignemnt 1}}} \\
+        \rule{0.9\linewidth}{0.5mm} \\[3 em]    
+        
+        Team Members: \\
+        \vspace{0.5em}
+        \input{team_details}
+
+        \vspace{1em}
+
+        Indian Institute of Technology, Madras\\    
+        
+        \vspace{5em}    
+        
+            \includegraphics[scale = 0.09]{images/iitmlogo.png}
+        \end{center}
+    \end{titlepage}
+{\hypersetup{linkcolor=black}
+\tableofcontents}
+\break
+
+\section{Task 1}
+\subsection{Polynomial Regression}
+The data for univariate polynomial regression is obtained by raising it to the required degree. In case of univariate polynomial regression of degree $d$, the dependent variable, of size $(d,1)$ is assumed to have the form
+\begin{equation}
+    \vec{y}_{n\times1} = \mathit{\phi}_{n\times d}W_{d\times1}
+\end{equation}
+\noi
+The weights corresponding to a given degree is then calculated by using the closed form solution for univariate polynomial regression:
+\begin{equation}
+    W = (\mathit{\phi}^T\mathit{\phi} + \lambda \mathit{I})^{-1}\mathit{\phi}^T\vec{y}
+\end{equation}
+Where, $\lambda\mathit{I}$ is the regularization term.
+
+\subsection{Grid Search}
+In order to pick the parameters that best fit the dataset, a grid search was performed on the dataset. Prior to this, the dataset was split into training set, validation set and the testing set, in the ratio 70:10 (from the training data) :30. The results obtained is as follows:
+\input{q1_results}
+\input{q1_results_200}
+\noi
+\textcolor{blue}{From the table above, we see that the best fit for the data is obtained for degree: $6$ and $\lambda:0$.}
+\noi
+The best fit, $d:6$ and $\lambda:0$ is visualized as follows:
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.5]{images/d_6_size_10_l_0.png}
+    \caption{Task 1 - Best fit, Sample size: 10}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.5]{images/d_6_size_200_l_0.png}
+    \caption{Task 1 - Best fit, Sample size: 200}
+\end{figure}
+\noi
+The final training and testing error obtained is as follows:
+\begin{itemize}
+    \itemsep0em
+    \item Training Error: 0.09974659089780814
+    \item Testing Error: 0.09793071099285168
+\end{itemize}
+
+\section{Task 2}
+\subsection{Polynomial Regression for bivariate data}
+The second dataset is a bivariate data with 2000 examples. We assume that the target variable is of the form:
+\begin{equation}
+\label{eq:1}
+    y=\sum_{i=0}\omega _{i}\phi_{i}(x_1,x_2)  +\epsilon 
+\end{equation}
+Where $\omega_{i}$ are the parameters to be found through regression, $\phi_{i}(x_1,x_2)$ is a polynomial in $x_1$ and $x_2$ and $\epsilon$ is the normally distributed error.\\ 
+
+\noi
+A breakdown of the steps undertaken is:
+\begin{itemize}
+    \itemsep0em
+    \item The function \tt{create\_phi} generates the design matrix $\phi(x_1,x_2)$ for the required degree of complexity.
+    \item The design matrix is passed to the function \tt{regularized\_pseudo\_inv}, which generates the Moore-Penrose inverse of the given design matrix (X) and specified value of regularization parameter lambda ($\lambda$).
+    
+    \begin{equation}
+         (X^T X + \lambda I)^{-1}X^T
+    \end{equation}
+    
+    \item The function \tt{opt\_regularized\_param} is then used to obtain optimum values of $\vec{\omega}$
+    \begin{equation}
+        \vec{\omega} = [(X^T X + \lambda I)^{-1}X^T]y
+    \end{equation}
+    Where $y$ is the output as defined in the \autoref{eq:1}.
+    
+    \item The optimum parameter vector thus obtained can be used to predict the variable $y$ for new inputs. 
+    \begin{equation}
+        y_{prediction}=X\vec{\omega}
+    \end{equation}
+\end{itemize}
+
+\subsection{Data processing}
+\begin{itemize}
+    \itemsep0em
+    \item The range of variables is same for $x_1$ and $x_2$, (i.e.) $(-16,16)$ hence no scaling is required, there are no null data values.
+    \item The data is first shuffled and then split into Train data, Cross-validation data and Test data. Train data sizes: $50, 200, 500$
+    \item The independent vectors $\vec{x_1}$ and $\vec{x_2}$ are extracted from the datasets and then design matrices $\phi_{n\times m}$ are created using the function \tt{create\_phi}. Here, $n$ is the number of samples in the respective sample and $m$ is the number of components for the corresponding degree.
+\end{itemize}
+
+\subsection{Degree of complexity 2}
+With degree of complexity set to 2, for a particular data point, 
+\begin{equation}
+y_{i}=\omega_{0}+\omega_{1}x_1 + \omega_{2}x_2 + \omega_{3}{x_1}^2+\omega_{4}{x_2}^2+\omega_{5}{x_1}{x_2}
+\end{equation}
+
+ 
+\subsubsection{Varying $\lambda$, Sample size of 50}
+After the above pre-processing, The optimum parameter \textbf{$\vec{\omega}$} is obtained for the following lambda values - $[0, 0.5, 1, 2, 10, 50, 100]$. The variation in RMSE across lambda is as follows:\\
+ 
+\begin{figure}[H]
+     \centering
+     \includegraphics[scale=0.7]{images/d2_50.png}
+     \caption{RMSE across $\lambda$; Sample size: 50,  Degree: 2}
+\end{figure}
+ 
+ 
+\begin{center}
+\begin{tabular}{c c c c} 
+\hline
+\hline
+\textbf{Lambda} & \textbf{RMSE Train} & \textbf{RMSE CV} & \textbf{RMSE Test} \\
+\hline
+\hline
+0 & 9340.73 & 10671.59 & 11468.19 \\ 
+0.5 & 9346.19 & 10611.41 & 11487.13 \\
+1 & 9361.17 & 10564.66 & 11516.49 \\
+\hl{2} & \hl{9412.58} & \hl{10503.67} & \hl{11598.33} \\
+10 & 10120 & 10672.93 & 12534.16 \\
+50 & 11897.56 & 11935.27 & 14729.56  \\ 
+100 & 12491.10 & 12420.38 & 15443.04 \\ 
+\hline
+\end{tabular}
+\captionof{table}{Variation in RMSE values with lambda}\label{d250}
+\end{center}
+\subsubsection{Varying $\lambda$, Sample size of 200}
+ 
+ The optimum parameter \textbf{$\vec{\omega}$} is obtained for the following lambda values - $[0, 0.5, 1, 2, 10, 50, 100]$. The variation in RMSE across lambdas is as follows: \\
+ 
+\begin{figure}[H]
+     \centering
+     \includegraphics[scale=0.7]{images/d2_200.png}
+     \caption{RMSE across $\lambda$; Sample size: 200, Degree: 2}
+\end{figure}
+ 
+ 
+\begin{center}
+\begin{tabular}{c c c c} 
+\hline
+\hline
+\textbf{Lambda} & \textbf{RMSE Train} & \textbf{RMSE CV} & \textbf{RMSE Test} \\
+\hline
+\hline
+0 & 10 & 10671.59 & 11468.19 \\ 
+0.5 & 9346.19 & 10611.41 & 11487.13 \\
+1 & 9361.17 & 10564.66 & 11516.49 \\
+\hl{2} & \hl{9412.58} & \hl{10503.67} & \hl{11598.33} \\
+50 & 11897.56 & 11935.27 & 14729.56  \\ 
+100 & 12491.10 & 12420.38 & 15443.04 \\
+\hline
+\end{tabular}
+\captionof{table}{Variation in RMSE values with lambda}\label{d250}
+\end{center}
+ 
+\subsubsection{Varying $\lambda$, Sample size of 500}
+\begin{figure}[H]
+     \centering
+     \includegraphics[scale=0.7]{images/d2_500.png}
+     \caption{RMSE across $\lambda$; Sample size: 500, Degree: 2}
+     \label{fig:d2500}
+\end{figure}
+ 
+
+
+
+\subsection{Degree of complexity 3}
+With degree of complexity set to 3, for a particular data point, 
+\begin{equation}
+y_{i}=\omega_{0}+\omega_{1}{x_1}+\omega_{2}{x_2}+\omega_{3}{x_1}^2+\omega_{4}{x_2}^2+\omega_{5}{x_1}.{x_2}+\omega_{6}{x_1}^{3}+\omega_7{x_2}^{3}+\omega_8{x_2}^2{x_1}+\omega_9{x_1}^2{x_2}  
+\end{equation}
+
+\subsubsection{Varying $\lambda$, Sample size of 50}
+ 
+After the above pre processing, The optimum parameter \textbf{$\vec{\omega}$} is obtained for the following lambda values - $[0, 0.5, 1, 2, 10, 50, 100]$. The variation in RMSE across lambdas is as follows:
+\input{rmse_lambda_complexity_3_train_size_50}
+
+\begin{figure}[H]
+     \centering
+     \includegraphics[scale=0.7]{images/d3_50.png}
+     \caption{RMSE across $\lambda$; Sample size: 50, Degree: 3}
+     \label{fig:d350}
+\end{figure}
+ 
+\subsubsection{Varying $\lambda$, Sample size of 200}
+The obtained results are:
+\input{rmse_lambda_complexity_3_train_size_200}
+\noi
+Scatter plots of the model prediction using the regularization parameter value 0.01:
+ 
+\begin{figure}[H]
+     \centering
+     \includegraphics[scale=0.7]{images/d3_200.png}
+     \caption{RMSE across $\lambda$; Sample size: 200, Degree: 3}
+     \label{fig:d3200}
+\end{figure}
+ 
+\subsubsection{Varying $\lambda$, Sample size of 500}
+ 
+The optimum parameter \textbf{$\vec{\omega}$} is obtained for the following lambda values - $[0, 0.5, 1, 2, 10, 50, 100]$.  The variation in RMSE across lambdas is as follows: \\
+ 
+\begin{figure}[H]
+     \centering
+     \includegraphics[scale=0.7]{images/d3_500.png}
+     \caption{RMSE across $\lambda$; Sample size: 500, Degree: 3}
+     \label{fig:d3500}
+\end{figure}
+ 
+\subsection{Degree of complexity 6}
+
+With the degree of complexity 6, 
+\begin{equation}
+    y=\sum {x_1}^\alpha*{x_2}^\beta
+\end{equation}
+Where $0\leq\alpha+\beta\leq6$.
+\subsubsection{Varying $\lambda$, Sample size of 50}
+\input{rmse_lambda_complexity_6_train_50}
+
+\begin{figure}[H]
+     \centering
+     \includegraphics[scale=0.7]{images/d6_50.png}
+     \caption{RMSE across $\lambda$; Sample size: 50, Degree: 6}
+     \label{fig:d650}
+\end{figure}
+ 
+
+\subsubsection{Varying $\lambda$, Sample size of 200}
+\input{rmse_lambda_complexity_6_train_200}
+
+
+\begin{figure}[H]
+     \centering
+     \includegraphics[scale=0.7]{images/d6_200.png}
+     \caption{RMSE across $\lambda$; Sample size: 200, Degree: 6}
+     \label{fig:d200}
+\end{figure}
+ 
+\subsubsection{Varying $\lambda$, Sample size of 500 }
+\input{rmse_lambda_complexity_6_train_500}
+
+ 
+\begin{figure}[H]
+     \centering
+     \includegraphics[scale=0.7]{images/d6_500.png}
+     \caption{RMSE across $\lambda$; Sample size: 500, Degree: 6}
+     \label{fig:d6500}
+\end{figure}
+ 
+\subsection{Conclusion}
+ 
+ The RMSE values are least over train data, cross-validation data as well as test data for degree of complexity = 6, train data size = 500 and regularization parameter, lambda =0.
+ 
+\begin{figure}[H]
+     \centering
+     \includegraphics[scale=0.7]{images/predgoodtrain.png}
+     \caption{Predicted output, Actual values for Train Data}
+     \label{fig:d6500}
+\end{figure}
+ 
+\begin{figure}[H]
+     \centering
+     \includegraphics[scale=0.7]{images/predcv.png}
+     \caption{Predicted output, Actual values for CV Data}
+     \label{fig:d6500}
+\end{figure}
+ 
+\begin{figure}[H]
+     \centering
+     \includegraphics[scale=0.7]{images/predtest.png}
+     \caption{Predicted output, Actual values for Test Data}
+     \label{fig:d6500}
+\end{figure}
+
+\noi
+\textbf{The surface plots of approximated functions superimposed with the scatter points are generated when the attached python code is run}
+ 
+\section{Task 3}
+Linear regression using Gaussian basis function is given as 
+\begin{equation}
+    y(\vec{x},\vec{w}) = \sum_{i=0}^{D-1} \omega_{i}\phi_{i}(\vec{x})
+\end{equation},
+where D is a hyperparameter. The basis function 
+\begin{equation}
+    \phi_{i} = \exp\Big(\frac{-|\vec{x} - \vec{\mu}_i|^2}{\sigma^2}\Big)
+\end{equation}
+where $i = 1,2 ... D-1$. The $\mu$ are the mean vectors for $D-1$ kernels made from the data set. The value of the mean vectors are found using the KMeans clustering algorithm. In this work, the \tt{sklearn} KMeans function was used. The optimum number of clusters for the dataset 2 - "\texttt{function\_12d.csv}" was found to be 10 clusters. For the dataset 3 - "\tt{1\_bias\_clean.csv}", the optimum number of clusters are 9.
+
+\subsection{No regularization}
+The following plots were obtained:
+\begin{figure}[H]
+     \centering
+     \includegraphics[scale=0.5]{images/scatter_ds2noreg.png}
+     \caption{Scatter plot of the target values vs model prediction for Training set of Dataset 2, using linear regression with gaussian basis and no Regularization, $\lambda = 0.01 $}
+     \label{fig:ds2tr}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.5]{images/scatter_ds2noreg_test.png}
+    \caption{Scatter plot of the target values vs model prediction for Test set of Dataset 2, using linear regression with gaussian basis and no Regularization, $\lambda = 0.01 $}
+    \label{fig:tikhds2tr}
+\end{figure}
+
+
+\subsection{Quadratic Regularization}
+Optimal parameters using quadratic regularization is given by $\vec{\omega^*}$ = $(\Phi^T\Phi + \lambda I)^{-1} \Phi^T \vec{t}$;\\
+
+\noi
+$\lambda$ is the regularization parameter. The values $0.01, 0.1,  1.0, 5.0, 10.0$ were used to estimate the optimal parameters and the RMSE on the cross-validation set was calculated for each value. The best performing model was selected as the one having least RMSE on CV data \\
+
+\noi
+For dataset 2, the RMSE values for the Training, CV and Test data across $\lambda$ values is:
+\input{rmse_ds3_quad1}
+
+\noi
+Scatter plots of the model prediction using the regularization parameter value 0.01:
+\begin{figure}[H]
+     \centering
+     \includegraphics[scale=0.5]{images/scatter_ds2quad.png}
+     \caption{Scatter plot of the target values vs model prediction for Training set of Dataset 2, using linear regression with gaussian basis and quadratic Regularization, $\lambda = 0.01 $}
+     \label{fig:tikhds2tr}
+\end{figure}
+\begin{figure}[H]
+     \centering
+     \includegraphics[scale=0.5]{images/scatter_ds2quadtest.png}
+     \caption{Scatter plot of the target values vs model prediction for Test set of Dataset 2, using linear regression with gaussian basis and quadratic Regularization, $\lambda = 0.01 $}
+     \label{fig:tikhds2tr}
+\end{figure}
+For dataset 3, the following RMSE table was obtained:
+\input{rmse_ds3_quad2}
+The scatter plots of target vs model output for the optimum value of $\lambda$ is, for "NTmin" output variable
+\begin{figure}[H]
+     \centering
+     \includegraphics[scale=0.5]{images/scatter_ds3quadtrainT_min.png}
+     \caption{Scatter plot of the target values vs model prediction for Training set of Dataset 3, using linear regression with gaussian basis and quaadratic Regularization, $\lambda = 0.01 $ for "NTmin" output variable}
+     \label{fig:tikhds2tr}
+\end{figure}
+\begin{figure}[H]
+     \centering
+     \includegraphics[scale=0.5]{images/scatter_ds3quadtestT_min.png}
+     \caption{Scatter plot of the target values vs model prediction for Test set of Dataset 2, using linear regression with gaussian basis and quadratic Regularization, $\lambda = 0.01 $, for "NTmin" output variable}
+     \label{fig:tikhds2tr}
+\end{figure}
+For "NTmax":
+\begin{figure}[H]
+     \centering
+     \includegraphics[scale=0.5]{images/scatter_ds3quadtrainT_max.png}
+     \caption{Scatter plot of the target values vs model prediction for Training set of Dataset 3, using linear regression with gaussian basis and quaadratic Regularization, $\lambda = 0.01 $ for "NTmax" output variable}
+     \label{fig:tikhds2tr}
+\end{figure}
+\begin{figure}[H]
+     \centering
+     \includegraphics[scale=0.5]{images/scatter_ds3quadtestT_max.png}
+     \caption{Scatter plot of the target values vs model prediction for Test set of Dataset 2, using linear regression with gaussian basis and quadratic Regularization, $\lambda = 0.01$, for "NTmax" output variable}
+     \label{fig:tikhds2tr}
+\end{figure}
+
+\subsection{Tikhonov Regularization} 
+The Tikhonov regularization term is given by $\vec{\omega^*}$ = $(\Phi*T\Phi + \lambda \Tilde{\Phi})^{-1} \Phi^T \vec{t}$. The $\Tilde{\Phi}$ term is defined as 
+\begin{equation}
+    \Tilde{\Phi} = [\Tilde{\phi}]_{i,j = 1}^{K}
+\end{equation}
+
+where K is the number of clusters and $\lambda$ is the regularization parameter. The values 0.01,0.1, 1.0,5.0,10.0 were used to estimate the optimal parameters and the RMSE on the cross-validation set was calculated for each value. The best perorming model was selected as the one having least RMSE on CV data\\ 
+Applying Tikhonov regularization to the bivariate dataset, the optimal value of $\lambda$ was estimated to be 0.01. 
+ The table for the RMSE values for the Training, CV and Test values corresponding to each $\lambda$ value is
+\input{rmse_ds2_tikh}
+
+\noi
+Scatter plots of the model prediction using the regularization parameter value 0.01:
+\begin{figure}[H]
+     \centering
+     \includegraphics[scale=0.5]{images/scatter_ds2tikhtr.png}
+     \caption{Scatter plot of the target values vs model prediction for Training set of Dataset 2, using linear regression with gaussian basis and Tikhonov Regularization, $\lambda = 0.01 $}
+     \label{fig:tikhds2tr}
+\end{figure}
+\begin{figure}[H]
+     \centering
+     \includegraphics[scale=0.5]{images/scatter_ds2tikhtest.png}
+     \caption{Scatter plot of the target values vs model prediction for Test set of Dataset 2, using linear regression with gaussian basis and Tikhonov Regularization, $\lambda = 0.01 $}
+     \label{fig:tikhds2tr}
+\end{figure}
+
+ \noi
+For Dataset 3, the table for the RMSE values for the Training, CV and Test values corresponding to each $\lambda$ value corresonding to target variable "NTmin" is\\
+\input{rmse_ds3_tikh1}
+
+\noi
+the optimal value of $\lambda$ was estimated to be 0.1 for the target output "NTmin". The scatter plots obtained are Figures \ref{fig:tikhds3tr} and \ref{fig:tikhds3t}
+\begin{figure}[H]
+     \centering
+     \includegraphics[scale=0.5]{images/scatter_ds3tikhtrainT_min.png}
+     \caption{Scatter plot of the target values vs model prediction for Training set of Dataset 3, using linear regression with gaussian basis and Tikhonov Regularization, $\lambda = 0.1 $}
+     \label{fig:tikhds3tr}
+\end{figure}
+\begin{figure}[H]
+     \centering
+     \includegraphics[scale=0.5]{images/scatter_ds3tikhtestT_min.png}
+     \caption{Scatter plot of the target values vs model prediction for Test set of Dataset 3, using linear regression with gaussian basis and Tikhonov Regularization, $\lambda = 0.01 $}
+     \label{fig:tikhds3t}
+\end{figure}
+ For the target output "NTmax" the following table of RMSE values for the training, test and CV data was obtained:
+\input{rmse_ds3_tikh2}
+ plots were obtained: figures \ref{fig:tikhds3tr2} and \ref{fig:tikhds3t2}.
+\begin{figure}[H]
+     \centering
+     \includegraphics[scale=0.5]{images/scatter_ds3tikhtrainT_max.png}
+     \caption{Scatter plot of the target values vs model prediction for Training set of Dataset 3, using linear regression with gaussian basis and Tikhonov Regularization, $\lambda = 0.1 $}
+     \label{fig:tikhds3tr2}
+\end{figure}
+\begin{figure}[H]
+     \centering
+     \includegraphics[scale=0.5]{images/scatter_ds3tikhtestT_max.png}
+     \caption{Scatter plot of the target values vs model prediction for Test set of Dataset 3, using linear regression with gaussian basis and Tikhonov Regularization, $\lambda = 0.1 $}
+     \label{fig:tikhds3t2}
+\end{figure}
+
+% \break
+% \bibliographystyle{unsrt}
+% \bibliography{reference}
+\end{document}
