@@ -254,12 +254,12 @@ The classification accuracies on the training and validation datasets (30\% of t
 The parameter combination were additionally sorted based on minimum fitting time (least fitting time - first) and the model that gave the best accuracy the fastest (and potentially the most minimal model that best fits the data), was chosen. Hence the best parameter combination chosen is:
 \begin{itemize}
     \itemsep0em
-    \item hidden\_layer\_sizes: 5
-    \item activation: tanh
-    \item solver: lbfgs
-    \item batch\_size: 200
-    \item alpha: 0.0001
-    \item learning\_rate: adaptive
+    \item \tt{hidden\_layer\_sizes}: 5
+    \item \tt{activation}: tanh
+    \item \tt{solver}: lbfgs
+    \item \tt{batch\_size}: 200
+    \item \tt{alpha}: 0.0001
+    \item \tt{learning\_rate}: adaptive
 \end{itemize}
 
 \noi
@@ -289,7 +289,7 @@ The decision region plots obtained is as follows:
 \subsection{Linear SVM}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\label{subsection:1a_svm}
+\label{subsection:1A_svm}
 The Support Vector Machines (SVMs) are supervised learning models that can be used for regression, classification and outlier detection. In case of a linear classifier, the goal of the SVM is to construct a hyperplane(s) such that the distance from the nearest training data point is maximized. This distance is called the functional margin.  
 
 
@@ -357,8 +357,8 @@ The task is now to find $\vec{\alpha}$ for which $L_D(\vec{\alpha)}$ is optimal 
 
 \subsubsection{svm.SVC() function in the scikit-learn library}\label{subsubsection:svm module}
 The svm.SVC() is a pre-defined module for Support Vector Classification task. The important optional arguments of this classifier are: 
-\begin{enumerate}
-    \item ``kernel'' : Specifies the kernel type to be used in the algorithm, available options are: [``linear'',``poly'',``rbf'',``sigmoid'',``precomputed''].
+\begin{itemize}
+    \item \tt{kernel} : Specifies the kernel type to be used in the algorithm, available options are: [\tt{linear},\tt{poly},\tt{rbf},\tt{sigmoid},\tt{precomputed}].
     The default kernel is the rbf(/gaussian). 
     \begin{itemize}
         \item Linear kernel: $<x,x'>$
@@ -366,21 +366,23 @@ The svm.SVC() is a pre-defined module for Support Vector Classification task. Th
         \item RBF kernel: $-\gamma||x-x'||^{2}$
         \item sigmoid kernel: tanh$(\gamma<x,x'>+r)$
     \end{itemize} 
-    For data-set 1a, linear kernel is used. 
-    \item ``C'': strictly positive float. By default it is 1.0. The strength of regularization is inversely proportional to C. For data-set 1a, C is varied from 0.1 to 1000. 
-    \item ``degree'': This is relevant only when the kernel is set to polynomial and is ignored by all other kernel values.
-    \item ``gamma'': float or [``scale'',``auto'']. Set to ``scale'' by default, it is the kernel coefficient for ``rbf'',``poly'' and ``sigmoid''.
-    \item ``decision\_function\_shape'': [``ovr'',``ovo'']. It specifies whether one-versus-rest or one-versus-one methodology should be used for multi-class classification. By default, it is ``ovr''. 
-\end{enumerate}
 
-\subsubsection{Building pairwise SVM for classes in data-set 1a}
-The data-set 1a has 4 class labels: [0.0,1.0,2.0,3.0], and 2 dimensional feature vectors. Those are linearly separable as can be seen in the plot above.
+    \noi
+    For dataset 1A, linear kernel is used. 
+    \item \tt{C}: strictly positive float. By default it is 1.0. The strength of regularization is inversely proportional to C. For dataset 1A, C is varied from 0.1 to 1000. 
+    \item \tt{degree}: This is relevant only when the kernel is set to polynomial and is ignored by all other kernel values.
+    \item \tt{gamma}: float or [\tt{scale}, \tt{auto}]. Set to \tt{scale} by default, it is the kernel coefficient for \tt{rbf}, \tt{poly} and \tt{sigmoid}.
+    \item \tt{decision\_function\_shape}: [\tt{ovr}, \tt{ovo}]. It specifies whether one-versus-rest or one-versus-one methodology should be used for multi-class classification. By default, it is \tt{ovr}. 
+\end{itemize}
+
+\subsubsection{Building pairwise SVM for classes in dataset 1A}
+The dataset 1A has 4 class labels: [0.0,1.0,2.0,3.0], and 2 dimensional feature vectors. Those are linearly separable as can be seen in the plot above.
 \begin{itemize}
     \item Data pre-processing:
-    \begin{enumerate}
+    \begin{itemize}
         \item There are no missing values in the data.
         \item The ranges of feature vectors are nearly same, hence scaling is not essential. 
-    \end{enumerate}
+    \end{itemize}
     \item The data is then split according to the class labels to further build one-vs-one svm models.
     \item sklearn.svm.SVC(),with a linear kernel is then trained using a pair of classes at once, hence, number of models trained is $\frac{3(3+1)}{2}=6$. 
     \item The decision boundary and support vectors are then obtained for each of those models. However, the decision region for y[i] vs y[j] model is defined only for x1 and x2 range where y[i] and y[j] exist in the training data
@@ -390,9 +392,10 @@ The data-set 1a has 4 class labels: [0.0,1.0,2.0,3.0], and 2 dimensional feature
 \subsubsection{Hyper-parameter value and accuracy}
 The hyper-parameter C is varied in the range [0.1,1,10,100,1000] and corresponding accuracy over train data and cross validation data is obtained as follows: 
 
-\input{acc1a_svm}
+\input{1A_svm_acc}
 \noi
 Since the accuracy is independent of the value of hyper-parameter C, the default value C=1 is used for the production of plots and confusion matrices.The accuracy obtained on test data set is also 1.00 
+
 \noi
 \subsubsection{Confusion matrices for Train and Test data}
 Since the accuracy obtained is 1.00, the confusion matrices are diagonal. 
@@ -404,7 +407,6 @@ Since the accuracy obtained is 1.00, the confusion matrices are diagonal.
 \noi 
 
 \subsubsection{Decision boundaries and Support vectors}
-
 \begin{figure}[H]
     \centering
     \includegraphics[scale=0.55]{images/1A_ovo_01.png}
@@ -444,7 +446,7 @@ Since the accuracy obtained is 1.00, the confusion matrices are diagonal.
 \begin{figure}[H]
     \centering
     \includegraphics[scale=0.55]{images/1A_SVM_full_decision_plot.png}
-    \caption{The effective decision region for data-set 1A}
+    \caption{The effective decision region for dataset 1A}
 \end{figure}
 
 \subsubsection{Conclusion}
@@ -743,41 +745,44 @@ From \autoref{HL1N1}-\autoref{OPN3}, we observe the following:
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Non-Linear SVM}
 
-The module sklearn.svm.SVC() as described in section \ref{subsubsection:svm module} is used to build non-linear classifiers for data-set 1b with the parameter ``decision\_function\_shape'' set to ``ovr''. The module can carry out multi-class classification hence individual pair-wise models need not be built.  
+The module \tt{sklearn.svm.SVC()} as described in section \ref{subsubsection:svm module} is used to build non-linear classifiers for dataset 1B with the parameter ``decision\_function\_shape'' set to ``ovr''. The module can carry out multi-class classification hence individual pair-wise models need not be built.  
 \noi
 The kernels used for classification are:
-\begin{enumerate}
+\begin{itemize}
+    \itemsep0em
     \item Polynomial Kernel-\\
     It is defined as $(\gamma<x,x'>+r)^d$. Where $\gamma$, r and d are the hyper-parameters.
     \item Gaussian Kernel or the Radial Basis function kernel-\\
     It is defined as $exp(-\gamma||x-x'||^2)$. Where $\gamma$ is the hyper-parameter.
-\end{enumerate}
+\end{itemize}
 
 \subsubsection{Polynomial Kernel}
 While using this kernel, a number of hyper-parameters need to be set: 
-\begin{enumerate}
-    \item misclassification penalty term, C.
-    \item Co-efficient of the polynomials, $\gamma$.
-    \item Constant term in the kernel, r(/coef0).
-    \item Degree of the polynomial, d.
-\end{enumerate}
+\begin{itemize}
+    \itemsep0em
+    \item misclassification penalty term, \tt{C}.
+    \item Coefficient of the polynomials, $\gamma$.
+    \item Constant term in the kernel, \tt{r}.
+    \item Degree of the polynomial, \tt{d}.
+\end{itemize}
 
 \noi
-Due to a large number of possible combinations of the above hyper-parameters, we use the function \textbf{GridSearchCV} from \textbf{sklearn.model\_selection} to search for the optimal combination of hyper-parameters.
+Due to a large number of possible combinations of the above hyper-parameters, we use the function \tt{GridSearchCV} from \tt{sklearn.model\_selection} to search for the optimal combination of hyper-parameters.
 
 \subsubsection{Optimal hyper-parameters and accuracy: Polynomial Kernel}
 
 The following values of hyper-parameters are tried resulting in $4*6*2*4=192$ different models.  
-\begin{enumerate}
-    \item C: [1,10,100,1000]
-    \item degree: [1,2,3,4,5,6]
-    \item coef0: [10,100]
+\begin{itemize}
+    \itemsep0em
+    \item \tt{C}: [1,10,100,1000]
+    \item \tt{degree}: [1,2,3,4,5,6]
+    \item \tt{coef0}: [10,100]
     \item $\gamma$: [1,0.1,0.01,``auto'']
-\end{enumerate}
+\end{itemize}
 
 \noi
-The function \textbf{GridSearchCV} returns the validation and train accuracy for all the models in the form of a numpy array. Accuracy table for the 10 models with the highest validation accuracy is: 
-\input{acc1b_polysvm}
+The function \tt{GridSearchCV} returns the validation and train accuracy for all the models in the form of a numpy array. Accuracy table for the 10 models with the highest validation accuracy is: 
+\input{1B_polysvm_acc}
 
 \noi
 Since the validation accuracy is highest for [C:1000,degree:5,gamma:0.1,Coef0:100], those hyper-parameters are used to predict the class labels for the test dataset, obtaining an accuracy of \textbf{1.00}. Those hyper-parameters are further used to obtain the confusion matrices and to plot the decision boundaries. 
@@ -803,17 +808,18 @@ Since the validation accuracy is highest for [C:1000,degree:5,gamma:0.1,Coef0:10
 \subsubsection{SVM with gaussian kernel}\label{section:gaussian}
 
 While using this kernel, the number of hyper-parameters to be set are comparatively less.
-\begin{enumerate}
+\begin{itemize}
     \item misclassification penalty term, C; Varied over [0.1,1,10,100,1000]
-    \item Co-efficient $\gamma$, varied over: [1,0.01,0.001,0.0001]
-\end{enumerate}
+    \item Coefficient $\gamma$, varied over: [1,0.01,0.001,0.0001]
+\end{itemize}
 
 \subsubsection{Optimal hyper-parameters and accuracy: Gaussian Kernel}
 
 Corresponding to different combinations of the above hyper-parameter values, 20 different models are trained. The training accuracy and cross-validation accuracy are obtained as follows:  
 \noi
-\input{acc1b_rbfsvm}
+\input{1B_rbfsvm_acc}
 
+\noi
 The validation accuracy is highest for [C:1.0, gamma:1.0]. Hence those hyper-parameters are used for further calculations. Accuracy on test data with those hyper-parameters is obtained to be \textbf{100\%}. 
 
 \subsubsection{Confusion matrices for Train and Test data: Gaussian Kernel}
@@ -906,7 +912,7 @@ Similar to the section \ref{section:gaussian}, an svm classifier with Gaussian k
 
 Approximately 1500 models were trained, performance of few of those models is as listed below (in order of decreasing validation accuracy)
 
-\input{acc2a_svm}
+\input{2A_svm_acc }
 
 The best hyper-parameter settings are: [c=1.0, gamma=1.0]. Test accuracy with those hyper-parameters is obtained to be \textbf{0.547}
 
