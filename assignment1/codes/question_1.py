@@ -22,23 +22,25 @@ import pandas as pd
 
 import warnings
 warnings.filterwarnings("ignore")
+
 import matplotlib.pyplot as plt
-plt.style.use('science')
-plt.rcParams['font.size'] = 18
+plt.rcParams['font.size'] = 14
 plt.rcParams['axes.grid'] = True
-plt.rcParams["grid.linestyle"] = (5,9)
 plt.rcParams['figure.figsize'] = 8,6
+plt.rcParams['font.serif'] = "Cambria"
+plt.rcParams['font.family'] = "serif"
 
 from regression import PolynomialRegression
 from gridsearch import GridSearch
+
 ###################################################################
 df = pd.read_csv("../datasets/function1.csv", index_col=0)
 df.sort_values(by=["x"], inplace=True)
 df.head()
 
 ###################################################################
-lmbda_list = [0, 0.5, 1, 2, 10, 50, 100]
-degrees_allowed = [2, 3, 6, 9]
+lmbdas_ = [0, 0.5, 1, 2, 10, 50, 100]
+degrees_ = [2, 3, 6, 9]
 datasizes_considered = [10, 200]
 complete_dataset_size = df.shape[0]
 
@@ -47,16 +49,22 @@ y = df["y"].to_numpy().reshape(-1,1)
 
 results_df_list = []
 correspondance_list = []
+
+# Loop over each sample size
 for sample_size in datasizes_considered:
+    # Fit across all degree, lambdas
     gridsearch = GridSearch()
-    df_result, correspondance = gridsearch.get_result(df, sample_size=sample_size, degrees_allowed=degrees_allowed, lmbda_list=lmbda_list)
+    result = gridsearch.fit(df, sample_size=sample_size, degrees_=degrees_, lmbdas_=lmbdas_)
+
+    df_result, correspondance = result
     results_df_list.append(df_result)
     correspondance_list.append(correspondance)
 
     print("\nFor Sample Size of ", sample_size, " - GridSearch Results:")
     print(df_result)
     print("="*70)
-    gridsearch.get_plots(X, y, correspondance, sample_size, show=True)
+
+    gridsearch.plot(X, y, correspondance, sample_size, show=False)
 ###################################################################
 
 # From the resuts obtained, we see that degree=6, lambda=0.0 
