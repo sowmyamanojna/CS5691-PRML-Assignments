@@ -13,12 +13,13 @@
 \usepackage{hyperref}
 \definecolor{linkcolour}{rgb}{0,0.2,0.6} % Link color
 \hypersetup{colorlinks,breaklinks,urlcolor=linkcolour,linkcolor=linkcolour}
-\usepackage[left=2cm,right=2cm,top=1.5cm,bottom=1.5cm]{geometry}
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
 
 \usepackage{xcolor}
 \usepackage{fontspec}
 \setmainfont{Cambria}
 
+\usepackage{subcaption}
 \usepackage{caption}
 \captionsetup[figure]{font=small, labelfont={bf}}
 \captionsetup[table]{font=small, labelfont={bf}}
@@ -70,7 +71,7 @@
 \break
 
 \section{Task 1}
-\subsection{Polynomial Regression}
+\subsection{Mathematical Formulation}
 The data for univariate polynomial regression is obtained by raising it to the required degree. In case of univariate polynomial regression of degree $d$, the dependent variable, of size $(d,1)$ is assumed to have the form
 \begin{equation}
     \vec{y}_{n\times1} = \mathit{\phi}_{n\times d}W_{d\times1}
@@ -82,13 +83,64 @@ The weights corresponding to a given degree is then calculated by using the clos
 \end{equation}
 Where, $\lambda\mathit{I}$ is the regularization term.
 
-\subsection{Grid Search}
+\subsection{Training and Validation Accuracies}
 In order to pick the parameters that best fit the dataset, a grid search was performed on the dataset. Prior to this, the dataset was split into training set, validation set and the testing set, in the ratio 70:10 (from the training data) :30. The results obtained is as follows:
-\input{q1_results}
-\input{q1_results_200}
+\input{T1_loss_10}
+
+\vspace{-2em}\noi
+Regularization was only applied in case of degree 9.\\
+
+\input{T1_loss_200}
 \noi
 \textcolor{blue}{From the table above, we see that the best fit for the data is obtained for degree: $6$ and $\lambda:0$.}
-\noi
+
+\subsection{Model Fits}
+\subsubsection{Sample Size: 10}
+The polynomial models and the corresponding fits obtained for sample size of 10 are as follows:
+\begin{figure}[H]
+    \includegraphics[scale=0.425]{images/t1_d1/d_2_size_10_l_0.png}
+    \includegraphics[scale=0.425]{images/t1_d1/d_3_size_10_l_0.png}
+    \includegraphics[scale=0.425]{images/t1_d1/d_6_size_10_l_0.png}
+    \includegraphics[scale=0.425]{images/t1_d1/d_9_size_10_l_0.png}
+    \caption{Task 1 - Polynomial fits, Sample size: 10}
+\end{figure}
+
+\subsubsection{Sample Size: 200}
+The polynomial models and the corresponding fits obtained for sample size of 200 are as follows:
+\begin{figure}[H]
+    \includegraphics[scale=0.425]{images/t1_d1/d_2_size_200_l_0.png}
+    \includegraphics[scale=0.425]{images/t1_d1/d_3_size_200_l_0.png}
+    \includegraphics[scale=0.425]{images/t1_d1/d_6_size_200_l_0.png}
+    \includegraphics[scale=0.425]{images/t1_d1/d_9_size_200_l_0.png}
+    \caption{Task 1 - Polynomial fits, Sample size: 200}
+\end{figure}
+
+\subsubsection{Effects of Regularization}
+The polynomial models and the corresponding fits obtained for sample size of 10, across different $\lambda$ values are as follows:
+\begin{figure}[H]
+    \ContinuedFloat
+    \begin{subfigure}{\textwidth}
+    \includegraphics[scale=0.45]{images/t1_d1/d_9_size_10_l_0.png}
+    \includegraphics[scale=0.45]{images/t1_d1/d_9_size_10_l_0.5.png}
+    \end{subfigure}
+    \ContinuedFloat
+    \begin{subfigure}{\textwidth}
+    \includegraphics[scale=0.45]{images/t1_d1/d_9_size_10_l_1.png}
+    \includegraphics[scale=0.45]{images/t1_d1/d_9_size_10_l_2.png}
+    \end{subfigure}
+    \ContinuedFloat
+    \begin{subfigure}{\textwidth}
+    \includegraphics[scale=0.45]{images/t1_d1/d_9_size_10_l_10.png}
+    \includegraphics[scale=0.45]{images/t1_d1/d_9_size_10_l_50.png}
+    \end{subfigure}
+    \ContinuedFloat
+    \begin{subfigure}{\textwidth}
+    \includegraphics[scale=0.45]{images/t1_d1/d_9_size_10_l_100.png}
+    \end{subfigure}
+    \caption{Task 1 - 9\textsuperscript{th} Degree Polynomial fit, Sample size: 10}
+\end{figure}
+
+\subsection{Best Model}
 The best fit, $d:6$ and $\lambda:0$ is visualized as follows:
 \begin{figure}[H]
     \centering
