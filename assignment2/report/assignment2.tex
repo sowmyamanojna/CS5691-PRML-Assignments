@@ -149,7 +149,7 @@ The accuracy table and confusion matrix are:
 The decision boundary obtained (with $k=1$) is linear in form. 
 
 \break
-\subsection{Naive-Bayes classifier with Gaussian distribution for each class}
+\subsection{Naive-Bayes classifier with a Gaussian distribution for each class}
 The Bayes Classifiers are probabilistic classifiers based on the Bayes theorem:
 
 \begin{equation}
@@ -182,7 +182,7 @@ Step-wise approach:
     \itemsep0em
     \item $p(y_{i})$ is calculated from the train dataset, for dataset 1A, we find that all the classes have equal prior probability.
     \item The probability $p(\vec{x}|y_{i})$ can be calculated by various parametric and non-parametric means. For dataset 1A, we use parametric means as described later.
-    \item $p(y_{i}|\vec{x})$ is calculated for all the classes using equation \autoref{normalized_nb}.
+    \item $p(y_{i}|\vec{x})$ is calculated for all the classes using \autoref{normalized_nb}.
     \item The class label with maximum posterior probability is chosen as the class label for $\vec{x}$.
 \end{itemize}
 
@@ -198,82 +198,131 @@ For the discussion that follows for dataset 1A, we assume that $p(\vec{x}|y_{i})
 In the above equation: 
 
 \begin{itemize}
-    \item $\mu_{i}$ is the mean corresponding to examples in the class $y_{i}$, its dimension is $(d,1)$, where $d$ is the number of features. Hence, if there are $k$ classes, number of parameters to be estimated for mean: $kd$.
+    \item $\mu_{i}$ is the mean corresponding to examples in the class $y_{i}$, its dimension is $(d,1)$, where $d$ is the number of features. Hence, if there are $k$ classes, number of parameters to be estimated for mean: $k*d$.
     \item $C_{i}$ is the $(d,d)$ covariance matrix corresponding to the class $y_{i}$. Since it is symmetric, number of parameters to be calculated per class: $\frac{d(d+1)}{2}$. Total parameters for covariance: $\frac{k*d(d+1)}{2}$.
 \end{itemize}
 
-\subsubsection{Same Covariance Matrix ($\sigma^2I$)}
-
-To reduce the number of parameters to be calculated, we assume that
-\begin{equation}
-    C_{i}=C_{j}=\sigma^{2}I
-\end{equation}
-\begin{equation}
-\label{casea_nb}
-    \sigma^{2}=\frac{\sum_{i=1}^{d}\sum_{k=1}^{K}\sigma^{2}_{ik}}{K*d}
-\end{equation}
-
 \noi
-Where, $K$ is the number of classes (4 for dataset 1A) and $d$ is the dimension of feature vector (2 for dataset 1A). \\
+The co-variance matrix and eigen-vectors for each class are calculated and are found to be as follows:
+\begin{enumerate}
+    \item For class y=0.0: 
+    $$
+    C = 
+    \begin{bmatrix}
+    0.676 & -0.005 \\
+    -0.005 & 0.784 \\
+    \end{bmatrix}
+    $$
+    $$
+    eigen-vectors = 
+    \begin{bmatrix}
+    -0.999 & 0.049 \\
+    \end{bmatrix}
+    ,
+    \begin{bmatrix}
+    0.106 & 0.996 \\
+    \end{bmatrix}
+    $$
+    \item For class y=1.0:
+    $$
+    C = 
+    \begin{bmatrix}
+    0.731 & 0.022 \\
+    0.022 & 0.523 \\
+    \end{bmatrix}
+    $$
+    $$
+    eigen-vectors = 
+    \begin{bmatrix}
+    0.994 & -0.106 \\
+    \end{bmatrix}
+    ,
+    \begin{bmatrix}
+    0.106 & 0.994 \\
+    \end{bmatrix}
+    $$
+    \item For class y=2.0:
+    $$
+    C = 
+    \begin{bmatrix}
+    0.767 & 0.009 \\
+    0.009 & 0.671 \\
+    \end{bmatrix}
+    $$
+    $$
+    eigen-vectors = 
+    \begin{bmatrix}
+    0.996 & -0.090 \\
+    \end{bmatrix}
+    ,
+    \begin{bmatrix}
+    -0.090 & 0.996 \\
+    \end{bmatrix}
+    $$
+    \item For class y=3.0:
+    $$
+    C = 
+    \begin{bmatrix}
+    0.705 & 0.028 \\
+    0.028 & 0.621 \\
+    \end{bmatrix}
+    $$
+    $$
+    eigen-vectors = 
+    \begin{bmatrix}
+    0.957 & -0.289 \\
+    \end{bmatrix}
+    ,
+    \begin{bmatrix}
+    0.289 & 0.957 \\
+    \end{bmatrix}
+    $$
+    
+    
+    
+\end{enumerate}
 
-\noi
-Substituting \autoref{casea_nb} in \autoref{gaussian}, $\;p(\vec{x}|y_{i})$ is calculated and used for predicting the class labels. 
-This is also called the naive-bayes classifier since we assume the features to be conditionally independent. 
-The decision boundary obtained is linear, while the level curves are circles. 
 
-\subsubsection{Same Covariance Matrix ($C$)}
+\subsubsection{Accuracy table and Confusion Matrix}
+We obtain that irrespective of our assumption of the co-variance matrices, the accuracy over train, validation and test set is 1. 
+\input{acc1a_nb}
 
-The covariance matrix C is calculated as: 
-\begin{equation}
-    C = \frac{\sum_{k=1}^{K}C_{k}}{K}
-\end{equation}
-Where $C_{k}$ is the covariance matrix corresponding to the $k^{th}$ class.\\
-
-\noi
-With this assumption, the decision boundary is linear, while the level curves are ellipses with equal length of principal axes, proportional to the eigen-vectors of C.
-
-\subsubsection{Different Covariance Matrix}
-In this case, the decision surfaces are hyper-quadrics.
-
-
-\subsubsection{Accuracy and Confusion Matrix}
-We obtain that irrespective of our assumption of the covariance matrices, the accuracy over train, validation and test set is 1. 
-\input{acc_1A_nb}
-
-\subsubsection{Level curve plots and decision boundary for bayes classifiers}
-\begin{minipage}{0.5\textwidth}
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.6]{images/contour1b_case1.png}
-    \caption{Contour plot for Case A.}
+    \includegraphics[scale=0.5]{images/1a_conf_mat_nb_train.png}
+    \includegraphics[scale=0.5]{images/1a_conf_mat_nb_test.png}
+    \caption{Confusion matrix for train and test data respectively}
+    \label{fig:conf_mats}
+\end{figure}
+
+\subsubsection{Level curve plots for different cases}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.4]{images/contour1b_case1.png}
+    \includegraphics[scale=0.4]{images/contour1b_case2.png}
+    \includegraphics[scale=0.4]{images/contour1b_case3.png}
+    \caption{Contour plots}
     \label{fig:cp_1}
 \end{figure}
-\end{minipage}%
-\begin{minipage}{0.5\textwidth}
-\begin{figure}[H]
-    \centering
-    \includegraphics[scale=0.6]{images/contour1b_case2.png}
-    \caption{Contour plot for Case B.}
-    \label{fig:cp_2}
-\end{figure}
-\end{minipage}
+\noi
+\tt{Observations}: 
+\begin{enumerate}
+    \item For all the three cases, we find that the principal axes of the ellipses are nearly parallel to the coordinate axis. This is because the eigen-vectors are nearly equal to [1,0] and [0,1].
+    \item In case a and case b, the length of principal axes are same across all classes. 
+    \item In case c, since we have used different co-variance matrix, the length of principal axes are scaled accordingly for all classes.
+\end{enumerate}
+
+\subsubsection{Decision Boundary plot for Naive Bayes Classifier}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.6]{images/contour1b_case3.png}
-    \caption{Contour plot for Case C.}
-    \label{fig:cp_3}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[scale=1]{images/1A_nb_case1_decisionregion.jpg}
+    \includegraphics[scale=0.5]{images/1A_nb_case1_decisionregion.jpg}
     \caption{Decision boundary plot}
     \label{fig:db1}
 \end{figure}
 
 \noi
-We find that contour plots as well as boundary region for all the three cases are same. 
 
 \break
 \section{Dataset 1B}
