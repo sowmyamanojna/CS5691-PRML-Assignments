@@ -72,6 +72,6 @@ class GridSearch():
             plt.ylabel("Y-values")
             plt.legend()
             plt.tight_layout()
-            plt.savefig("images/q1/"+fname)
+            plt.savefig("images/t1_d1/"+fname)
             if show:
                 plt.show()
