@@ -407,7 +407,7 @@ As the dataset was a real world dataset, the following preprocessing steps were 
 
 
 \subsubsection{No Regularization}
-The hyperparameter - number of clusters was sweeped and the value that resulted in the lowest validation SSE was choosen. The following cluster numbers were swept for: [1, 2, 3, 4, 5, 6, 7, 8, 9, 15, 20, 25, 30, 40, 50, 60, 70, 80, 90, 100].
+The hyperparameter - number of clusters was sweeped and the value that resulted in the lowest validation SSE was chosen. The following cluster numbers were swept for: [1, 2, 3, 4, 5, 6, 7, 8, 9, 15, 20, 25, 30, 40, 50, 60, 70, 80, 90, 100].
 
 \paragraph{Predicting: \tt{Next\_Tmin}}
 The Erms on the training and validation dataset and the SSE distances of samples to their closest cluster center obtained across the number of clusters is as follows:
@@ -422,7 +422,7 @@ The errors obtained in tabular format is as follows:
 \input{tables/tmin_lambda_0}
 
 \noi
-In addition to the scatter plot, histograms were plotted to understand the variance in the data.\\
+The the number of clusters that resulted in the lowest RMSE is 90. In addition to the scatter plot, histograms were plotted to understand the variance in the data.\\
 
 \noi
 The histogram and scatter plot of the target and the model output is as follows (train data):
@@ -453,7 +453,7 @@ The errors obtained in tabular format is as follows:
 \input{tables/tmax_lambda_0}
 
 \noi
-In addition to the scatter plot, histograms were plotted to understand the variance in the data.\\
+The the number of clusters that resulted in the lowest RMSE is 80. In addition to the scatter plot, histograms were plotted to understand the variance in the data.\\
 
 \noi
 The histogram and scatter plot of the target and the model output is as follows (train data):
@@ -470,77 +470,60 @@ The histogram and scatter plot of the target and the model output is as follows 
     \includegraphics[scale=0.49]{images/t3_d3/no_reg/T_max_test.png}
     \caption{Histogram and Scatter plot of the target values against the model prediction for testing dataset, using linear regression with gaussian basis and $\lambda: 0$}
 \end{figure}
-
 
 \subsubsection{Quadratic Regularization}
 Optimal parameters using quadratic regularization is given by $\vec{\omega^*}$ = $(\Phi^T\Phi + \lambda I)^{-1} \Phi^T \vec{t}$;\\
 
 \noi
-$\lambda$ is the regularization parameter. The values $[0.01, 0.1,  1.0, 5.0, 10.0]$ were used to estimate the optimal parameters and the RMSE on the cross-validation set was calculated for each value. The best performing model was selected as the one having least RMSE on CV data \\
+$\lambda$ is the regularization parameter. The RMSE on the cross-validation set was calculated for each value. The best performing model was selected as the one having least RMSE on CV data \\
 
 \noi
-The hyperparameter - number of clusters was sweeped and the value that resulted in the lowest validation SSE was choosen. The following cluster numbers were swept for: [1, 2, 3, 4, 5, 6, 7, 8, 9, 15, 20, 25, 30, 40, 50, 60, 70, 80, 90, 100].
+The hyperparameter - number of clusters and $\lambda$ were sweeped and the value that resulted in the lowest validation SSE was chosen. The following cluster numbers were swept for: [1, 2, 3, 4, 5, 6, 7, 8, 9, 15, 20, 25, 30, 40, 50, 60, 70, 80, 90, 100] and the following $\lambda$ values were sweeped: [0.01, 0.1,  1.0, 5.0, 10.0].
 
 \paragraph{Predicting: \tt{Next\_Tmin}}
 The Erms on the training and validation dataset and the SSE distances of samples to their closest cluster center obtained across the number of clusters is as follows:
-\begin{figure}[H]
-     \centering
-     \includegraphics[scale=0.4]{images/t3_d3/no_reg/tmin_errors.png}
-     \caption{K-Means inertia, SSE on training and validation data from the left to right respectively.}
-\end{figure}
-
-\vspace{-1em}
-The errors obtained in tabular format is as follows:
-\input{tables/tmin_lambda_0}
+\input{tables/tmin_l2}
 
 \noi
-In addition to the scatter plot, histograms were plotted to understand the variance in the data.\\
+The the number of clusters that resulted in the lowest RMSE is 200 and $\lambda$ is $0.01$. In addition to the scatter plot, histograms were plotted to understand the variance in the data.\\
 
 \noi
 The histogram and scatter plot of the target and the model output is as follows (train data):
 \begin{figure}[H]
      \centering
-     \includegraphics[scale=0.49]{images/t3_d3/no_reg/T_min_nclu_90.png}
-     \caption{Histogram and Scatter plot of the target values against the model prediction for training dataset, using linear regression with gaussian basis and $\lambda: 0$}
+     \includegraphics[scale=0.49]{images/t3_d3/reg/T_min_nclu_200_lambda_0.01.png}
+     \caption{Histogram and Scatter plot of the target values against the model prediction for training dataset, using linear regression with gaussian basis and $\lambda: 0.01$}
 \end{figure}
 
 \noi
 The histogram and scatter plot of the target and the model output is as follows (test data):
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.49]{images/t3_d3/no_reg/T_min_test.png}
-    \caption{Histogram and Scatter plot of the target values against the model prediction for testing dataset, using linear regression with gaussian basis and $\lambda: 0$}
+    \includegraphics[scale=0.49]{images/t3_d3/reg/tmin_test.png}
+    \caption{Histogram and Scatter plot of the target values against the model prediction for testing dataset, using linear regression with gaussian basis and $\lambda: 0.01$}
 \end{figure}
 
 \paragraph{Predicting: \tt{Next\_Tmax}}
 The Erms on the training and validation dataset and the RMSE distances of samples to their closest cluster center obtained across the number of clusters is as follows:
-\begin{figure}[H]
-     \centering
-     \includegraphics[scale=0.4]{images/t3_d3/no_reg/tmax_errors.png}
-     \caption{K-Means inertia, RMSE on training and validation data from the left to right respectively.}
-\end{figure}
-
-\vspace{-1em}
-The errors obtained in tabular format is as follows:
-\input{tables/tmax_lambda_0}
+\input{tables/tmax_l2}
 
 \noi
-In addition to the scatter plot, histograms were plotted to understand the variance in the data.\\
+The the number of clusters that resulted in the lowest RMSE is 200 and $\lambda$ is $0.01$. In addition to the scatter plot, histograms were plotted to understand the variance in the data.\\
 
 \noi
 The histogram and scatter plot of the target and the model output is as follows (train data):
 \begin{figure}[H]
      \centering
-     \includegraphics[scale=0.49]{images/t3_d3/no_reg/T_max_nclu_80.png}
-     \caption{Histogram and Scatter plot of the target values against the model prediction for training dataset, using linear regression with gaussian basis and $\lambda: 0$}
+     \includegraphics[scale=0.49]{images/t3_d3/reg/T_max_nclu_200_lambda_0.01.png}
+     \caption{Histogram and Scatter plot of the target values against the model prediction for training dataset, using linear regression with gaussian basis and $\lambda: 0.01$}
 \end{figure}
 
 \noi
 The histogram and scatter plot of the target and the model output is as follows (test data):
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.49]{images/t3_d3/no_reg/T_max_test.png}
-    \caption{Histogram and Scatter plot of the target values against the model prediction for testing dataset, using linear regression with gaussian basis and $\lambda: 0$}
+    \includegraphics[scale=0.49]{images/t3_d3/reg/tmax_test.png}
+    \caption{Histogram and Scatter plot of the target values against the model prediction for testing dataset, using linear regression with gaussian basis and $\lambda: 0.01$}
 \end{figure}
 
 \subsubsection{Tikhonov Regularization} 
@@ -601,5 +584,11 @@ the optimal value of $\lambda$ was estimated to be 0.1 for the target output "NT
      \label{fig:tikhds3t2}
 \end{figure}
 
+\subsubsection{Inference}
+From the above plots we observe that:
+\begin{itemize}
+    \itemsep0em
+    \item 
+\end{itemize}
 
 \end{document}
