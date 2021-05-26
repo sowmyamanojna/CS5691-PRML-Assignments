@@ -40,6 +40,15 @@
 \usepackage{tocloft}
 \renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
 
+% For getting paragraphs
+\usepackage{titlesec}
+\setcounter{secnumdepth}{4}
+\setcounter{tocdepth}{4}
+\titleformat{\paragraph}
+{\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
+\titlespacing*{\paragraph}
+{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+
 
 \begin{document}
     \begin{titlepage} 
@@ -105,6 +114,15 @@ The polynomial models and the corresponding fits obtained for sample size of 10 
     \caption{Task 1 - Polynomial fits, Sample size: 10}
 \end{figure}
 
+\paragraph{Inference}
+From the above plots, we can see that:
+\begin{itemize}
+    \itemsep0em
+    \item Lower degree polynomial curves aren't able to model the dataset well (i.e.) the curve doesn't pass through all the data points.
+    \item Higher degree polynomials are able to fit the dataset well. The curves pass through all the data points.
+    \item However, the polynomial degree 9 curve seems to have a lot more variance along the y-axis than the remaining polynomial degrees.
+\end{itemize}
+
 \subsubsection{Sample Size: 200}
 The polynomial models and the corresponding fits obtained for sample size of 200 are as follows:
 \begin{figure}[H]
@@ -115,43 +133,59 @@ The polynomial models and the corresponding fits obtained for sample size of 200
     \caption{Task 1 - Polynomial fits, Sample size: 200}
 \end{figure}
 
+\paragraph{Inference}
+From the above plots, we can see that:
+\begin{itemize}
+    \itemsep0em
+    \item Lower degree polynomial curves aren't able to model the dataset well (i.e.) the curve doesn't pass through all the data points.
+    \item Higher degree polynomials are able to fit the dataset well. The curves pass through all the data points.
+    \item We can see a clear difference between the degree 9 fit when the dataset size was 10 to that when the dataset size is 200. The increase in dataset size helped decrease the variance ans potential overfitting.
+\end{itemize}
+
 \subsubsection{Effects of Regularization}
-The polynomial models and the corresponding fits obtained for sample size of 10, across different $\lambda$ values are as follows:
+The polynomial models and the corresponding fits obtained for degree 9, sample size of 10, across different $\lambda$ values are as follows:
 \begin{figure}[H]
-    \ContinuedFloat
-    \begin{subfigure}{\textwidth}
+    \hspace{-2em}
     \includegraphics[scale=0.45]{images/t1_d1/d_9_size_10_l_0.png}
     \includegraphics[scale=0.45]{images/t1_d1/d_9_size_10_l_0.5.png}
-    \end{subfigure}
-    \ContinuedFloat
-    \begin{subfigure}{\textwidth}
+\end{figure}
+\begin{figure}[H]
+    \vspace{-2em}
+    \hspace{-2em}
     \includegraphics[scale=0.45]{images/t1_d1/d_9_size_10_l_1.png}
     \includegraphics[scale=0.45]{images/t1_d1/d_9_size_10_l_2.png}
-    \end{subfigure}
-    \ContinuedFloat
-    \begin{subfigure}{\textwidth}
+\end{figure}
+\begin{figure}[H]
+    \vspace{-2em}
+    \hspace{-2em}
     \includegraphics[scale=0.45]{images/t1_d1/d_9_size_10_l_10.png}
     \includegraphics[scale=0.45]{images/t1_d1/d_9_size_10_l_50.png}
-    \end{subfigure}
-    \ContinuedFloat
-    \begin{subfigure}{\textwidth}
+\end{figure}
+\begin{figure}[H]
+    \vspace{-2em}
+    \centering
     \includegraphics[scale=0.45]{images/t1_d1/d_9_size_10_l_100.png}
-    \end{subfigure}
     \caption{Task 1 - 9\textsuperscript{th} Degree Polynomial fit, Sample size: 10}
 \end{figure}
+
+\paragraph{Inference}
+From the above plots, we can see that:
+\begin{itemize}
+    \itemsep0em
+    \item Regularization was only applied to the degree 9 polynomial, with 10 data points as it had the same number of data points and parameters. 
+    \item We can see that, the curve starts becoming more flatter with increasing value of the  regularization parameter $\lambda$.
+    \item This could be because, the weights corresponding to higher degrees would become smaller.
+\end{itemize}
 
 \subsection{Best Model}
 The best fit, $d:6$ and $\lambda:0$ is visualized as follows:
 \begin{figure}[H]
-    \centering
-    \includegraphics[scale=0.5]{images/d_6_size_10_l_0.png}
-    \caption{Task 1 - Best fit, Sample size: 10}
+    \hspace{-2em}
+    \includegraphics[scale=0.45]{images/t1_d1/d_6_size_10_l_0.png}
+    \includegraphics[scale=0.45]{images/t1_d1/d_6_size_200_l_0.png}
+    \caption{Task 1 - Best fit, Sample size: 10 (to the right) and Sample size: 200 (to the left)}
 \end{figure}
-\begin{figure}[H]
-    \centering
-    \includegraphics[scale=0.5]{images/d_6_size_200_l_0.png}
-    \caption{Task 1 - Best fit, Sample size: 200}
-\end{figure}
+
 \noi
 The final training and testing error obtained is as follows:
 \begin{itemize}
@@ -186,7 +220,7 @@ Where $\omega_{i}$ are the parameters to be found through regression, $\phi_{i}(
     \begin{equation}
         \vec{\omega} = [(\lambda I+X^{T}X)^{-1}X^{T}].y
     \end{equation}
-    Where y is the output as defined in the equation \ref{eq:1}.
+    Where $y$ is the output as defined in the equation \ref{eq:1}.
     
     \item The optimum parameter vector thus obtained can be used to predict the variable y for new inputs. 
     \begin{equation}
@@ -320,8 +354,8 @@ The Erms values obtained over Train, Validation and Test data are as follows:
 Using the optimal model of degree 6 and train data size 200, model output vs target output was plotted for both Train and Test data, we find it to closely follow $y-x=0$ line.
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.25]{images/tvsy_train.png}
-    \includegraphics[scale=0.25]{images/tvsy_test.png}
+    \includegraphics[scale=0.45]{images/tvsy_train.png}
+    \includegraphics[scale=0.45]{images/tvsy_test.png}
     \caption{Model output vs Target output for train(left) and test dataset(right)}
     \label{fig:yvst}
 \end{figure}
@@ -351,7 +385,6 @@ The following plots were obtained:
     \centering
     \includegraphics[scale=0.5]{images/scatter_ds2noreg_test.png}
     \caption{Scatter plot of the target values vs model prediction for Test set of Dataset 2, using linear regression with gaussian basis and no Regularization, $\lambda = 0.01 $}
-    \label{fig:tikhds2tr}
 \end{figure}
 
 
@@ -371,13 +404,11 @@ Scatter plots of the model prediction using the regularization parameter value 0
      \centering
      \includegraphics[scale=0.5]{images/scatter_ds2quad.png}
      \caption{Scatter plot of the target values vs model prediction for Training set of Dataset 2, using linear regression with gaussian basis and quadratic Regularization, $\lambda = 0.01 $}
-     \label{fig:tikhds2tr}
 \end{figure}
 \begin{figure}[H]
      \centering
      \includegraphics[scale=0.5]{images/scatter_ds2quadtest.png}
      \caption{Scatter plot of the target values vs model prediction for Test set of Dataset 2, using linear regression with gaussian basis and quadratic Regularization, $\lambda = 0.01 $}
-     \label{fig:tikhds2tr}
 \end{figure}
 For dataset 3, the following RMSE table was obtained:
 \input{rmse_ds3_quad2}
@@ -386,26 +417,22 @@ The scatter plots of target vs model output for the optimum value of $\lambda$ i
      \centering
      \includegraphics[scale=0.5]{images/scatter_ds3quadtrainT_min.png}
      \caption{Scatter plot of the target values vs model prediction for Training set of Dataset 3, using linear regression with gaussian basis and quaadratic Regularization, $\lambda = 0.01 $ for "NTmin" output variable}
-     \label{fig:tikhds2tr}
 \end{figure}
 \begin{figure}[H]
      \centering
      \includegraphics[scale=0.5]{images/scatter_ds3quadtestT_min.png}
      \caption{Scatter plot of the target values vs model prediction for Test set of Dataset 2, using linear regression with gaussian basis and quadratic Regularization, $\lambda = 0.01 $, for "NTmin" output variable}
-     \label{fig:tikhds2tr}
 \end{figure}
 For "NTmax":
 \begin{figure}[H]
      \centering
      \includegraphics[scale=0.5]{images/scatter_ds3quadtrainT_max.png}
      \caption{Scatter plot of the target values vs model prediction for Training set of Dataset 3, using linear regression with gaussian basis and quaadratic Regularization, $\lambda = 0.01 $ for "NTmax" output variable}
-     \label{fig:tikhds2tr}
 \end{figure}
 \begin{figure}[H]
      \centering
      \includegraphics[scale=0.5]{images/scatter_ds3quadtestT_max.png}
      \caption{Scatter plot of the target values vs model prediction for Test set of Dataset 2, using linear regression with gaussian basis and quadratic Regularization, $\lambda = 0.01$, for "NTmax" output variable}
-     \label{fig:tikhds2tr}
 \end{figure}
 
 \subsection{Tikhonov Regularization} 
@@ -425,13 +452,11 @@ Scatter plots of the model prediction using the regularization parameter value 0
      \centering
      \includegraphics[scale=0.5]{images/scatter_ds2tikhtr.png}
      \caption{Scatter plot of the target values vs model prediction for Training set of Dataset 2, using linear regression with gaussian basis and Tikhonov Regularization, $\lambda = 0.01 $}
-     \label{fig:tikhds2tr}
 \end{figure}
 \begin{figure}[H]
      \centering
      \includegraphics[scale=0.5]{images/scatter_ds2tikhtest.png}
      \caption{Scatter plot of the target values vs model prediction for Test set of Dataset 2, using linear regression with gaussian basis and Tikhonov Regularization, $\lambda = 0.01 $}
-     \label{fig:tikhds2tr}
 \end{figure}
 
  \noi
