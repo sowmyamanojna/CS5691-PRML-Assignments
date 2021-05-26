@@ -183,7 +183,7 @@ The best fit, $d:6$ and $\lambda:0$ is visualized as follows:
     \hspace{-2em}
     \includegraphics[scale=0.45]{images/t1_d1/d_6_size_10_l_0.png}
     \includegraphics[scale=0.45]{images/t1_d1/d_6_size_200_l_0.png}
-    \caption{Task 1 - Best fit, Sample size: 10 (to the right) and Sample size: 200 (to the left)}
+    \caption{Task 1 - Best fit, Sample size: 10 (to the left) and Sample size: 200 (to the right)}
 \end{figure}
 
 \noi
@@ -252,7 +252,7 @@ Surface plots obtained for various train sizes are as follows:
     \hspace{2em}
     \includegraphics[scale=0.6]{images/D=2,T=200,l=0.0.png}
     \includegraphics[scale=0.6]{images/D=2,T=500,l=0.0.png}
-    \caption{Surface Plot of the approximated function for different training sizes, Degree=2}
+    \caption{Surface Plot of the approximated function for different training sizes, Degree: 2}
     \label{fig:sp_d2}
 \end{figure}
 
@@ -290,7 +290,7 @@ The surface plots of approximated function for various train data sizes is:
     \hspace{2em}
     \includegraphics[scale=0.6]{images/D=3,T=200,l=0.0.png}
     \includegraphics[scale=0.6]{images/D=3,T=500,l=0.0.png}
-    \caption{Surface plot of approximated function for different train sizes, Degree=3}
+    \caption{Surface plot of approximated function for different train sizes, Degree: 3}
     \label{fig:sp_d3}
 \end{figure}
 
@@ -376,8 +376,40 @@ where $i = 1,2 ... D-1$. The $\mu$ are the mean vectors for $D-1$ kernels made f
 \subsection{Dataset 2}
 
 \subsection{Dataset 3}
+As the dataset was a real world dataset, the following preprocessing steps were carried out.
+\begin{itemize}
+    \itemsep0em
+    \item \tt{NaN} values: All datapoints that had \tt{NaN} values in any of the columns were removed. 
+        \begin{figure}[H]
+            \centering
+            \includegraphics[scale=0.3]{images/missingno.png}
+            \caption{Visualization of the original dataset. White lines indicate \tt{NaN}s.}
+        \end{figure}
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[scale=0.3]{images/cleaned.png}
+            \caption{Visualization of the dataset after the removal of \tt{NaN}s.}
+        \end{figure}
+
+    \item Highly correlated factors were removed. A threshold of 0.75 was used to identify highly correlated features and they were sequentially removed.
+    \item Features that resulted in a high Variance Inflation Factor (VIF) were also removed.
+    \item The analysis involving correlated features and VIF was performed on the training data and was then extended to the validation and testing data. 
+\end{itemize}
+
+
 \subsubsection{No Regularization}
+The hyperparameter - number of clusters was sweeped and the value that resulted in the lowest validation SSE was choosen. The following cluster numbers were swept for: $[1, 2, 3, 4, 5, 6, 7, 8, 9, 15, 20, 25, 30, 40, 50, 60, 70, 80, 90, 100]$.
+
 \paragraph{Predicting: \tt{Next\_Tmin}}
+The SSE error on the training and validation dataset and the SSE distances of samples to their closest cluster center obtained across the number of clusters is as follows:
+\begin{figure}[H]
+     \centering
+     \includegraphics[scale=0.5]{images/tmin_errors.png}
+     \caption{K-Means inertia, SSE on training and validation data from the left to right respectively.}
+\end{figure}
+
+
 
 The scatter plot of the target output and the model output is as follows:
 \begin{figure}[H]
@@ -386,6 +418,7 @@ The scatter plot of the target output and the model output is as follows:
      \caption{Scatter plot of the target values vs model prediction for Training set of Dataset 2, using linear regression with gaussian basis and no Regularization, $\lambda = 0.01 $}
      \label{fig:ds2tr}
 \end{figure}
+
 \begin{figure}[H]
     \centering
     \includegraphics[scale=0.5]{images/scatter_ds2noreg_test.png}
@@ -410,11 +443,13 @@ Scatter plots of the model prediction using the regularization parameter value 0
      \includegraphics[scale=0.5]{images/scatter_ds2quad.png}
      \caption{Scatter plot of the target values vs model prediction for Training set of Dataset 2, using linear regression with gaussian basis and quadratic Regularization, $\lambda = 0.01 $}
 \end{figure}
+
 \begin{figure}[H]
      \centering
      \includegraphics[scale=0.5]{images/scatter_ds2quadtest.png}
      \caption{Scatter plot of the target values vs model prediction for Test set of Dataset 2, using linear regression with gaussian basis and quadratic Regularization, $\lambda = 0.01 $}
 \end{figure}
+
 For dataset 3, the following RMSE table was obtained:
 \input{tables/rmse_ds3_quad2}
 The scatter plots of target vs model output for the optimum value of $\lambda$ is, for "NTmin" output variable
