@@ -883,8 +883,12 @@ The validation accuracy is highest for [C:1.0, gamma:1.0]. Hence those hyper-par
     \label{myfig:gauss_db}
 \end{figure}
 
-The distinguishing feature between \autoref{myfig:gauss_db} and \autoref{myfig:poly_db} is the behavior at the edges. Also, the decision boundary obtained using polynomial kernel has a discontinuity in the region $x_1 \in (-0.5,0.5)$ and $x_2 \in (3,4)$
-
+\noi
+Observations:
+\begin{enumerate}
+\item The distinguishing feature between \autoref{myfig:gauss_db} and \autoref{myfig:poly_db} is the behavior at the edges. Also, the decision boundary obtained using polynomial kernel has a discontinuity in the region $x_1 \in (-0.5,0.5)$ and $x_2 \in (3,4)$
+\item The distribution of support vectors is very distinct. In polynomial kernel, the support vectors are majorly near the center. While in the gaussian kernel, the support vectors are more uniformly distributed.
+\end{enumerate}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \break
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
