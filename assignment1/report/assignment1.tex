@@ -312,6 +312,7 @@ The Erms values obtained over Train, Validation and Test data are as follows:
     \item On increasing the train data size to 200, Erms over Train, Validation and Test data all converge to a lower value, signifying an optimum trade off between bias and variance error. Regularization is therefore not required.
     \item On further increasing the Train data size, the Erms increases insignificantly. 
     \item From the above points and cross-validation method, we conclude that the degree of complexity 6 and Train data size of 200 is the optimal model to describe our data, achieving an upper bound Root Mean Squared Error of $~1.5*10^{-8}$ over Train, Validation as well as Test data.
+    \item None of the models need to be regularized. On applying regularization, even for very small values of the hyperparameter $\lambda$, the Erms errors increase. 
 \end{itemize}
 
 \subsection{Scatter plot of Model output vs Target output}
