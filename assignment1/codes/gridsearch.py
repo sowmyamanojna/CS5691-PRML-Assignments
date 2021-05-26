@@ -59,7 +59,7 @@ class GridSearch():
             fname = "d_"+str(regressor.degree)+"_size_"+str(sample_size)+"_l_"+str(regressor.lmbda)+".png"
 
             plt.figure()
-            plt.plot(X, y, 'g', label="True Value")
+            # plt.plot(X, y, 'g', label="True Value")
             # if y_sample.size >= 100:
             #     plt.plot(X_sample, y_sample, 'b.', alpha=0.5, label="Sampled points")
             # else:
