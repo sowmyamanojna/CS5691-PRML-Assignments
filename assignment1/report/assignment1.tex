@@ -110,7 +110,7 @@ Regularization was only applied in case of degree 9.\\
 \textcolor{blue}{From the table above, we see that the best fit for the data is obtained for degree: $6$ and $\lambda:0$.}
 
 \subsection{Model Fits}
-\subsubsection{Sample Size: 10}
+\subsubsection{Sample Size: $10$}
 The polynomial models and the corresponding fits obtained for sample size of 10 are as follows:
 \begin{figure}[H]
     \includegraphics[scale=0.425]{images/t1_d1/d_2_size_10_l_0.png}
@@ -129,7 +129,7 @@ From the above plots, we can see that:
     \item However, the polynomial degree 9 curve seems to have a lot more variance along the y-axis than the remaining polynomial degrees.
 \end{itemize}
 
-\subsubsection{Sample Size: 200}
+\subsubsection{Sample Size: $200$}
 The polynomial models and the corresponding fits obtained for sample size of 200 are as follows:
 \begin{figure}[H]
     \includegraphics[scale=0.425]{images/t1_d1/d_2_size_200_l_0.png}
@@ -237,7 +237,7 @@ Where $\omega_{i}$ are the parameters to be found through regression, $\phi_{i}(
 
 The results obtained for various degrees of complexities are discussed below. 
 
-\subsection{Degree of complexity = 2}
+\subsection{Degree of complexity: $2$}
 
 With degree of complexity set to 2, the number of parameters in our model are:
 \begin{equation}
@@ -266,7 +266,7 @@ Surface plots obtained for various train sizes are as follows:
 \noi
 
 \subsubsection{Erms over Train, Validation and Test data}
-The Erms over train, validation and test data is obtained to be: 
+The $E_{rms}$ over train, validation and test data is obtained to be: 
 \input{tables/Erms_2}
 
 \subsubsection{Observation}
@@ -277,7 +277,7 @@ The Erms over train, validation and test data is obtained to be:
     \item From the above two points, we conclude that we have an oversimplified model with a high bias. Increasing the complexity would be beneficial.
 \end{itemize}
 
-\subsection{Degree of complexity = 3}
+\subsection{Degree of complexity: $3$}
 The number of parameters to be estimated for this model are: 
 \begin{equation}
     \begin{split}
@@ -315,7 +315,7 @@ The $E_{rms}$ over Train, Validation and Test data is obtained to be:
     \item From the above points we conclude that this model too is oversimplified and thus fails to perform well over Train, Validation as well as Test data. Our model thus has a high bias error similar to model of complexity 2. 
 \end{itemize}
 
-\subsection{Degree of complexity = 6}
+\subsection{Degree of complexity: $6$}
 The number of parameters to be estimated are-
 \begin{equation}
     \begin{split}
@@ -414,7 +414,7 @@ As the dataset was a real world dataset, the following preprocessing steps were 
 The hyperparameter - number of clusters was sweeped and the value that resulted in the lowest validation SSE was chosen. The following cluster numbers were swept for: [1, 2, 3, 4, 5, 6, 7, 8, 9, 15, 20, 25, 30, 40, 50, 60, 70, 80, 90, 100].
 
 \paragraph{Predicting: \tt{Next\_Tmin}}
-The Erms on the training and validation dataset and the SSE distances of samples to their closest cluster center obtained across the number of clusters is as follows:
+The $E_{rms}$ on the training and validation dataset and the SSE distances of samples to their closest cluster center obtained across the number of clusters is as follows:
 \begin{figure}[H]
      \centering
      \includegraphics[scale=0.4]{images/t3_d3/no_reg/tmin_errors.png}
@@ -422,6 +422,7 @@ The Erms on the training and validation dataset and the SSE distances of samples
 \end{figure}
 
 \vspace{-1em}
+\noi
 The errors obtained in tabular format is as follows:
 \input{tables/tmin_lambda_0}
 
@@ -444,6 +445,14 @@ The histogram and scatter plot of the target and the model output is as follows 
     \caption{Histogram and Scatter plot of the target values against the model prediction for testing dataset, using linear regression with gaussian basis and $\lambda: 0$}
 \end{figure}
 
+\noi
+The lowest Erms values obtained are as follows:
+\begin{itemize}
+    \itemsep0em
+    \item Training $E_{rms}$: $1.0480926961558428$
+    \item Testing $E_{rms}$: $1.0612317092745545$
+\end{itemize}
+
 \paragraph{Predicting: \tt{Next\_Tmax}}
 The Erms on the training and validation dataset and the RMSE distances of samples to their closest cluster center obtained across the number of clusters is as follows:
 \begin{figure}[H]
@@ -453,6 +462,7 @@ The Erms on the training and validation dataset and the RMSE distances of sample
 \end{figure}
 
 \vspace{-1em}
+\noi
 The errors obtained in tabular format is as follows:
 \input{tables/tmax_lambda_0}
 
@@ -474,6 +484,14 @@ The histogram and scatter plot of the target and the model output is as follows 
     \includegraphics[scale=0.49]{images/t3_d3/no_reg/T_max_test.png}
     \caption{Histogram and Scatter plot of the target values against the model prediction for testing dataset, using linear regression with gaussian basis and $\lambda: 0$}
 \end{figure}
+
+\noi
+The lowest Erms values obtained are as follows:
+\begin{itemize}
+    \itemsep0em
+    \item Training $E_{rms}$: $1.4786466027685028$
+    \item Testing $E_{rms}$: $1.4982621391957776$
+\end{itemize}
 
 \subsubsection{Quadratic Regularization}
 Optimal parameters using quadratic regularization is given by $\vec{\omega^*}$ = $(\Phi^T\Phi + \lambda I)^{-1} \Phi^T \vec{t}$;\\
@@ -507,6 +525,14 @@ The histogram and scatter plot of the target and the model output is as follows 
     \caption{Histogram and Scatter plot of the target values against the model prediction for testing dataset, using linear regression with gaussian basis and $\lambda: 0.01$}
 \end{figure}
 
+\noi
+The lowest Erms values obtained are as follows:
+\begin{itemize}
+    \itemsep0em
+    \item Training $E_{rms}$: $1.9013040128753353$
+    \item Testing $E_{rms}$: $1.9047855943641792$
+\end{itemize}
+
 \paragraph{Predicting: \tt{Next\_Tmax}}
 The Erms on the training and validation dataset and the RMSE distances of samples to their closest cluster center obtained across the number of clusters is as follows:
 \input{tables/tmax_l2}
@@ -530,69 +556,64 @@ The histogram and scatter plot of the target and the model output is as follows 
     \caption{Histogram and Scatter plot of the target values against the model prediction for testing dataset, using linear regression with gaussian basis and $\lambda: 0.01$}
 \end{figure}
 
+\noi
+The lowest Erms values obtained are as follows:
+\begin{itemize}
+    \itemsep0em
+    \item Training $E_{rms}$: $2.249936156869166$
+    \item Testing $E_{rms}$: $2.302560104383557$
+\end{itemize}
+
 \subsubsection{Tikhonov Regularization} 
 The Tikhonov regularization term is given by $\vec{\omega^*}$ = $(\Phi*T\Phi + \lambda \Tilde{\Phi})^{-1} \Phi^T \vec{t}$. The $\Tilde{\Phi}$ term is defined as 
 \begin{equation}
     \Tilde{\Phi} = [\Tilde{\phi}]_{i,j = 1}^{K}
 \end{equation}
 
-where K is the number of clusters and $\lambda$ is the regularization parameter. The values 0.01,0.1, 1.0,5.0,10.0 were used to estimate the optimal parameters and the RMSE on the cross-validation set was calculated for each value. The best perorming model was selected as the one having least RMSE on CV data\\ 
+where $K$ is the number of clusters and $\lambda$ is the regularization parameter. The values [0.01, 0.1,  1.0, 5.0, 10.0] were used to estimate the optimal parameters and the RMSE on the cross-validation set was calculated for each value. The best performing model was selected as the one having least RMSE on CV data\\ 
+
+\noi
 Applying Tikhonov regularization to the bivariate dataset, the optimal value of $\lambda$ was estimated to be 0.01. 
- The table for the RMSE values for the Training, CV and Test values corresponding to each $\lambda$ value is
-\input{tables/rmse_ds2_tikh}
-
-\noi
-Scatter plots of the model prediction using the regularization parameter value 0.01:
-\begin{figure}[H]
-     \centering
-     \includegraphics[scale=0.5]{images/scatter_ds2tikhtr.png}
-     \caption{Scatter plot of the target values vs model prediction for Training set of Dataset 2, using linear regression with gaussian basis and Tikhonov Regularization, $\lambda = 0.01 $}
-\end{figure}
-\begin{figure}[H]
-     \centering
-     \includegraphics[scale=0.5]{images/scatter_ds2tikhtest.png}
-     \caption{Scatter plot of the target values vs model prediction for Test set of Dataset 2, using linear regression with gaussian basis and Tikhonov Regularization, $\lambda = 0.01 $}
-\end{figure}
-
- \noi
-For Dataset 3, the table for the RMSE values for the Training, CV and Test values corresponding to each $\lambda$ value corresonding to target variable "NTmin" is\\
-\input{tables/rmse_ds3_tikh1}
-
-\noi
-the optimal value of $\lambda$ was estimated to be 0.1 for the target output "NTmin". The scatter plots obtained are \autoref{fig:tikhds3tr} and \autoref{fig:tikhds3t}
-\begin{figure}[H]
-     \centering
-     \includegraphics[scale=0.5]{images/scatter_ds3tikhtrainT_min.png}
-     \caption{Scatter plot of the target values vs model prediction for Training set of Dataset 3, using linear regression with gaussian basis and Tikhonov Regularization, $\lambda = 0.1 $}
-     \label{fig:tikhds3tr}
-\end{figure}
-\begin{figure}[H]
-     \centering
-     \includegraphics[scale=0.5]{images/scatter_ds3tikhtestT_min.png}
-     \caption{Scatter plot of the target values vs model prediction for Test set of Dataset 3, using linear regression with gaussian basis and Tikhonov Regularization, $\lambda = 0.01 $}
-     \label{fig:tikhds3t}
-\end{figure}
- For the target output "NTmax" the following table of RMSE values for the training, test and CV data was obtained:
-\input{tables/rmse_ds3_tikh2}
- plots were obtained: \autoref{fig:tikhds3tr2} and \autoref{fig:tikhds3t2}.
-\begin{figure}[H]
-     \centering
-     \includegraphics[scale=0.5]{images/scatter_ds3tikhtrainT_max.png}
-     \caption{Scatter plot of the target values vs model prediction for Training set of Dataset 3, using linear regression with gaussian basis and Tikhonov Regularization, $\lambda = 0.1 $}
-     \label{fig:tikhds3tr2}
-\end{figure}
-\begin{figure}[H]
-     \centering
-     \includegraphics[scale=0.5]{images/scatter_ds3tikhtestT_max.png}
-     \caption{Scatter plot of the target values vs model prediction for Test set of Dataset 3, using linear regression with gaussian basis and Tikhonov Regularization, $\lambda = 0.1 $}
-     \label{fig:tikhds3t2}
-\end{figure}
 
 \subsubsection{Inference}
 From the above plots we observe that:
 \begin{itemize}
     \itemsep0em
-    \item 
+    \item The model predictions are better when no regularization is applied. The $E_{rms}$ when regularization is applied is marginally higher than when $\lambda$ is 0.
+    \item The predictions of the model is better when the number of clusters considered is larger and hence, the $E_{rms}$ is smaller.
+    \item In case of no-regularization, we observed that the training, validation and testing $E_{rms}$ increased at the highest number of clusters considered. This couls be potentially due to improper initialization.
+    \item In addition we see that the variance in the prediction is lower when the number of clusters considered is lower. This can be observed in the plots below:
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.4]{images/t3_d3/no_reg/T_max_nclu_1.png}
+        \caption{Histogram and Scatter plot of the target values against the model prediction for training dataset, using linear regression with gaussian basis and $\lambda: 0$}
+    \end{figure}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.4]{images/t3_d3/no_reg/T_max_nclu_5.png}
+        \caption{Histogram and Scatter plot of the target values against the model prediction for training dataset, using linear regression with gaussian basis and $\lambda: 0$}
+    \end{figure}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.4]{images/t3_d3/no_reg/T_max_nclu_15.png}
+        \caption{Histogram and Scatter plot of the target values against the model prediction for training dataset, using linear regression with gaussian basis and $\lambda: 0$}
+    \end{figure}
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.4]{images/t3_d3/reg/T_max_nclu_1_lambda_0.01.png}
+        \caption{Histogram and Scatter plot of the target values against the model prediction for training dataset, using linear regression with gaussian basis and $\lambda: 0.1$}
+    \end{figure}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.4]{images/t3_d3/reg/T_max_nclu_20_lambda_0.01.png}
+        \caption{Histogram and Scatter plot of the target values against the model prediction for training dataset, using linear regression with gaussian basis and $\lambda: 0.1$}
+    \end{figure}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.4]{images/t3_d3/reg/T_max_nclu_200_lambda_0.01.png}
+        \caption{Histogram and Scatter plot of the target values against the model prediction for training dataset, using linear regression with gaussian basis and $\lambda: 0.1$}
+    \end{figure}
 \end{itemize}
 
 \end{document}
