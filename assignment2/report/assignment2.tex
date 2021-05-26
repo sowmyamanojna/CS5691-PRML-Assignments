@@ -390,7 +390,7 @@ The contour maps and decision surfaces obtained, with $q_i=5$ are as follows:
 
 \subsection{Bayes Classifier, GMM, diagonal covariance}
 \subsubsection{Training and Validation accuracy}
-Gaussian multi-modal training function (with threshold of the increment in total log-likelihood functions as 0.01) with diagonal covariance matrix over the hyperparameter values of the number of gaussian components $Q = [2, 3, 4, 5, 6, 7, 8, 9]$ to estimate the parameters - $\mu_q$, $C_q$, $N_q$ and $w_q$ for each gaussian component - and predict the classes of the training data (\tt{train.csv}) and cross-validation (70\% of \tt{dev.csv}), we get the \autoref{tab:cv1b}
+Gaussian multi-modal training (with threshold of the increment in total log-likelihood functions as 0.01) with diagonal covariance matrix was used, for the number of gaussian components Q = {2,3,4,5,6,7,8,9} to estimate the parameters - $\mu_q$, $C_q$, $N_q$ and $w_q$ for each gaussian component - and predict the classes of the training data (train.csv) and cross-validation (70\% of dev.csv). The table \ref{tab:cv1b} shows the results obtained.
 \input{acc_1B_cv}
 
 \vspace{-2em}
@@ -412,7 +412,8 @@ The confusion matrices for the training and test datasets using the best model i
     \label{fig:conf_1b_diag}
 \end{figure}
 
-The decision region plot and the contour plot for the best model is \autoref{fig:dec1bGMMdiag}.
+\subsubsection{Decision surface}
+The decision surface plot and the contour plot for the best model is figure \ref{fig:dec1bGMMdiag}. As we can see in the decision region plots, the contours follow the non-linear shape of the data. The level curves are ellipses parallel to the coordinate access, since diagonal covariance matrices were used. \autoref{fig:dec1bGMMdiag}.
 \begin{figure}[H]
     \centering
     \hspace{4em}\includegraphics[scale=0.5]{images/decisionReg_ds2.png}
