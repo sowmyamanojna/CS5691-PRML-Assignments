@@ -93,13 +93,19 @@ The weights corresponding to a given degree is then calculated by using the clos
 Where, $\lambda\mathit{I}$ is the regularization term.
 
 \subsection{Training and Validation Accuracies}
-In order to pick the parameters that best fit the dataset, a grid search was performed on the dataset. Prior to this, the dataset was split into training set, validation set and the testing set, in the ratio 70:10 (from the training data) :30. The results obtained is as follows:
-\input{tables/T1_loss_10}
+In order to pick the parameters that best fit the dataset, a grid search was performed on the dataset. Prior to this, the dataset was split into training set, validation set and the testing set, in the ratio 70:10 (from the training data) :30. The results obtained is as follows:\\
 
-\vspace{-2em}\noi
+\begin{minipage}{0.4\textwidth}
+\input{tables/T1_loss_10}
+\end{minipage}\hfill%
+\begin{minipage}{0.4\textwidth}
+\input{tables/T1_loss_200}
+\end{minipage}%
+
+\vspace{1em}
+\noi
 Regularization was only applied in case of degree 9.\\
 
-\input{tables/T1_loss_200}
 \noi
 \textcolor{blue}{From the table above, we see that the best fit for the data is obtained for degree: $6$ and $\lambda:0$.}
 
@@ -399,30 +405,68 @@ As the dataset was a real world dataset, the following preprocessing steps were 
 
 
 \subsubsection{No Regularization}
-The hyperparameter - number of clusters was sweeped and the value that resulted in the lowest validation SSE was choosen. The following cluster numbers were swept for: $[1, 2, 3, 4, 5, 6, 7, 8, 9, 15, 20, 25, 30, 40, 50, 60, 70, 80, 90, 100]$.
+The hyperparameter - number of clusters was sweeped and the value that resulted in the lowest validation SSE was choosen. The following cluster numbers were swept for: [1, 2, 3, 4, 5, 6, 7, 8, 9, 15, 20, 25, 30, 40, 50, 60, 70, 80, 90, 100].
 
 \paragraph{Predicting: \tt{Next\_Tmin}}
-The SSE error on the training and validation dataset and the SSE distances of samples to their closest cluster center obtained across the number of clusters is as follows:
+The Erms on the training and validation dataset and the SSE distances of samples to their closest cluster center obtained across the number of clusters is as follows:
 \begin{figure}[H]
      \centering
-     \includegraphics[scale=0.5]{images/tmin_errors.png}
+     \includegraphics[scale=0.4]{images/t3_d3/no_reg/tmin_errors.png}
      \caption{K-Means inertia, SSE on training and validation data from the left to right respectively.}
 \end{figure}
 
+\vspace{-1em}
+The errors obtained in tabular format is as follows:
+\input{tables/tmin_lambda_0}
 
+\noi
+In addition to the scatter plot, histograms were plotted to understand the variance in the data.\\
 
-The scatter plot of the target output and the model output is as follows:
+\noi
+The histogram and scatter plot of the target and the model output is as follows (train data):
 \begin{figure}[H]
      \centering
-     \includegraphics[scale=0.5]{images/scatter_ds2noreg.png}
-     \caption{Scatter plot of the target values vs model prediction for Training set of Dataset 2, using linear regression with gaussian basis and no Regularization, $\lambda = 0.01 $}
-     \label{fig:ds2tr}
+     \includegraphics[scale=0.49]{images/t3_d3/no_reg/T_min_nclu_90.png}
+     \caption{Histogram and Scatter plot of the target values against the model prediction for training dataset, using linear regression with gaussian basis and $\lambda: 0$}
 \end{figure}
 
+\noi
+The histogram and scatter plot of the target and the model output is as follows (test data):
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.5]{images/scatter_ds2noreg_test.png}
-    \caption{Scatter plot of the target values vs model prediction for Test set of Dataset 2, using linear regression with gaussian basis and no Regularization, $\lambda = 0.01 $}
+    \includegraphics[scale=0.49]{images/t3_d3/no_reg/T_min_test.png}
+    \caption{Histogram and Scatter plot of the target values against the model prediction for testing dataset, using linear regression with gaussian basis and $\lambda: 0$}
+\end{figure}
+
+\paragraph{Predicting: \tt{Next\_Tmax}}
+The Erms on the training and validation dataset and the RMSE distances of samples to their closest cluster center obtained across the number of clusters is as follows:
+\begin{figure}[H]
+     \centering
+     \includegraphics[scale=0.4]{images/t3_d3/no_reg/tmax_errors.png}
+     \caption{K-Means inertia, RMSE on training and validation data from the left to right respectively.}
+\end{figure}
+
+\vspace{-1em}
+The errors obtained in tabular format is as follows:
+\input{tables/tmax_lambda_0}
+
+\noi
+In addition to the scatter plot, histograms were plotted to understand the variance in the data.\\
+
+\noi
+The histogram and scatter plot of the target and the model output is as follows (train data):
+\begin{figure}[H]
+     \centering
+     \includegraphics[scale=0.49]{images/t3_d3/no_reg/T_max_nclu_80.png}
+     \caption{Histogram and Scatter plot of the target values against the model prediction for training dataset, using linear regression with gaussian basis and $\lambda: 0$}
+\end{figure}
+
+\noi
+The histogram and scatter plot of the target and the model output is as follows (test data):
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.49]{images/t3_d3/no_reg/T_max_test.png}
+    \caption{Histogram and Scatter plot of the target values against the model prediction for testing dataset, using linear regression with gaussian basis and $\lambda: 0$}
 \end{figure}
 
 
