@@ -248,9 +248,10 @@ Since the number of parameters to be estimated is very less compared to our samp
 Surface plots obtained for various train sizes are as follows: 
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.35]{images/D=2,T=50,l=0.0.png}
-    \includegraphics[scale=0.35]{images/D=2,T=200,l=0.0.png}
-    \includegraphics[scale=0.35]{images/D=2,T=500,l=0.0.png}
+    \includegraphics[scale=0.6]{images/D=2,T=50,l=0.0.png}
+    \hspace{2em}
+    \includegraphics[scale=0.6]{images/D=2,T=200,l=0.0.png}
+    \includegraphics[scale=0.6]{images/D=2,T=500,l=0.0.png}
     \caption{Surface Plot of the approximated function for different training sizes, Degree=2}
     \label{fig:sp_d2}
 \end{figure}
@@ -259,12 +260,12 @@ Surface plots obtained for various train sizes are as follows:
 
 \subsubsection{Erms over Train, Validation and Test data}
 The Erms over train, validation and test data is obtained to be: 
-
 \input{tables/Erms_2}
-\noi
+
 \subsubsection{Observation}
 \begin{itemize}
-    \item while the magnitude of Erms is nearly same over train, validation and test data, it does not reduce on increasing the sample size. 
+    \itemsep0em
+    \item While the magnitude of $E_{rms}$ is nearly same over train, validation and test data, it does not reduce on increasing the sample size. 
     \item The surface plot of approximated function is simple and poorly fits both the training as well as test data.
     \item From the above two points, we conclude that we have an oversimplified model with a high bias. Increasing the complexity would be beneficial.
 \end{itemize}
@@ -285,25 +286,24 @@ The surface plots of approximated function for various train data sizes is:
 
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.35]{images/D=3,T=50,l=0.0.png}
-    \includegraphics[scale=0.35]{images/D=3,T=200,l=0.0.png}
-    \includegraphics[scale=0.35]{images/D=3,T=500,l=0.0.png}
+    \includegraphics[scale=0.6]{images/D=3,T=50,l=0.0.png}
+    \hspace{2em}
+    \includegraphics[scale=0.6]{images/D=3,T=200,l=0.0.png}
+    \includegraphics[scale=0.6]{images/D=3,T=500,l=0.0.png}
     \caption{Surface plot of approximated function for different train sizes, Degree=3}
     \label{fig:sp_d3}
 \end{figure}
 
 \subsubsection{Erms over Train, Validation and Test data}
-
-The Erms over Train, Validation and Test data is obtained to be:
-
+The $E_{rms}$ over Train, Validation and Test data is obtained to be:
 \input{tables/Erms_3}
 
 \subsubsection{Observation}
-
 \begin{itemize}
-    \item The Erms values are nearly same as that for degree of complexity 2.
-    \item Increasing the sample size does not affect the Erms significantly.
-    \item While Erms Train is lower for sample size 50, it is due to inadequate number of data samples. Erms Train, Erms Validation and Erms Test converge as the train data size increases to 500.
+    \itemsep0em
+    \item The $E_{rms}$ values are nearly same as that for degree of complexity 2.
+    \item Increasing the sample size does not affect the $E_{rms}$ significantly.
+    \item While $E_{rms}$ Train is lower for sample size 50, it is due to inadequate number of data samples. $E_{rms}$ Train, $E_{rms}$ Validation and $E_{rms}$ Test converge as the train data size increases to 500.
     \item From the above points we conclude that this model too is oversimplified and thus fails to perform well over Train, Validation as well as Test data. Our model thus has a high bias error similar to model of complexity 2. 
 \end{itemize}
 
@@ -320,37 +320,37 @@ The number of parameters to be estimated are-
 For this model too, the number of parameters to be estimated is far less compared to train data size of 200 and 500. However, for the train data size of 50, we expect a poor estimation of the parameters since the model will not have enough data points. 
 
 \subsubsection{Surface plots of the approximated function}
-
 The surface plots of the approximated function for various train data sizes are:
 
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.35]{images/D=6,T=50,l=0.0.png}
-    \includegraphics[scale=0.35]{images/D=6,T=200,l=0.0.png}
-    \includegraphics[scale=0.35]{images/D=6,T=500,l=0.0.png}
+    \includegraphics[scale=0.6]{images/D=6,T=50,l=0.0.png}
+    \includegraphics[scale=0.6]{images/D=6,T=200,l=0.0.png}
+    \includegraphics[scale=0.6]{images/D=6,T=500,l=0.0.png}
     \caption{Surface plots of approximated function for different train size, Degree = 6}
     \label{fig:sp_d6}
 \end{figure}
 
 \subsubsection{Erms over Train, Validation and Test data}
-The Erms values obtained over Train, Validation and Test data are as follows: 
+The $E_{rms}$ values obtained over Train, Validation and Test data are as follows: 
 \break
 
 \input{tables/Erms_6}
 
 \subsubsection{Observations}
 \begin{itemize}
-    \item The complexity of surface in figure \ref{fig:sp_d6} has increased significantly compared to that in figure \ref{fig:sp_d2} and figure \ref{fig:sp_d3}
-    \item The Erms values over all the data sets has decreased drastically as compared to the previous models.
-    \item While the Erms train is less compared to Erms Validation and Erms Test for train data size = 50, increasing the training data size alleviates this. 
-    \item On increasing the train data size to 200, Erms over Train, Validation and Test data all converge to a lower value, signifying an optimum trade off between bias and variance error. Regularization is therefore not required.
-    \item On further increasing the Train data size, the Erms increases insignificantly. 
+    \itemsep0em
+    \item The complexity of surface in \autoref{fig:sp_d6} has increased significantly compared to that in \autoref{fig:sp_d2} and \autoref{fig:sp_d3}
+    \item The $E_{rms}$ values over all the data sets has decreased drastically as compared to the previous models.
+    \item While the $E_{rms}$ train is less compared to $E_{rms}$ Validation and $E_{rms}$ Test for train data size = 50, increasing the training data size alleviates this. 
+    \item On increasing the train data size to 200, $E_{rms}$ over Train, Validation and Test data all converge to a lower value, signifying an optimum trade off between bias and variance error. Regularization is therefore not required.
+    \item On further increasing the Train data size, the $E_{rms}$ increases insignificantly. 
     \item From the above points and cross-validation method, we conclude that the degree of complexity 6 and Train data size of 200 is the optimal model to describe our data, achieving an upper bound Root Mean Squared Error of $~1.5*10^{-8}$ over Train, Validation as well as Test data.
-    \item None of the models need to be regularized. On applying regularization, even for very small values of the hyperparameter $\lambda$, the Erms errors increase. 
+    \item None of the models need to be regularized. On applying regularization, even for very small values of the hyperparameter $\lambda$, the $E_{rms}$ errors increase. 
 \end{itemize}
 
-\subsection{Scatter plot of Model output vs Target output}
 
+\subsection{Scatter plot of Model output vs Target output}
 Using the optimal model of degree 6 and train data size 200, model output vs target output was plotted for both Train and Test data, we find it to closely follow $y-x=0$ line.
 \begin{figure}[H]
     \centering
@@ -360,21 +360,26 @@ Using the optimal model of degree 6 and train data size 200, model output vs tar
     \label{fig:yvst}
 \end{figure}
 
-\break
 
+\break
 \section{Task 3}
 Linear regression using Gaussian basis function is given as 
 \begin{equation}
     y(\vec{x},\vec{w}) = \sum_{i=0}^{D-1} \omega_{i}\phi_{i}(\vec{x})
 \end{equation},
-where D is a hyperparameter. The basis function 
+where $D$ is a hyperparameter. The basis function 
 \begin{equation}
     \phi_{i} = \exp\Big(\frac{-|\vec{x} - \vec{\mu}_i|^2}{\sigma^2}\Big)
 \end{equation}
-where $i = 1,2 ... D-1$. The $\mu$ are the mean vectors for $D-1$ kernels made from the data set. The value of the mean vectors are found using the KMeans clustering algorithm. In this work, the \tt{sklearn} KMeans function was used. The optimum number of clusters for the dataset 2 - "\texttt{function\_12d.csv}" was found to be 10 clusters. For the dataset 3 - "\tt{1\_bias\_clean.csv}", the optimum number of clusters are 9.
+where $i = 1,2 ... D-1$. The $\mu$ are the mean vectors for $D-1$ kernels made from the data set. The value of the mean vectors are found using the KMeans clustering algorithm. In this work, the \tt{sklearn} KMeans function was used. The optimum number of clusters for the dataset 2 - ``\texttt{function\_12d.csv}'' was found to be 10 clusters. For the dataset 3 - ``\tt{1\_bias\_clean.csv}'', the optimum number of clusters are 9.
 
-\subsection{No regularization}
-The following plots were obtained:
+\subsection{Dataset 2}
+
+\subsection{Dataset 3}
+\subsubsection{No Regularization}
+\paragraph{Predicting: \tt{Next\_Tmin}}
+
+The scatter plot of the target output and the model output is as follows:
 \begin{figure}[H]
      \centering
      \includegraphics[scale=0.5]{images/scatter_ds2noreg.png}
@@ -464,7 +469,7 @@ For Dataset 3, the table for the RMSE values for the Training, CV and Test value
 \input{tables/rmse_ds3_tikh1}
 
 \noi
-the optimal value of $\lambda$ was estimated to be 0.1 for the target output "NTmin". The scatter plots obtained are Figures \ref{fig:tikhds3tr} and \ref{fig:tikhds3t}
+the optimal value of $\lambda$ was estimated to be 0.1 for the target output "NTmin". The scatter plots obtained are \autoref{fig:tikhds3tr} and \autoref{fig:tikhds3t}
 \begin{figure}[H]
      \centering
      \includegraphics[scale=0.5]{images/scatter_ds3tikhtrainT_min.png}
@@ -479,7 +484,7 @@ the optimal value of $\lambda$ was estimated to be 0.1 for the target output "NT
 \end{figure}
  For the target output "NTmax" the following table of RMSE values for the training, test and CV data was obtained:
 \input{tables/rmse_ds3_tikh2}
- plots were obtained: figures \ref{fig:tikhds3tr2} and \ref{fig:tikhds3t2}.
+ plots were obtained: \autoref{fig:tikhds3tr2} and \autoref{fig:tikhds3t2}.
 \begin{figure}[H]
      \centering
      \includegraphics[scale=0.5]{images/scatter_ds3tikhtrainT_max.png}
@@ -493,7 +498,5 @@ the optimal value of $\lambda$ was estimated to be 0.1 for the target output "NT
      \label{fig:tikhds3t2}
 \end{figure}
 
-% \break
-% \bibliographystyle{unsrt}
-% \bibliography{reference}
+
 \end{document}
