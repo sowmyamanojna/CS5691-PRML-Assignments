@@ -64,7 +64,7 @@
         
         Team Members: \\
         \vspace{0.5em}
-        \input{team_details}
+        \input{tables/team_details}
 
         \vspace{1em}
 
@@ -94,12 +94,12 @@ Where, $\lambda\mathit{I}$ is the regularization term.
 
 \subsection{Training and Validation Accuracies}
 In order to pick the parameters that best fit the dataset, a grid search was performed on the dataset. Prior to this, the dataset was split into training set, validation set and the testing set, in the ratio 70:10 (from the training data) :30. The results obtained is as follows:
-\input{T1_loss_10}
+\input{tables/T1_loss_10}
 
 \vspace{-2em}\noi
 Regularization was only applied in case of degree 9.\\
 
-\input{T1_loss_200}
+\input{tables/T1_loss_200}
 \noi
 \textcolor{blue}{From the table above, we see that the best fit for the data is obtained for degree: $6$ and $\lambda:0$.}
 
@@ -260,7 +260,7 @@ Surface plots obtained for various train sizes are as follows:
 \subsubsection{Erms over Train, Validation and Test data}
 The Erms over train, validation and test data is obtained to be: 
 
-\input{Erms_2}
+\input{tables/Erms_2}
 \noi
 \subsubsection{Observation}
 \begin{itemize}
@@ -296,7 +296,7 @@ The surface plots of approximated function for various train data sizes is:
 
 The Erms over Train, Validation and Test data is obtained to be:
 
-\input{Erms_3}
+\input{tables/Erms_3}
 
 \subsubsection{Observation}
 
@@ -336,7 +336,7 @@ The surface plots of the approximated function for various train data sizes are:
 The Erms values obtained over Train, Validation and Test data are as follows: 
 \break
 
-\input{Erms_6}
+\input{tables/Erms_6}
 
 \subsubsection{Observations}
 \begin{itemize}
@@ -396,7 +396,7 @@ $\lambda$ is the regularization parameter. The values $0.01, 0.1,  1.0, 5.0, 10.
 
 \noi
 For dataset 2, the RMSE values for the Training, CV and Test data across $\lambda$ values is:
-\input{rmse_ds3_quad1}
+\input{tables/rmse_ds3_quad1}
 
 \noi
 Scatter plots of the model prediction using the regularization parameter value 0.01:
@@ -411,7 +411,7 @@ Scatter plots of the model prediction using the regularization parameter value 0
      \caption{Scatter plot of the target values vs model prediction for Test set of Dataset 2, using linear regression with gaussian basis and quadratic Regularization, $\lambda = 0.01 $}
 \end{figure}
 For dataset 3, the following RMSE table was obtained:
-\input{rmse_ds3_quad2}
+\input{tables/rmse_ds3_quad2}
 The scatter plots of target vs model output for the optimum value of $\lambda$ is, for "NTmin" output variable
 \begin{figure}[H]
      \centering
@@ -444,7 +444,7 @@ The Tikhonov regularization term is given by $\vec{\omega^*}$ = $(\Phi*T\Phi + \
 where K is the number of clusters and $\lambda$ is the regularization parameter. The values 0.01,0.1, 1.0,5.0,10.0 were used to estimate the optimal parameters and the RMSE on the cross-validation set was calculated for each value. The best perorming model was selected as the one having least RMSE on CV data\\ 
 Applying Tikhonov regularization to the bivariate dataset, the optimal value of $\lambda$ was estimated to be 0.01. 
  The table for the RMSE values for the Training, CV and Test values corresponding to each $\lambda$ value is
-\input{rmse_ds2_tikh}
+\input{tables/rmse_ds2_tikh}
 
 \noi
 Scatter plots of the model prediction using the regularization parameter value 0.01:
@@ -461,7 +461,7 @@ Scatter plots of the model prediction using the regularization parameter value 0
 
  \noi
 For Dataset 3, the table for the RMSE values for the Training, CV and Test values corresponding to each $\lambda$ value corresonding to target variable "NTmin" is\\
-\input{rmse_ds3_tikh1}
+\input{tables/rmse_ds3_tikh1}
 
 \noi
 the optimal value of $\lambda$ was estimated to be 0.1 for the target output "NTmin". The scatter plots obtained are Figures \ref{fig:tikhds3tr} and \ref{fig:tikhds3t}
@@ -478,7 +478,7 @@ the optimal value of $\lambda$ was estimated to be 0.1 for the target output "NT
      \label{fig:tikhds3t}
 \end{figure}
  For the target output "NTmax" the following table of RMSE values for the training, test and CV data was obtained:
-\input{rmse_ds3_tikh2}
+\input{tables/rmse_ds3_tikh2}
  plots were obtained: figures \ref{fig:tikhds3tr2} and \ref{fig:tikhds3t2}.
 \begin{figure}[H]
      \centering
