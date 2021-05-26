@@ -288,7 +288,6 @@ The decision region plots obtained is as follows:
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Linear SVM}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 \label{subsection:1A_svm}
 The Support Vector Machines (SVMs) are supervised learning models that can be used for regression, classification and outlier detection. In case of a linear classifier, the goal of the SVM is to construct a hyperplane(s) such that the distance from the nearest training data point is maximized. This distance is called the functional margin.  
 
@@ -304,24 +303,29 @@ The distance of any point $\vec{x}$ from the hyperplane is then equivalent to:
 \begin{equation}
     r=\frac{g(\vec{x})}{||w||}
 \end{equation}
+
 \noi
 For a canonically seperating hyperplane, 
 \begin{equation}
     |g_c(\vec{x^*})|=1
 \end{equation}
+
 \noi
 Where $\vec{x^*}$ is the training example nearest to the hyperplane. 
 The distance of $\vec{x^*}$ from the hyperplane is then given by:
 \begin{equation}
     r=\frac{1}{||\vec{w}||}
 \end{equation}
+
 \noi
 For all points $(\vec{x_n},t_n)$, 
 \begin{equation}
     (t_n)(\vec{w}^{T}X_n+w_0) \geq 1
 \end{equation}
+
 \noi
 Where $t_n$ is the target variable $\epsilon$ $(-1,1)$.
+
 \noi
 The primal form of the Lagrangian objective function is:
 \begin{equation}
@@ -355,7 +359,8 @@ The task is now to find $\vec{\alpha}$ for which $L_D(\vec{\alpha)}$ is optimal 
     L_D(\vec{\alpha})=\sum_{n=1}^{N}\alpha_n-\frac{1}{2}\sum_{m=1}^{N}\sum_{n=1}^{N}\alpha_m\alpha_nt_mt_n\vec{x_m}^T\vec{x_n} 
 \end{equation}
 
-\subsubsection{svm.SVC() function in the scikit-learn library}\label{subsubsection:svm module}
+\subsubsection{\tt{sklearn svm.SVC()}}
+\label{subsubsection:svm module}
 The svm.SVC() is a pre-defined module for Support Vector Classification task. The important optional arguments of this classifier are: 
 \begin{itemize}
     \item \tt{kernel} : Specifies the kernel type to be used in the algorithm, available options are: [\tt{linear},\tt{poly},\tt{rbf},\tt{sigmoid},\tt{precomputed}].
@@ -375,7 +380,7 @@ The svm.SVC() is a pre-defined module for Support Vector Classification task. Th
     \item \tt{decision\_function\_shape}: [\tt{ovr}, \tt{ovo}]. It specifies whether one-versus-rest or one-versus-one methodology should be used for multi-class classification. By default, it is \tt{ovr}. 
 \end{itemize}
 
-\subsubsection{Building pairwise SVM for classes in dataset 1A}
+\subsubsection{Pairwise SVM}
 The dataset 1A has 4 class labels: [0.0,1.0,2.0,3.0], and 2 dimensional feature vectors. Those are linearly separable as can be seen in the plot above.
 \begin{itemize}
     \item Data pre-processing:
@@ -389,15 +394,14 @@ The dataset 1A has 4 class labels: [0.0,1.0,2.0,3.0], and 2 dimensional feature 
     \item To predict the class label for a test point: we obtain 6 labels from the 6 different models trained earlier. From those 6 labels, the label occurring with the most frequency is chosen as the label for the test point, a collective decision region and confusion matrix are thus obtained.
 \end{itemize}
 
-\subsubsection{Hyper-parameter value and accuracy}
+\subsubsection{Classification Accuracies}
 The hyper-parameter C is varied in the range [0.1,1,10,100,1000] and corresponding accuracy over train data and cross validation data is obtained as follows: 
 
 \input{1A_svm_acc}
 \noi
 Since the accuracy is independent of the value of hyper-parameter C, the default value C=1 is used for the production of plots and confusion matrices.The accuracy obtained on test data set is also 1.00 
 
-\noi
-\subsubsection{Confusion matrices for Train and Test data}
+\subsubsection{Confusion Matrices}
 Since the accuracy obtained is 1.00, the confusion matrices are diagonal. 
 \begin{figure}[H]
 \centering
@@ -449,7 +453,7 @@ Since the accuracy obtained is 1.00, the confusion matrices are diagonal.
 \end{figure}
 \noi 
 
-\subsubsection{Decision boundaries and Support vectors}
+\subsubsection{Decision Boundaries and Support vectors}
 \begin{figure}[H]
     \centering
     \includegraphics[scale=0.55]{images/1A_ovo_01.png}
@@ -952,14 +956,11 @@ The confusion matrices obtained are as follows:
 
 
 \subsection{Gaussian-kernel SVM}
-
 Similar to the section \ref{section:gaussian}, an svm classifier with Gaussian kernel is built. However, the accuracy obtained with varying C and gamma is quite low, therefore other parameters of the svm.SVC()  function (like tolerance, class\_weight etc) are also altered to check for better solutions. We find that altering those extra parameters do not affect the accuracy and so are not listed in the accuracy table.
 
 \subsubsection{Optimal Hyper-parameter and accuracy}
-
-Approximately 1500 models were trained, performance of few of those models is as listed below (in order of decreasing validation accuracy)
-
-\input{2A_svm_acc }
+Approximately 1500 models were trained, performance of few of those models is as listed below (in order of decreasing validation accuracy)\\
+\input{2A_svm_acc}
 
 The best hyper-parameter settings are: [c=1.0, gamma=1.0]. Test accuracy with those hyper-parameters is obtained to be \textbf{0.547}
 

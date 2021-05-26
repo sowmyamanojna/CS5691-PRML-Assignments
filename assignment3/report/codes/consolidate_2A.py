@@ -6,6 +6,7 @@ from tqdm import tqdm
 def get_consolidated_data2A(classes_present):
     df = pd.DataFrame()
     df_test = pd.DataFrame()
+    
     for i in classes_present:
         df_new = pd.read_csv("../datasets/2A/"+i+"/train.csv")
         df_new["image_names"] = classes_present[i]
