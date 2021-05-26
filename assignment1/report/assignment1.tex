@@ -213,9 +213,10 @@ Where $\omega_{i}$ are the parameters to be found through regression, $\phi_{i}(
     \item The function \tt{create\_phi} generates the design matrix $\phi(x1,x2)$ for the required degree of complexity.
     The number of attributes in the generated design matrix is given by:
     \begin{equation}
-        n=\frac{(d+D)!}{d!\,D!}
+        D=\frac{(M+d)!}{M!\,d!}
     \end{equation}
-    where d is the dimension of the original feature vector (=2 for Task 2) and D is the degree of complexity of the model. 
+    where d is the dimension of the original feature vector (=2 for Task 2) and M is the degree of complexity of the model.
+    \item To avoid overfitting, as a general rule \tt{N}>10*D 
     \item The design matrix is passed to the function \tt{regularized\_pseudo\_inv} , which generates the moore-penrose inverse of the given design matrix(X) and specified value of regularization parameter lambda($\lambda$).
     
     \begin{equation}
@@ -241,7 +242,7 @@ The results obtained for various degrees of complexities are discussed below.
 With degree of complexity set to 2, the number of parameters in our model are:
 \begin{equation}
 \begin{split}
- n &= \frac{(d+D)!}{d!\,D!} \\
+ D &= \frac{(d+M)!}{d!\,M!} \\
    & =\frac{(4!)}{2!\,2!} \\
    & =6
 \end{split}
@@ -280,12 +281,13 @@ The Erms over train, validation and test data is obtained to be:
 The number of parameters to be estimated for this model are: 
 \begin{equation}
     \begin{split}
-        n&=\frac{(2+3)!}{2!\,3!} \\
+        D&=\frac{(2+3)!}{2!\,3!} \\
          &=10
     \end{split}
 \end{equation}
 \noi
-For this model too, the number of parameters to be estimated are very less compared to the train data sizes, and hence regularization is not required. 
+ 
+Since for train data size 50, \tt{50}<10*10, we apply regularization. As reported in the $E_{rms}$ table, the errors increases on applying regularization. Regularization need not be applied for train data size 200 and 500. 
 
 \subsubsection{Surface plots of the approximated function}
 The surface plots of approximated function for various train data sizes is: 
@@ -317,13 +319,13 @@ The $E_{rms}$ over Train, Validation and Test data is obtained to be:
 The number of parameters to be estimated are-
 \begin{equation}
     \begin{split}
-        n&=\frac{(2+6)!}{2!\,6!} \\
+        D&=\frac{(2+6)!}{2!\,6!} \\
         &=28
     \end{split}
 \end{equation}
 
 \noi
-For this model too, the number of parameters to be estimated is far less compared to train data size of 200 and 500. However, for the train data size of 50, we expect a poor estimation of the parameters since the model will not have enough data points. 
+For train data size 50, $N<28*10$, hence regularization is applied to the model. However, regularization is not needed for training data sizes of 200 and 500. 
 
 \subsubsection{Surface plots of the approximated function}
 The surface plots of the approximated function for various train data sizes are:
