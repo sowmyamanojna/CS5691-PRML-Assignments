@@ -131,9 +131,8 @@ The accuracy table and confusion matrix are:
 \input{acc_1A_KNN}
 
 \begin{figure}[H]
-    \centering
-    \includegraphics[scale=0.8]{images/1a_conf_mat_knn_train.png}
-    \includegraphics[scale=0.8]{images/1a_conf_mat_knn_test.png}
+    \includegraphics[scale=0.4]{images/1a_conf_mat_knn_train.png}
+    \includegraphics[scale=0.4]{images/1a_conf_mat_knn_test.png}
     \caption{Confusion matrix for $k=1$, Train and Test dataset on left and right respectively}
     \label{fig:1A_cm_KNN}
 \end{figure}
@@ -141,7 +140,7 @@ The accuracy table and confusion matrix are:
 \subsubsection{Decision Region Plot}
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.9]{images/1a_knn_decision_region.jpg}
+    \includegraphics[scale=0.5]{images/1a_knn_decision_region.jpg}
     \caption{Decision region superimposed with training dataset}
     \label{fig:1A_decreg_KNN}
 \end{figure}
@@ -204,7 +203,7 @@ In the above equation:
 
 \noi
 The co-variance matrix and eigen-vectors for each class are calculated and are found to be as follows:
-\begin{enumerate}
+\begin{itemize}
     \item For class y=0.0: 
     $$
     C = 
@@ -277,20 +276,17 @@ The co-variance matrix and eigen-vectors for each class are calculated and are f
     0.289 & 0.957 \\
     \end{bmatrix}
     $$
-    
-    
-    
-\end{enumerate}
+\end{itemize}
 
 
 \subsubsection{Accuracy table and Confusion Matrix}
 We obtain that irrespective of our assumption of the co-variance matrices, the accuracy over train, validation and test set is 1. 
-\input{acc1a_nb}
+\input{acc_1A_nb}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.5]{images/1a_conf_mat_nb_train.png}
-    \includegraphics[scale=0.5]{images/1a_conf_mat_nb_test.png}
+    \includegraphics[scale=0.4]{images/1a_conf_mat_nb_train.png}
+    \includegraphics[scale=0.4]{images/1a_conf_mat_nb_test.png}
     \caption{Confusion matrix for train and test data respectively}
     \label{fig:conf_mats}
 \end{figure}
@@ -299,25 +295,25 @@ We obtain that irrespective of our assumption of the co-variance matrices, the a
 
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.4]{images/contour1b_case1.png}
-    \includegraphics[scale=0.4]{images/contour1b_case2.png}
-    \includegraphics[scale=0.4]{images/contour1b_case3.png}
+    \includegraphics[scale=0.6]{images/contour1b_case1.png}
+    \includegraphics[scale=0.6]{images/contour1b_case2.png}
+    \includegraphics[scale=0.6]{images/contour1b_case3.png}
     \caption{Contour plots}
     \label{fig:cp_1}
 \end{figure}
-\noi
-\tt{Observations}: 
-\begin{enumerate}
+
+\subsubsection{Observations} 
+\begin{itemize}
+    \itemsep0em
     \item For all the three cases, we find that the principal axes of the ellipses are nearly parallel to the coordinate axis. This is because the eigen-vectors are nearly equal to [1,0] and [0,1].
     \item In case a and case b, the length of principal axes are same across all classes. 
     \item In case c, since we have used different co-variance matrix, the length of principal axes are scaled accordingly for all classes.
-\end{enumerate}
+\end{itemize}
 
 \subsubsection{Decision Boundary plot for Naive Bayes Classifier}
-
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.5]{images/1A_nb_case1_decisionregion.jpg}
+    \includegraphics[scale=0.8]{images/1A_nb_case1_decisionregion.jpg}
     \caption{Decision boundary plot}
     \label{fig:db1}
 \end{figure}
@@ -344,9 +340,8 @@ The accuracy table is as follows:
 Hence, the best configuration of the model exists for $k=1$.The confusion matrix in this case is:
 
 \begin{figure}[H]
-    \centering
-    \includegraphics[scale=0.85]{images/1b_conf_mat_knn_train.png}
-    \includegraphics[scale=0.85]{images/1b_conf_mat_knn_test.png}
+    \includegraphics[scale=0.4]{images/1b_conf_mat_knn_train.png}
+    \includegraphics[scale=0.4]{images/1b_conf_mat_knn_test.png}
     \caption{Confusion matrix for $k=1$, for Train and Test data on left and right respectively }
     \label{fig:1b_cm_KNN}
 \end{figure}
@@ -500,9 +495,8 @@ The model is tested for $k=10$ and $k=20$. The accuracy table and confusion matr
 Since the accuracy is higher for $k=10$, it is used to further evaluate the confusion matrix and decision boundary plot. 
 
 \begin{figure}[H]
-    \centering
-    \includegraphics[scale=0.7]{images/1b_conf_mat_nb_train.png}
-    \includegraphics[scale=0.7]{images/1b_conf_mat_nb_test.png}
+    \includegraphics[scale=0.4]{images/1b_conf_mat_nb_train.png}
+    \includegraphics[scale=0.4]{images/1b_conf_mat_nb_test.png}
     \caption{Confusion matrices for $k=10$, for train data and test data on left and right respectively.}
     \label{fig:1b_cm_nb}
 \end{figure}
@@ -510,7 +504,7 @@ Since the accuracy is higher for $k=10$, it is used to further evaluate the conf
 \subsubsection{Decision boundary plot}
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.8]{images/1b_nb_decision_region.jpg}
+    \includegraphics[scale=1]{images/1b_nb_decision_region.jpg}
     \caption{Decision boundary for $k=10$}
     \label{fig:1b_decreg_nb}
 \end{figure}
