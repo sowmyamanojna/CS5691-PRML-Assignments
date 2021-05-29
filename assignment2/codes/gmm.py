@@ -155,3 +155,33 @@ class GMM_vl():
 
             self.gmm_list.append(gmm)
             self.probab_list.append(probab)
+
+    def get_probability(self, class_name):
+        class_path = "../datasets/2B/" + class_name + "/"
+        file_names = os.listdir(class_path)
+
+        train_file_names = [i for i in file_names if "csv" in i and "train_" in i]
+        dev_file_names = [i for i in file_names if "csv" in i and "dev_" in i]
+        
+        size_list = []
+        self.new_probab = []
+        for i, j in enumerate(tqdm(train_file_names)):
+            gmm = self.gmm_list[i]
+
+            file_path = class_path + j
+            df = pd.read_csv(file_path, header=None)
+            X = df.to_numpy()
+
+            size_list.append(X.shape[0])
+            probab = gmm.gaussian_val(X)
+            print(j, probab.shape[0], size_list[-1], probab.shape[0] == size_list[-1])
+            assert probab.shape[0] == size_list[-1]
+
+            self.new_probab.append(probab)
+
+    def get_log_likelihood(self, X_test):
+        value = np.ones((X_test.shape[0], 1))
+        for gmm in self.gmm_list:
+            value *= gmm.indv_log_likelihood(X_test)
+
+        return value
