@@ -56,7 +56,7 @@
 	    
 	    Team Members: \\
 	    \vspace{0.5em}
-	   	\input{team_details}
+	   	\input{tables/team_details}
 
 		\vspace{1em}
 
@@ -75,6 +75,7 @@
 
 \section{Dataset 1A}
 \subsection{K-nearest Neighbors Classifier}
+\subsubsection{Mathematical Formulation}
 \label{sec:1_1}
 
 The K Nearest Neighbour is a statistically non-parametric model that can be used for regression as well as for classification. It assumes that similar things exist in close proximity.  
@@ -128,7 +129,7 @@ Since model performance is best irrespective of $k$, the accuracy table, confusi
 
 \noi
 The accuracy table and confusion matrix are: 
-\input{acc_1A_KNN}
+\input{tables/acc_1A_KNN}
 
 \begin{figure}[H]
     \includegraphics[scale=0.4]{images/1a_conf_mat_knn_train.png}
@@ -149,6 +150,7 @@ The decision boundary obtained (with $k=1$) is linear in form.
 
 \break
 \subsection{Naive-Bayes classifier with a Gaussian distribution for each class}
+\subsubsection{Mathematical Formulation}
 The Bayes Classifiers are probabilistic classifiers based on the Bayes theorem:
 
 \begin{equation}
@@ -281,7 +283,7 @@ The co-variance matrix and eigen-vectors for each class are calculated and are f
 
 \subsubsection{Accuracy table and Confusion Matrix}
 We obtain that irrespective of our assumption of the co-variance matrices, the accuracy over train, validation and test set is 1. 
-\input{acc_1A_nb}
+\input{tables/acc_1A_nb}
 
 \begin{figure}[H]
     \centering
@@ -334,7 +336,7 @@ Unlike dataset 1A, we observe that the accuracy over validation set decreases on
 
 \noi
 The accuracy table is as follows:
-\input{acc_1B_KNN}
+\input{tables/acc_1B_KNN}
 
 \noi 
 Hence, the best configuration of the model exists for $k=1$.The confusion matrix in this case is:
@@ -400,7 +402,7 @@ The testing accuracy obtained for varying $q_i$ for each class is as follows:
 
 \subsubsection{Best Model}
 Based on the accuracies obtained on the training, validation and test dataset, the best $q_i$ for the three classes has been chosen as $5$. The accuracies obtained in tabular format is as follows:
-\input{acc_1B_full}
+\input{tables/acc_1B_full}
 
 \noi
 The confusion matrix obtained for the model with $q_i=5$ are as follows:
@@ -435,7 +437,7 @@ The contour maps and decision surfaces obtained, with $q_i=5$ are as follows:
 \subsection{Bayes Classifier, GMM, diagonal covariance}
 \subsubsection{Training and Validation accuracy}
 Gaussian multi-modal training (with threshold of the increment in total log-likelihood functions as 0.01) with diagonal covariance matrix was used, for the number of gaussian components Q = {2,3,4,5,6,7,8,9} to estimate the parameters - $\mu_q$, $C_q$, $N_q$ and $w_q$ for each gaussian component - and predict the classes of the training data (train.csv) and cross-validation (70\% of dev.csv). The table \ref{tab:cv1b} shows the results obtained.
-\input{acc_1B_cv}
+\input{tables/acc_1B_cv}
 
 \vspace{-2em}
 \begin{figure}[H]
@@ -467,7 +469,7 @@ The decision surface plot and the contour plot for the best model is figure \ref
 \end{figure}
 
 \subsection{Bayes Classifier with KNN}
-
+\subsubsection{Mathematical Formulation}
 While the main principle remains the same as discussed in section (1.2), we now use non-parametric methods to evaluate the class conditional probability $p(\vec{x}|y_{i})$.
 \\Suppose the number of data points in the hyper-volume v around $\vec{x}$ be N, the number of data point corresponding to class i be $N_i$, then:
 
@@ -489,7 +491,7 @@ The class label $i$ that maximizes \autoref{eqn nb} is chosen as the label for $
 
 \subsubsection{Model Performance for varying values of $k$}
 The model is tested for $k=10$ and $k=20$. The accuracy table and confusion matrix are as follows:
-\input{acc_1B_nb}
+\input{tables/acc_1B_nb}
 
 \noi
 Since the accuracy is higher for $k=10$, it is used to further evaluate the confusion matrix and decision boundary plot. 
@@ -532,7 +534,7 @@ The testing accuracy obtained for varying $q_i$ for each class is as follows:
 
 \subsubsection{Best Model}
 Based on the accuracies obtained on the training, validation and test dataset, the best $q_i$ for the three classes has been chosen as $6$. The accuracies obtained in tabular format is as follows:
-\input{acc_2A_full}
+\input{tables/acc_2A_full}
 
 \noi
 The confusion matrix obtained for the model with $q_i=6$ are as follows:
@@ -599,7 +601,7 @@ The confusion matrices obtained are as follows:
 \subsection{Bayes Classifier, GMM, diagonal covariance}
 \subsubsection{Training and Validation Accuracy}
 The accuracy obtained on training the data 2A on GMM model with diagonal covariance matrix is as in \autoref{tab:acc2a}. The plot of the same is in \autoref{fig:acc2adiag}. The tolerance used was 1e-3.
-\input{acc_2A}
+\input{tables/acc_2A}
 
 \begin{figure}[H]
     \centering
