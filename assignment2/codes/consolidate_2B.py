@@ -6,7 +6,6 @@ from tqdm import tqdm
 
 def get_consolidated_data2B(classes_present, cwd):
     flag = 0
-
     os.chdir("../datasets/2B/")
 
     # Loop over each class
