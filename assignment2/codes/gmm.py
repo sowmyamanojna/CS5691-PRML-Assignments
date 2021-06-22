@@ -16,7 +16,7 @@ class GMM():
         self.q = q
         self.tol = tol
 
-    def fit(self, X, covariance_type="full", epochs=100, tol=1e-5):
+    def fit(self, X, diag=False, epochs=100, tol=1e-5):
         """
         X: n*d
         mu: q*d
@@ -26,7 +26,7 @@ class GMM():
         self.n, self.d = X.shape    
         self.X = X
         self.epochs = epochs
-        self.covariance_type = covariance_type
+        self.diag = diag
         
         self.initialization()
 
@@ -37,11 +37,11 @@ class GMM():
             self.maximization()
             new_lk = self.log_likelihood_new(self.X)
             diff = new_lk - self.lglk_list[-1]
-            if diff > 0:
-                self.update()
-            if  diff < tol:
-                # if diff < 0: print("Difference is less than 0")
-                break
+            # if diff > 0:
+            self.update()
+            # if  diff < tol:
+            #     # if diff < 0: print("Difference is less than 0")
+            #     break
 
     def update(self):
         self.C = self.C_new.copy()
@@ -66,8 +66,8 @@ class GMM():
         for i in range(self.q):
             self.C[i] = (1/self.Nq[i])*(self.gamma[:,i].reshape(-1,1)*(self.X-self.mu[i,:])).T@(self.X-self.mu[i,:])
 
-            if self.covariance_type == "diag":
-                self.C[i] = np.diag(self.C[i])
+            if self.diag:
+                self.C[i] = np.diag(np.diag(self.C[i]))
 
         self.C_new = self.C.copy()
 
@@ -89,8 +89,8 @@ class GMM():
         for i in range(self.q):
             self.C_new[i] = (1/self.Nq_new[i])*(self.gamma_new[:,i].reshape(-1,1)*(self.X-self.mu_new[i,:])).T@(self.X-self.mu_new[i,:])
 
-            if self.covariance_type == "diag":
-                self.C_new[i] = np.diag(self.C_new[i])
+            if self.diag:
+                self.C_new[i] = np.diag(np.diag(self.C_new[i]))
 
         self.weights_new = self.Nq_new/self.n
 
@@ -160,7 +160,7 @@ class GMM_2A():
         self.q = q
         self.tol = tol
 
-    def fit(self, X, covariance_type="full", epochs=100, tol=1e-6):
+    def fit(self, X, diag=False, epochs=100, tol=1e-6):
         """
         X: n*d
         mu: q*d
@@ -170,7 +170,7 @@ class GMM_2A():
         self.n, self.d = X.shape    
         self.X = X
         self.epochs = epochs
-        self.covariance_type = covariance_type
+        self.diag = diag
         self.tol = tol
         self.initialization()
         self.lglk_list = []
@@ -206,9 +206,8 @@ class GMM_2A():
             self.C[i] = (1/self.Nq[i])*(self.gamma[:,i].reshape(-1,1)*(self.X-self.mu[i,:])).T@(self.X-self.mu[i,:])
             self.C[i] += self.reg_C
 
-            if self.covariance_type == "diag":
-                self.C[i] = np.diag(self.C[i])
-
+            if self.diag:
+                self.C[i] = np.diag(np.diag(self.C[i]))
         self.weights = self.Nq/self.n
 
     def log_likelihood(self, X_test):
