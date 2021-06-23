@@ -78,9 +78,9 @@
 \subsubsection{Mathematical Formulation}
 \label{sec:1_1}
 
-The K Nearest Neighbour is a statistically non-parametric model that can be used for regression as well as for classification. It assumes that similar things exist in close proximity.  
+The K Nearest Neighbor is a statistically non-parametric model that can be used for regression as well as for classification. It assumes that similar things exist in close proximity.  
 \noi
-Crucial steps in a K-Nearest Neighbour classifier are:
+Crucial steps in a K-Nearest Neighbor classifier are:
 \begin{itemize}
     \itemsep0em
     \item A distance metric is first specified, the most commonly used metric is the euclidean distance:
@@ -134,6 +134,7 @@ The accuracy table and confusion matrix are:
 \begin{figure}[H]
     \centering
     \includegraphics[scale=0.55]{images/1A/1A_cm_knn_train.png}
+    \hspace{2em}
     \includegraphics[scale=0.55]{images/1A/1A_cm_knn_test.png}
     \caption{Confusion matrix for $k=1$, Train and Test dataset on left and right respectively}
     \label{fig:1A_cm_KNN}
@@ -325,9 +326,9 @@ We obtain that irrespective of our assumption of the co-variance matrices, the a
 
 \break
 \section{Dataset 1B}
-\subsection{K Nearest Neighbour Classifier} 
+\subsection{K Nearest Neighbor Classifier} 
 
-Similar to \autoref{sec:1_1}, K Nearest Neighbour classifier is used to predict class labels for dataset 2A. \\
+Similar to \autoref{sec:1_1}, K Nearest Neighbor classifier is used to predict class labels for dataset 2A. \\
 
 \noi
 The dataset 1B has 3 unique class labels - $[0.0, 1.0, 2.0]$ and non-linearly separable. The train dataset is of dimension $(800,3)$ while the dev dataset is of dimension $(90,3)$. Similar preprocessing steps are performed as in \autoref{sec:1_1_1}.
@@ -362,7 +363,7 @@ Hence, the best configuration of the model exists for $k=1$.The confusion matrix
 The decision boundary obtained is non-linear in form and not smooth. 
 
 \break
-\subsection{Bayes Classifier, GMM, full covariance}
+\subsection{Bayes Classifier, GMM, Full Covariance}
 \subsubsection{Equations}
 Th initialization is done as follows for each class:
 \begin{itemize}
@@ -443,7 +444,7 @@ Gaussian multi-modal training (with threshold of the increment in total log-like
 \vspace{-2em}
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.5]{images/acc_1b.png}
+    \includegraphics[scale=0.5]{images/1B/acc_1b.png}
     \caption{Training and Validation accuracy across $q_i$, using the GMM model with diagonal covariance matrix on Dataset 1B}
     \label{fig:acc1bGMMdiag}
 \end{figure}
@@ -453,8 +454,8 @@ As we can see in the tables and \autoref{fig:acc1bGMMdiag}, the best accuracy is
 The confusion matrices for the training and test datasets using the best model is \autoref{fig:conf_1b_diag}.
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.45]{images/conf_test1b.png}
-    \includegraphics[scale=0.45]{images/conf_train1b.png}
+    \includegraphics[scale=0.45]{images/1B/conf_test1b.png}
+    \includegraphics[scale=0.45]{images/1B/conf_train1b.png}
     \caption{Confusion matrices for data 1B - diagonal covariance matrices}
     \label{fig:conf_1b_diag}
 \end{figure}
@@ -463,8 +464,8 @@ The confusion matrices for the training and test datasets using the best model i
 The decision surface plot and the contour plot for the best model is figure \ref{fig:dec1bGMMdiag}. As we can see in the decision region plots, the contours follow the non-linear shape of the data. The level curves are ellipses parallel to the coordinate access, since diagonal covariance matrices were used. \autoref{fig:dec1bGMMdiag}.
 \begin{figure}[H]
     \centering
-    \hspace{4em}\includegraphics[scale=0.5]{images/decisionReg_ds2.png}
-    \includegraphics[scale=0.5]{images/contour1b.png}
+    \hspace{4em}\includegraphics[scale=0.5]{images/1B/decisionReg_ds2.png}
+    \includegraphics[scale=0.5]{images/1B/contour1b.png}
     \caption{Decision region plot for Bayesian GMM model using diagonal covariance matrix and 5 gaussian components on dataset 1B}
     \label{fig:dec1bGMMdiag}
 \end{figure}
@@ -515,13 +516,13 @@ While the shape of decision boundary is almost similar as \autoref{fig:1b_decreg
 
 \break
 \section{Dataset 2A}
-\subsection{Bayes Classifier, GMM, full covariance}
+\subsection{Bayes Classifier, GMM, Full Covariance}
 \subsubsection{Training and Validation Accuracy}
 The training and validation accuracies obtained for varying $q_i$ for each class is as follows:
 \begin{figure}[H]
     \hspace{-2em}
-    \includegraphics[scale=0.5]{images/2A/2a_full_train_acc.png}
-    \includegraphics[scale=0.5]{images/2A/2a_full_val_acc.png}
+    \includegraphics[scale=0.5]{images/2A/2A_full_train_acc.png}
+    \includegraphics[scale=0.5]{images/2A/2A_full_val_acc.png}
     \caption{Training and Validation accuracy across $q_i$, on the left and right respectively}
 \end{figure}
 
@@ -529,7 +530,7 @@ The training and validation accuracies obtained for varying $q_i$ for each class
 The testing accuracy obtained for varying $q_i$ for each class is as follows:
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.5]{images/2A/2a_full_test_acc.png}
+    \includegraphics[scale=0.5]{images/2A/2A_full_test_acc.png}
     \caption{Testing accuracy across $q_i$}
 \end{figure}
 
@@ -541,14 +542,14 @@ Based on the accuracies obtained on the training, validation and test dataset, t
 The confusion matrix obtained for the model with $q_i=6$ are as follows:
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.5]{images/2A/2a_full_train_conf.png}
-    \includegraphics[scale=0.5]{images/2A/2a_full_val_conf.png}
+    \includegraphics[scale=0.5]{images/2A/2A_full_train_conf.png}
+    \includegraphics[scale=0.5]{images/2A/2A_full_val_conf.png}
     \caption{Training and Validation confusion matrices for the best model with $q_i=6$, on the left and right respectively}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.5]{images/2A/2a_full_test_conf.png}
+    \includegraphics[scale=0.5]{images/2A/2A_full_test_conf.png}
     \caption{Testing confusion matrix for the best model with $q_i=6$.}
 \end{figure}
 
@@ -581,7 +582,7 @@ The accuracies obtained are as follows:
 \end{itemize}
 
 \noi
-From the results above, we can see that the validation and test accuracies are higher in this case, however, the train accuracy is low.\\
+From the results above, we can see that the validation accuracy is higher in this case, however, the train and test accuracies are low.\\
 
 \noi
 The confusion matrices obtained are as follows:
@@ -601,24 +602,39 @@ The confusion matrices obtained are as follows:
 
 \subsection{Bayes Classifier, GMM, diagonal covariance}
 \subsubsection{Training and Validation Accuracy}
-The accuracy obtained on training the data 2A on GMM model with diagonal covariance matrix is as in \autoref{tab:acc2a}. The plot of the same is in \autoref{fig:acc2adiag}. The tolerance used was 1e-3.
-\input{tables/acc_2A}
+The accuracy obtained on training the data 2A on GMM model with diagonal covariance matrix is as in \autoref{tab:acc2a}.
+\input{tables/acc_2A_diag}
 
+\noi
+The training and validation accuracies obtained for varying $q_i$ for each class is as follows:
+\begin{figure}[H]
+    \hspace{-2em}
+    \includegraphics[scale=0.5]{images/2A/2A_diag_train_acc.png}
+    \includegraphics[scale=0.5]{images/2A/2A_diag_val_acc.png}
+    \caption{Training and Validation accuracy across $q_i$, on the left and right respectively}
+\end{figure}
+
+\subsubsection{Testing Accuracy}
+The testing accuracy obtained for varying $q_i$ for each class is as follows:
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.5]{images/acc_2a.png}
-    \caption{Accuracy for training and validation set for 2A}
-    \label{fig:acc2adiag}
+    \includegraphics[scale=0.5]{images/2A/2A_diag_test_acc.png}
+    \caption{Testing accuracy across $q_i$}
 \end{figure}
 
 \subsubsection{Best model on test data}
-The highest accuracy on validation dataset is for 7 gaussian components. Applying this model to predict the test data, we get an accuracy of \textbf{37}. The confusion matrices for this model on training and test data is \autoref{fig:conf_2a_diag} .
+The highest accuracy on validation dataset is for 16 gaussian components. Applying this model to predict the test data, we get an accuracy of \textbf{42.45\%}. The confusion matrices for this model on training, validation and test data is as follows:
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.5]{images/conf_test2a.png}
-    \includegraphics[scale=0.5]{images/conf_train2a.png}
-    \caption{Confusion matrices for data 2A - diagonal covariance matrices}
-    \label{fig:conf_2a_diag}
+    \includegraphics[scale=0.5]{images/2A/2A_diag_train_conf.png}
+    \includegraphics[scale=0.5]{images/2A/2A_diag_val_conf.png}
+    \caption{Training and Validation confusion matrices for the best model with $q_i=16$, on the left and right respectively}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.5]{images/2A/2A_diag_test_conf.png}
+    \caption{Testing confusion matrix for the best model with $q_i=16$.}
 \end{figure}
 
 
@@ -628,15 +644,63 @@ The varying length classification is done as follows:
 \begin{itemize}
     \itemsep0em
     \item Each image has a $36*23$ feature parameters.
-    \item Each of these $36$ rows are considered as instances of the class and a GMM (full covariance/diagonal covariance) is fit on the dataset.
-    \item The E-step and M-step are done as is in case of static length pattern.
-    \item However, for each of these images, 
+    \item Each of these $36$ rows are considered as features and a GMM (full covariance/diagonal covariance) is fit on each of the features.
+    \item The Expectation-step and Maximization-step are performed on the data, as is in case of static length pattern.
+    \item For each of the data points, 
     \begin{equation}
-    p (X|\lambda_i ) = \prod_{t=1}^T p(x_t|\lambda_i) = \prod_{t=1}^T \sum_{q=1}^Q w_{iq}\mathcal{N}(x_t|\mu_{iq}, \Sigma_{iq})
+    p (X|\lambda_i ) = \prod_{t=1}^T p(x_t|\lambda_i) = \prod_{t=1}^T \sum_{q=1}^Q w_{iq}\mathcal{N}(x_t|\mu_{iq}, \Sigma_{iq})f
     \end{equation}
     is calculated to perform classification.
+    \item In order to circumvent the problem associated with floating point precession, the gaussian probabilities for each of the 36 features were normalized across classes and the product was then performed.
+    \item The data point is then allotted to the class that has the maximum probability.
 \end{itemize}
 
+\subsection{Bayes Classifier, GMM, Full Covariance}
+\subsubsection{Training Accuracies}
+The class-wise training accuracy obtained for varying $q$'s is as follows:
+\input{tables/acc_2B_full}
+
+\subsubsection{Dev Accuracies}
+The class-wise accuracy obtained on the dev dataset, for varying $q$'s is as follows:
+\input{tables/acc_2B_full_dev}
+
 \noi
-Due to the size of the dataset, we weren't able to completely train the models of the five classes. 
+From the tables above, we see that the maximum accuracy for the classes: coast, highway, mountain and open country are for 3 GMMs per feature. However, the accuracy for the class tall buildings increases with increasing number of GMM components.
+
+\subsubsection{Best Model}
+The highest accuracy on validation dataset is for 3 gaussian components for each feature. The overall training accuracy for the best model chosen is: 99.83739837398375\\
+
+\noi
+Applying this model to predict the test data, we get an accuracy of \textbf{74.50\%}. The confusion matrices for this model on training, validation and test data is as follows:
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.6]{images/2B/2B_full_train_conf.png}
+    \includegraphics[scale=0.6]{images/2B/2B_full_dev_conf.png}
+    \caption{Training and Dev confusion matrices for the best model with $q_i=3$, on the left and right respectively}
+\end{figure}
+
+\subsection{Bayes Classifier, GMM, Diagonal Covariance}
+\subsubsection{Training Accuracies}
+The class-wise training accuracy obtained for varying $q$'s is as follows:
+\input{tables/acc_2B_diag}
+
+
+\subsubsection{Dev Accuracies}
+The class-wise accuracy obtained on the dev dataset, for varying $q$'s is as follows:
+\input{tables/acc_2B_diag_dev}
+
+\noi
+From the tables above, we see that the maximum accuracy for the classes: coast, highway, mountain and open country are for 5 GMMs per feature. However, the accuracy for the class tall buildings increases with increasing number of GMM components.
+
+\subsubsection{Best Model}
+The highest accuracy on validation dataset is for 5 gaussian components for each feature. The overall training accuracy for the best model chosen is: 94.71544715447155\\
+
+Applying this model to predict the test data, we get an accuracy of \textbf{73.65\%}. The confusion matrices for this model on training, validation and test data is as follows:
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.6]{images/2B/2B_diag_train_conf.png}
+    \includegraphics[scale=0.6]{images/2B/2B_diag_dev_conf.png}
+    \caption{Training and Dev confusion matrices for the best model with $q_i=5$, on the left and right respectively}
+\end{figure}
+
 \end{document}
