@@ -425,18 +425,18 @@ The confusion matrix obtained for the model with $q_i=5$ are as follows:
 The contour maps and decision surfaces obtained, with $q_i=5$ are as follows:
 \begin{figure}[H]
     \hspace{-1em}
-    \includegraphics[scale=0.45]{images/1B/1b_full_contours.png}
-    \includegraphics[scale=0.45]{images/1B/1b_full_decision_surfaces.png}
+    \includegraphics[scale=0.5]{images/1B/1b_full_contours.png}
+    \includegraphics[scale=0.5]{images/1B/1b_full_decision_surfaces.png}
     \caption{Contour Maps, Decision Surfaces obtained for $q_i=5$, on the left and right respectively.}
 \end{figure}
 \vspace{-1em}
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.45]{images/1B/1b_full_ds_contours.png}
+    \includegraphics[scale=0.5]{images/1B/1b_full_ds_contours.png}
     \caption{Overlap plot of the decision surface and contours.}
 \end{figure}
 
-\subsection{Bayes Classifier, GMM, diagonal covariance}
+\subsection{Bayes Classifier, GMM, Diagonal covariance}
 \subsubsection{Training and Validation accuracy}
 Gaussian multi-modal training (with threshold of the increment in total log-likelihood functions as 0.01) with diagonal covariance matrix was used, for the number of gaussian components Q = {2,3,4,5,6,7,8,9} to estimate the parameters - $\mu_q$, $C_q$, $N_q$ and $w_q$ for each gaussian component - and predict the classes of the training data (train.csv) and cross-validation (70\% of dev.csv). The table \ref{tab:cv1b} shows the results obtained.
 \input{tables/acc_1B_cv}
@@ -600,7 +600,7 @@ The confusion matrices obtained are as follows:
 \end{figure}
 
 
-\subsection{Bayes Classifier, GMM, diagonal covariance}
+\subsection{Bayes Classifier, GMM, Diagonal covariance}
 \subsubsection{Training and Validation Accuracy}
 The accuracy obtained on training the data 2A on GMM model with diagonal covariance matrix is as in \autoref{tab:acc2a}.
 \input{tables/acc_2A_diag}
@@ -698,9 +698,18 @@ The highest accuracy on validation dataset is for 5 gaussian components for each
 Applying this model to predict the test data, we get an accuracy of \textbf{73.65\%}. The confusion matrices for this model on training, validation and test data is as follows:
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.6]{images/2B/2B_diag_train_conf.png}
-    \includegraphics[scale=0.6]{images/2B/2B_diag_dev_conf.png}
+    \includegraphics[scale=0.55]{images/2B/2B_diag_train_conf.png}
+    \includegraphics[scale=0.55]{images/2B/2B_diag_dev_conf.png}
     \caption{Training and Dev confusion matrices for the best model with $q_i=5$, on the left and right respectively}
 \end{figure}
+
+\subsection{Inference}
+From \autoref{tab:2B_full_train}, \autoref{tab:2B_full_dev}, \autoref{tab:2B_diag_train} and \autoref{tab:2B_diag_dev}, we can observe the follows:
+\begin{itemize}
+    \itemsep0em
+    \item The training accuracy increases as the number of components per feature increases irrespective of the type of covariance matrix.
+    \item For the classes: Coast and Tall Building, full covariance models better fit the data than the diagonal covariance models. This indicates that the features have variations in directions that aren't parallel to the coordinate axis. 
+    \item For the classes: highway, mountain and open country, diagonal covariance models better fit the data. Additionally we also note that that accuracy doesn't increase indiscriminately as a function of $q_i$, but that it peaks at an intermediate value. This could mean that the features have variations in the direction parallel to the coordinate axis and that the complexity of the data is best explained by an intermediate number of components per feature.
+\end{itemize}
 
 \end{document}
