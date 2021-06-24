@@ -239,7 +239,7 @@ Where $\omega_{i}$ are the parameters to be found through regression, $\phi_{i}(
 
 The results obtained for various degrees of complexities are discussed below. 
 
-\subsection{Degree of complexity: $2$}
+\subsection{Degree of complexity: 2}
 With degree of complexity set to 2, the number of parameters in our model are:
 \begin{equation}
 \begin{split}
@@ -276,7 +276,7 @@ The $E_{rms}$ over train, validation and test data is obtained to be:
     \item From the above two points, we conclude that we have an oversimplified model with a high bias. Increasing the complexity would be beneficial.
 \end{itemize}
 
-\subsection{Degree of complexity: $3$}
+\subsection{Degree of complexity: 3}
 The number of parameters to be estimated for this model are: 
 \begin{equation}
     \begin{split}
@@ -314,7 +314,7 @@ The $E_{rms}$ over Train, Validation and Test data is obtained to be:
     \item From the above points we conclude that this model too is oversimplified and thus fails to perform well over Train, Validation as well as Test data. Our model thus has a high bias error similar to model of complexity 2. 
 \end{itemize}
 
-\subsection{Degree of complexity: $6$}
+\subsection{Degree of complexity: 6}
 The number of parameters to be estimated are-
 \begin{equation}
     \begin{split}
@@ -441,7 +441,9 @@ and
 
 where K is the number of clusters and $\lambda$ is the regularization parameter. 
 Running gridsearch on regularization parameter and number of clusters, the result is as given in the table 
-\input{tables/t3_D2_tikh}.
+\input{tables/t3_D2_tikh}
+
+\noi
 We can see in the tables that no regularization is required, and the optimal number of clusters is 17 (similar to the previous two cases).
 Applying this model on training and test data, we get the figure \ref{fig:gaus_ds2_tikh}
 \begin{figure}
@@ -454,18 +456,16 @@ Applying this model on training and test data, we get the figure \ref{fig:gaus_d
 
 \subsubsection{Observations}
 \begin{itemize}
-    \item 
-Comparing the different regularization methods, we can see that there is no overfitting on the data. Applying any form regularization on the full data worsens the errors. \\
-\item \noi
-\textcolor{blue}{The lowest $E_{rms}$ values obtained are as follows:
-\begin{itemize}
-    \itemsep0em
-    \item Training $E_{rms}$: $582.69855$
-    \item Testing $E_{rms}$: $308.31.9631$
-\end{itemize}
-}
-\item As we can see in the tables 6, 7 and 8, the best gaussian model for the data is the one with no regularization and having 18/17 clusters.
-\item Compared to the best polynomial model (degree 6 with no regularization), the errors in gaussian basis model are orders of magnitude higher. Hence for Dataset 2, polynomial model gives the best fit.
+    \item Comparing the different regularization methods, we can see that there is no overfitting on the data. Applying any form regularization on the full data worsens the errors.
+    \item \textcolor{blue}{The lowest $E_{rms}$ values obtained are as follows:
+    \begin{itemize}
+        \itemsep0em
+        \item Training $E_{rms}$: $2.6985$
+        \item Testing $E_{rms}$: $1.9631$
+    \end{itemize}
+    }
+    \item As we can see in the tables 6, 7 and 8, the best gaussian model for the data is the one with no regularization and having 18/17 clusters.
+    \item Compared to the best polynomial model (degree 6 with no regularization), the errors in gaussian basis model are orders of magnitude higher. Hence for Dataset 2, polynomial model gives the best fit.
 \end{itemize}
 
 \subsection{Dataset 3}
