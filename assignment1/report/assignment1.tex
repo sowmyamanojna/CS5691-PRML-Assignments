@@ -15,7 +15,7 @@
 \hypersetup{colorlinks,breaklinks,urlcolor=linkcolour,linkcolor=linkcolour}
 \usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
 
-\usepackage{xcolor}
+%%\usepackage{xcolor}
 \usepackage{fontspec}
 \setmainfont{Cambria}
 
@@ -59,7 +59,7 @@
         \vspace{3em}
         
         \rule{0.9\linewidth}{0.5mm} \\[0.4cm]
-        {\Large{\bfseries{CS5691 Assignment 1}}} \\
+        {\Large{\bfseries{CS5691 Assignemnt 1}}} \\
         \rule{0.9\linewidth}{0.5mm} \\[3 em]    
         
         Team Members: \\
@@ -72,7 +72,7 @@
         
         \vspace{5em}    
         
-            \includegraphics[scale = 0.09]{images/iitmlogo.png}
+            \includegraphics[scale=0.09]{images/iitmlogo.png}
         \end{center}
     \end{titlepage}
 {\hypersetup{linkcolor=black}
@@ -126,7 +126,7 @@ From the above plots, we can see that:
     \itemsep0em
     \item Lower degree polynomial curves aren't able to model the dataset well (i.e.) the curve doesn't pass through all the data points.
     \item Higher degree polynomials are able to fit the dataset well. The curves pass through all the data points.
-    \item However, the polynomial degree 9 curve has a large variance along the y-axis than the remaining polynomial degrees.
+    \item However, the polynomial degree 9 curve seems to have a lot more variance along the y-axis than the remaining polynomial degrees.
 \end{itemize}
 
 \subsubsection{Sample Size: 200}
@@ -145,7 +145,7 @@ From the above plots, we can see that:
     \itemsep0em
     \item Lower degree polynomial curves aren't able to model the dataset well (i.e.) the curve doesn't pass through all the data points.
     \item Higher degree polynomials are able to fit the dataset well. The curves pass through all the data points.
-    \item We can see a clear difference between the degree 9 fit when the dataset size was 10 to that when the dataset size is 200. The increase in dataset size helped decrease the variance and overfitting.
+    \item We can see a clear difference between the degree 9 fit when the dataset size was 10 to that when the dataset size is 200. The increase in dataset size helped decrease the variance and potential overfitting.
 \end{itemize}
 
 \subsubsection{Effects of Regularization}
@@ -180,7 +180,7 @@ From the above plots, we can see that:
     \itemsep0em
     \item Regularization was only applied to the degree 9 polynomial, with 10 data points as it had the same number of data points and parameters. 
     \item We can see that, the curve starts becoming more flatter with increasing value of the  regularization parameter $\lambda$.
-    \item This could be because, the weights corresponding to higher degrees became smaller.
+    \item This could be because, the weights corresponding to higher degrees would become smaller.
 \end{itemize}
 
 \subsection{Best Model}
@@ -197,26 +197,19 @@ The best fit, $d:6$ and $\lambda:0$ is visualized as follows:
 The training and testing error obtained from the best model is as follows:
 \begin{itemize}
     \itemsep0em
-    \item Training Error: $0.09974659089780814$
-    \item Testing Error: $0.09793071099285168$
+    \item Training Error: 0.09974659089780814
+    \item Testing Error: 0.09793071099285168
 \end{itemize}
 }
 
 \section{Task 2}
-\subsection{Mathematical Formulation}
 The dataset allotted to our group for task 2 is \tt{function1\_2d.csv}, which has a 2 dimensional feature vector and 1 dimensional target output to be predicted. We assume that the target variable is of the form:
-
-\begin{equation}
-\label{eq:1}
-    y=\sum_{i=0}\omega _{i}\phi_{i}(x_1,x_2)  +\epsilon 
+\begin{equation}\label{eq:1}
+    y=\sum_{i=0}\omega _{i}\phi_{i}(x1,x2)  +\epsilon 
 \end{equation}
+Where $\omega_{i}$ are the parameters to be found through regression, $\phi_{i}(x1,x2)$ is a polynomial in x1 and x2 and $\epsilon$ is the normally distributed error. 
+\\ A breakdown of the steps undertaken is:
 
-\noi
-Where $\omega_{i}$ are the parameters to be found through regression, $\phi_{i}(x1,x2)$ is a polynomial in $x_1$ and $x_2$ and $\epsilon$ is the normally distributed error. 
-\\ 
-
-\noi
-A breakdown of the steps undertaken is:
 \begin{itemize}
     \itemsep0em
     \item The function \tt{create\_phi} generates the design matrix $\phi(x1,x2)$ for the required degree of complexity.
@@ -226,7 +219,7 @@ A breakdown of the steps undertaken is:
     \end{equation}
     where d is the dimension of the original feature vector (=2 for Task 2) and M is the degree of complexity of the model.
     \item To avoid overfitting, as a general rule $\tt{N}>10*D$
-    \item The design matrix is passed to the function \tt{regularized\_pseudo\_inv} , which generates the Moore-Penrose inverse of the given design matrix(X) and specified value of regularization parameter lambda($\lambda$).
+    \item The design matrix is passed to the function \tt{regularized\_pseudo\_inv} , which generates the moore-penrose inverse of the given design matrix(X) and specified value of regularization parameter lambda($\lambda$).
     
     \begin{equation}
          (\lambda I+X^{T}X)^{-1}X^{T}
@@ -246,7 +239,7 @@ A breakdown of the steps undertaken is:
 
 The results obtained for various degrees of complexities are discussed below. 
 
-\subsection{Degree of complexity: 2}
+\subsection{Degree of complexity: $2$}
 With degree of complexity set to 2, the number of parameters in our model are:
 \begin{equation}
 \begin{split}
@@ -257,7 +250,7 @@ With degree of complexity set to 2, the number of parameters in our model are:
 \end{equation}
 
 \noi
-Since the number of parameters to be estimated is very less compared to our sample sizes, we do not expect to see over fitting, and hence regularization is not used. 
+Since the number of parameters to be estimated is very less compared to our sample sizes, we do not expect to see over fitting, and hence regularisation is not used. 
 
 \subsubsection{Surface plots of Approximated function}
 Surface plots obtained for various train sizes are as follows: 
@@ -283,7 +276,7 @@ The $E_{rms}$ over train, validation and test data is obtained to be:
     \item From the above two points, we conclude that we have an oversimplified model with a high bias. Increasing the complexity would be beneficial.
 \end{itemize}
 
-\subsection{Degree of complexity: 3}
+\subsection{Degree of complexity: $3$}
 The number of parameters to be estimated for this model are: 
 \begin{equation}
     \begin{split}
@@ -293,7 +286,7 @@ The number of parameters to be estimated for this model are:
 \end{equation}
 
 \noi
-Since for train data size $50, 50<10*10$, we apply regularization. As reported in the $E_{rms}$ table, the errors increases on applying regularization. Regularization need not be applied for train data size 200 and 500. 
+Since for train data size 50, \tt{50}<10*10, we apply regularization. As reported in the $E_{rms}$ table, the errors increases on applying regularization. Regularization need not be applied for train data size 200 and 500. 
 
 \subsubsection{Surface plots of the approximated function}
 The surface plots of approximated function for various train data sizes is: 
@@ -321,7 +314,7 @@ The $E_{rms}$ over Train, Validation and Test data is obtained to be:
     \item From the above points we conclude that this model too is oversimplified and thus fails to perform well over Train, Validation as well as Test data. Our model thus has a high bias error similar to model of complexity 2. 
 \end{itemize}
 
-\subsection{Degree of complexity: 6}
+\subsection{Degree of complexity: $6$}
 The number of parameters to be estimated are-
 \begin{equation}
     \begin{split}
@@ -381,7 +374,6 @@ Using the optimal model of degree 6 and train data size 200, model output vs tar
 
 \break
 \section{Task 3}
-\subsection{Mathematical Formulation}
 Linear regression using Gaussian basis function is given as 
 \begin{equation}
     y(\vec{x},\vec{w}) = \sum_{i=0}^{D-1} \omega_{i}\phi_{i}(\vec{x})
@@ -390,9 +382,54 @@ where $D$ is a hyperparameter. The basis function
 \begin{equation}
     \phi_{i} = \exp\Big(\frac{-|\vec{x} - \vec{\mu}_i|^2}{\sigma^2}\Big)
 \end{equation}
-where $i = 1,2 ... D-1$. The $\mu$ are the mean vectors for $D-1$ kernels made from the data set. The value of the mean vectors are found using the KMeans clustering algorithm. In this work, the \tt{sklearn} KMeans function was used.\\
+where $i = 1,2 ... D-1$. The $\mu$ are the mean vectors for $D-1$ kernels made from the data set. The value of the mean vectors are found using the KMeans clustering algorithm. In this work, the \tt{sklearn} KMeans function was used. The optimum number of clusters for the dataset 2 - ``\texttt{function\_12d.csv}'' was found to be 10 clusters. For the dataset 3 - ``\tt{1\_bias\_clean.csv}'', the optimum number of clusters are 9.
+
+\subsection{Dataset 2}
+Using Gaussian-basis functions for the regression, three cases of regularization were carried out as follows:
+
+\subsubsection{No Regularization}
+With no regularization, the only hyperparameter is the number of clusters. Building models for number of clusters ranging from 1 to 26, the Sum of Squared errors for the train, cross-validation and test data are in \autoref{table:erms_ds2_noreg_gaus}.
+\input{tables/ds2_gaus_noreg}
 
 \noi
+The variation of cross-validation error with the number of clusters is as in \autoref{fig:ds2_noreg_gaus}. We can infer from the table and the figure, the optimal number of clusters is \textbf{18}.
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.5]{images/errorplot_ds2_no_reg.png}
+    \caption{Plot of CV error with number of clusters, on dataset 2 and no regularization}
+    \label{fig:ds2_noreg_gaus}
+\end{figure}
+
+Using the model with 18 clusters on the training and test data, the function in \autoref{fig:surf_ds2_gaus} was built. 
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.4]{images/surface_gaus_ds2_noreg.png}
+    \caption{Best model of gaussian basis with no regularization for dataset2, with training data superimposed.}
+    \label{fig:surf_ds2_gaus}
+\end{figure}
+
+\noi
+The performance on training and test data are shown in figure 
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.4]{images/train_ds2_noreg.png}
+    \includegraphics[scale=0.4]{images/test_ds2_noreg.png}
+    \caption{Predictions on train and test data using gaussian basis functions with no regularization on dataset2}
+    \label{fig:train_teat_ds2_noreg_gaus}
+\end{figure}
+
+\subsubsection{Quadratic regularization}
+Performing Quadratic regularization as described in section 2, a gridsearch was performed for the best regularization parameter and number of clusters, as given in table 
+\input{tables/t3_D2_l2}
+The best model on validation data does not require any regularization. The optimum number of clusters is similar to the no regularization case of 18. Applying this model on the training and test data, we get the figure \ref{fig:gaus_ds2_l2}
+\begin{figure}
+    \centering
+    \includegraphics[scale=0.25]{images/train_ds2_L2reg.png}
+    \includegraphics[scale=0.25]{images/test_ds2_L2reg.png}
+    \caption{Gaussian basis model with 18 clusters on dataset2}
+    \label{fig:gaus_ds2_l2}
+\end{figure}
+\subsubsection{Tikhonov regularization}
 The Tikhonov regularization term is given by $\vec{\omega}$ = $(\Phi*T\Phi + \lambda \Tilde{\Phi})^{-1} \Phi^T \vec{t}$. The $\Tilde{\Phi}$ term is defined as 
 \begin{equation}
     \Tilde{\Phi} = [\Tilde{\phi}]_{i,j = 1}^{K}
@@ -404,89 +441,32 @@ and
 
 where K is the number of clusters and $\lambda$ is the regularization parameter. 
 Running gridsearch on regularization parameter and number of clusters, the result is as given in the table 
-\input{tables/t3_D2_tikh}
-
-\subsection{Dataset 2}
-Using Gaussian-basis functions for the regression, three cases of regularization were carried out as follows:
-
-\subsubsection{No Regularization}
-With no regularization, the only hyperparameter is the number of clusters. Building models for number of clusters ranging from 1 to 26, the Sum of Squared errors for the train, cross-validation and test data are in \autoref{table:erms_ds2_noreg_gaus}.
-\input{tables/ds2_gaus_noreg}
-
-\noi
-The variation of cross-validation error with the number of clusters is as in \autoref{fig:ds2_noreg_gaus}. We can infer from the table and the figure, the optimal number of clusters is \textbf{20}.
-\begin{figure}[H]
-    \centering
-    \includegraphics[scale = 0.5]{images/errorplot_ds2_no_reg.png}
-    \caption{Plot of CV error with number of clusters, on dataset 2 and no regularization}
-    \label{fig:ds2_noreg_gaus}
-\end{figure}
-
-\noi
-Using the model with 20 clusters on the training and test data, the function in \autoref{fig:surf_ds2_gaus} was built. 
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[scale = 0.5]{images/surface_gaus_ds2_noreg.png}
-    \caption{Best model of Gaussian basis with no regularization for dataset 2, with training data superimposed.}
-    \label{fig:surf_ds2_gaus}
-\end{figure}
-
-The performance on training and test data are shown in figure 
-\begin{figure}[H]
-    \centering
-    \includegraphics[scale = 0.4]{images/train_ds2_noreg.png}
-\end{figure}
-\begin{figure}[H]
-    \centering
-    \includegraphics[scale = 0.4]{images/test_ds2_noreg.png}
-    \caption{Predictions on train and test data using gaussian basis functions with no regularization on dataset 2}
-    \label{fig:train_test_ds2_noreg_gaus}
-\end{figure}
-
-\subsubsection{Quadratic regularization}
-Performing Quadratic regularization as described in section 2, a gridsearch was performed for the best regularization parameter and number of clusters, as given in table 
-\input{tables/t3_D2_l2}
-
-\noi
-The best model on validation data does not require any regularization. The optimum number of clusters is similar to the no regularization case of 20. Applying this model on the training and test data, we get the \autoref{fig:gaus_ds2_l2}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[scale=0.5]{images/train_ds2_L2reg.png}
-    \end{figure}
-\begin{figure}[H]
-    \centering
-    \includegraphics[scale=0.5]{images/test_ds2_L2reg.png}
-    \caption{Gaussian basis model with 18 clusters on dataset 2}
-    \label{fig:gaus_ds2_l2}
-\end{figure}
-
-\subsubsection{Tikhonov regularization}
+\input{tables/t3_D2_tikh}.
 We can see in the tables that no regularization is required, and the optimal number of clusters is 17 (similar to the previous two cases).
-Applying this model on training and test data, we get the \autoref{fig:gaus_ds2_tikh}
-\begin{figure}[H]
+Applying this model on training and test data, we get the figure \ref{fig:gaus_ds2_tikh}
+\begin{figure}
     \centering
-    \includegraphics[scale=0.5]{images/train_ds2_tikhreg.png}
-\end{figure}
-\begin{figure}[H]
-    \centering
-    \includegraphics[scale=0.5]{images/test_ds2_tikhreg.png}
+    \includegraphics[scale=0.25]{images/train_ds2_tikhreg.png}
+    \includegraphics[scale=0.25]{images/test_ds2_tikhreg.png}
     \caption{Gaussian basis model with 17 clusters on dataset 2}
     \label{fig:gaus_ds2_tikh}
 \end{figure}
 
-\subsubsection{Inference}
+\subsubsection{Observations}
+\begin{itemize}
+    \item 
 Comparing the different regularization methods, we can see that there is no overfitting on the data. Applying any form regularization on the full data worsens the errors. \\
-
-\noi
+\item \noi
 \textcolor{blue}{The lowest $E_{rms}$ values obtained are as follows:
 \begin{itemize}
     \itemsep0em
-    \item Training $E_{rms}$: $1.4786466027685028$
-    \item Testing $E_{rms}$: $1.4982621391957776$
+    \item Training $E_{rms}$: $582.69855$
+    \item Testing $E_{rms}$: $308.31.9631$
 \end{itemize}
 }
+\item As we can see in the tables 6, 7 and 8, the best gaussian model for the data is the one with no regularization and having 18/17 clusters.
+\item Compared to the best polynomial model (degree 6 with no regularization), the errors in gaussian basis model are orders of magnitude higher. Hence for Dataset 2, polynomial model gives the best fit.
+\end{itemize}
 
 \subsection{Dataset 3}
 As the dataset was a real world dataset, the following preprocessing steps were carried out.
@@ -495,13 +475,13 @@ As the dataset was a real world dataset, the following preprocessing steps were 
     \item \tt{NaN} values: All datapoints that had \tt{NaN} values in any of the columns were removed. 
         \begin{figure}[H]
             \centering
-            \includegraphics[scale=0.3]{images/missingno.png}
+            \includegraphics[scale=0.2]{images/missingno.png}
             \caption{Visualization of the original dataset. White lines indicate \tt{NaN}s.}
         \end{figure}
 
         \begin{figure}[H]
             \centering
-            \includegraphics[scale=0.3]{images/cleaned.png}
+            \includegraphics[scale=0.2]{images/cleaned.png}
             \caption{Visualization of the dataset after the removal of \tt{NaN}s.}
         \end{figure}
 
@@ -661,14 +641,12 @@ The histogram and scatter plot of the target and the model output is as follows 
 \end{figure}
 
 \noi
-\textcolor{blue}{
 The lowest Erms values obtained are as follows:
 \begin{itemize}
     \itemsep0em
     \item Training $E_{rms}$: $2.249936156869166$
     \item Testing $E_{rms}$: $2.302560104383557$
 \end{itemize}
-}
 
 \subsubsection{Tikhonov Regularization} 
 As defined in section 3.1, tikhonov regularization was applied to data set 3. Using the regularization coefficient and number of clusters as hyperparameters, gridsearch was done on the train, validation and test set and the model performing best on validation set was chosen. 
@@ -676,11 +654,11 @@ As defined in section 3.1, tikhonov regularization was applied to data set 3. Us
 The following table gives the Erms using different combinations of hyperparameter values:
 
 \input{tables/t3_D3_tikh_min}
-As seen in the table, the optimum value of the hyperparameters for  \tt{Next\_Tmin} is \textbf{90} clusters and $\lambda$ value of \textbf{10}. Using these values on the training and test data gives us the scatter plots in \autoref{fig:ds3_tikh_min}
+As seen in the table, the optimum value of the hyperparameters for  \tt{Next\_Tmin} is \textbf{90} clusters and $\lambda$ value of \textbf{10}. Using these values on the training and test data gives us the scatter plots in figure \ref{fig:ds3_tikh_min}
 \begin{figure}
     \centering
-    \includegraphics[scale = 0.4]{images/train_ds3_tikh_min.png}
-    \includegraphics[scale = 0.4]{images/test_ds3_tikh_min.png}
+    \includegraphics[scale=0.4]{images/train_ds3_tikh_min.png}
+    \includegraphics[scale=0.4]{images/test_ds3_tikh_min.png}
     \caption{Gaussian basis model on dataset3 using tikhonov regularization for \tt{Next\_Tmin}}
     \label{fig:ds3_tikh_min}
 \end{figure}
@@ -694,24 +672,24 @@ The lowest Erms values obtained are as follows:
 The following table gives the Erms using different combinations of hyperparameter values:
 
 \input{tables/t3_D3_tikh_max}
-As seen in the table, the optimum value of the hyperparameters for  \tt{Next\_Tmax} is \textbf{90} clusters and $\lambda$ value of \textbf{0.01}. Using these values on the training and test data gives us the scatter plots in \autoref{fig:ds3_tikh_max}
+As seen in the table, the optimum value of the hyperparameters for  \tt{Next\_Tmax} is \textbf{90} clusters and $\lambda$ value of \textbf{0.01}. Using these values on the training and test data gives us the scatter plots in figure \ref{fig:ds3_tikh_max}
 \begin{figure}
     \centering
-    \includegraphics[scale = 0.4]{images/train_ds3_tikh_max.png}
-    \includegraphics[scale = 0.4]{images/test_ds3_tikh_max.png}
+    \includegraphics[scale=0.4]{images/train_ds3_tikh_max.png}
+    \includegraphics[scale=0.4]{images/test_ds3_tikh_max.png}
+
     \caption{Gaussian basis model on dataset3 using tikhonov regularization for \tt{Next\_Tmax}}
     \label{fig:ds3_tikh_max}
 \end{figure}
-
-\textcolor{blue}{
-\noi
 The lowest Erms values obtained are as follows:
 \begin{itemize}
     \itemsep0em
     \item Training $E_{rms}$: $1.454$
     \item Testing $E_{rms}$: $1.474$
 \end{itemize}
-}
+
+\noi
+
 
 \subsubsection{Inference}
 From the above plots we observe that:
