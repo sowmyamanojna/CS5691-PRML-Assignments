@@ -793,15 +793,15 @@ The neuron-wise surface plots obtained for the hidden and output layers is as fo
 From \autoref{HL1N1}-\autoref{OPN3}, we observe the following:
 \begin{itemize}
     \itemsep0em 
-    \item First hidden layer surface plot is non-linear (activation function is \colortt{ReLU}). However, the surfaces obtained are hyperplanes.
-    \item Responses from the second layer is highly non-linear and the surfaces are very comples.
+    \item First hidden layer surface plot is non-linear (activation function is \colortt{ReLU}). However, the surfaces obtained are intersection of hyperplanes.
+    \item Responses from the second layer is highly non-linear and the surfaces are very complex.
     \item The surface plot of the output neurons shows the selection cum localization of different classes in the latent space.
 \end{itemize}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Non-Linear SVM}
 
-The module \tt{sklearn.svm.SVC()} as described in section \ref{subsubsection:svm module} is used to build non-linear classifiers for dataset 1B with the parameter ``decision\_function\_shape'' set to ``ovr''. The module can carry out multi-class classification hence individual pair-wise models need not be built.  
+The module \tt{sklearn.svm.SVC()} as described in section \autoref{subsubsection:svm module} is used to build non-linear classifiers for dataset 1B with the parameter \tt{decision\_function\_shape} set to \tt{ovr}. The module can carry out multi-class classification hence individual pair-wise models need not be built.  
 \noi
 The kernels used for classification are:
 \begin{itemize}
@@ -897,7 +897,7 @@ The validation accuracy is highest for [C:1.0, gamma:1.0]. Hence those hyper-par
 \end{figure}
 
 \noi
-Observations:
+\subsubsection{Observations}
 \begin{enumerate}
 \item The distinguishing feature between \autoref{myfig:gauss_db} and \autoref{myfig:poly_db} is the behavior at the edges. Also, the decision boundary obtained using polynomial kernel has a discontinuity in the region $x_1 \in (-0.5,0.5)$ and $x_2 \in (3,4)$
 \item The distribution of support vectors is very distinct. In polynomial kernel, the support vectors are majorly near the center. While in the gaussian kernel, the support vectors are more uniformly distributed.
