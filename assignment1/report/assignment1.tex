@@ -59,7 +59,7 @@
         \vspace{3em}
         
         \rule{0.9\linewidth}{0.5mm} \\[0.4cm]
-        {\Large{\bfseries{CS5691 Assignemnt 1}}} \\
+        {\Large{\bfseries{CS5691 Assignment 1}}} \\
         \rule{0.9\linewidth}{0.5mm} \\[3 em]    
         
         Team Members: \\
@@ -96,15 +96,15 @@ Where, $\lambda\mathit{I}$ is the regularization term.
 In order to pick the parameters that best fit the dataset, a grid search was performed on the dataset. Prior to this, the dataset was split into training set, validation set and the testing set, in the ratio 70:10 (from the training data) :30. The results obtained is as follows:\\
 
 \begin{minipage}{0.4\textwidth}
-\input{tables/T1_loss_10}
+\input{tables/T1_loss_200}
 \end{minipage}\hfill%
 \begin{minipage}{0.4\textwidth}
-\input{tables/T1_loss_200}
+\input{tables/T1_loss_10}
 \end{minipage}%
 
 \vspace{1em}
 \noi
-Regularization was only applied in case of degree 9.\\
+Regularization was only applied in case of degree 9, 10 data points.\\
 
 \noi
 \textcolor{blue}{From the table above, we see that the best fit for the data is obtained for degree: $6$ and $\lambda:0$.}
@@ -143,9 +143,9 @@ The polynomial models and the corresponding fits obtained for sample size of 200
 From the above plots, we can see that:
 \begin{itemize}
     \itemsep0em
-    \item Lower degree polynomial curves aren't able to model the dataset well (i.e.) the curve doesn't pass through all the data points.
+    \item Lower degree polynomial curves aren't able to model the dataset well (i.e.) the curve doesn't pass through all the data points. (High Bias)
     \item Higher degree polynomials are able to fit the dataset well. The curves pass through all the data points.
-    \item We can see a clear difference between the degree 9 fit when the dataset size was 10 to that when the dataset size is 200. The increase in dataset size helped decrease the variance and potential overfitting.
+    \item We can see a clear difference between the degree 9 fit when the dataset size was 10 to that when the dataset size is 200. The increase in dataset size helped decrease the variance and potential overfitting. (High Variance)
 \end{itemize}
 
 \subsubsection{Effects of Regularization}
@@ -205,29 +205,29 @@ The training and testing error obtained from the best model is as follows:
 \section{Task 2}
 The dataset allotted to our group for task 2 is \tt{function1\_2d.csv}, which has a 2 dimensional feature vector and 1 dimensional target output to be predicted. We assume that the target variable is of the form:
 \begin{equation}\label{eq:1}
-    y=\sum_{i=0}\omega _{i}\phi_{i}(x1,x2)  +\epsilon 
+    y=\sum_{i=0}^M\omega _{i}\phi_{i}(x_1,x_2)  +\epsilon 
 \end{equation}
-Where $\omega_{i}$ are the parameters to be found through regression, $\phi_{i}(x1,x2)$ is a polynomial in x1 and x2 and $\epsilon$ is the normally distributed error. 
+Where $\omega_{i}$ are the parameters to be found through regression, $\phi_{i}(x_1,x_2)$ is a polynomial in $x_1$ and $x_2$ and $\epsilon$ is the normally distributed error. 
 \\ A breakdown of the steps undertaken is:
 
 \begin{itemize}
     \itemsep0em
-    \item The function \tt{create\_phi} generates the design matrix $\phi(x1,x2)$ for the required degree of complexity.
+    \item The function \tt{create\_phi} generates the design matrix $\phi(x_1,x_2)$ for the required degree of complexity.
     The number of attributes in the generated design matrix is given by:
     \begin{equation}
         D=\frac{(M+d)!}{M!\,d!}
     \end{equation}
-    where d is the dimension of the original feature vector (=2 for Task 2) and M is the degree of complexity of the model.
+    where $d$ is the dimension of the original feature vector (=2 for Task 2) and $M$ is the degree of complexity of the model.
     \item To avoid overfitting, as a general rule $\tt{N}>10*D$
     \item The design matrix is passed to the function \tt{regularized\_pseudo\_inv} , which generates the moore-penrose inverse of the given design matrix(X) and specified value of regularization parameter lambda($\lambda$).
     
     \begin{equation}
-         (\lambda I+X^{T}X)^{-1}X^{T}
+         (X^{T}X+\lambda I)^{-1}X^{T}
     \end{equation}
     
     \item The function \tt{opt\_regularized\_param} is then used to obtain optimum values of $\vec{\omega}$
     \begin{equation}
-        \vec{\omega} = [(\lambda I+X^{T}X)^{-1}X^{T}].y
+        \vec{\omega} = [(X^{T}X+\lambda I)^{-1}X^{T}].y
     \end{equation}
     Where $y$ is the output as defined in the \autoref{eq:1}.
     
@@ -243,14 +243,14 @@ The results obtained for various degrees of complexities are discussed below.
 With degree of complexity set to 2, the number of parameters in our model are:
 \begin{equation}
 \begin{split}
- D &= \frac{(d+M)!}{d!\,M!} \\
+ D &= \frac{(M+d)!}{M!\,d!} \\
    & =\frac{(4!)}{2!\,2!} \\
    & =6
 \end{split}
 \end{equation}
 
 \noi
-Since the number of parameters to be estimated is very less compared to our sample sizes, we do not expect to see over fitting, and hence regularisation is not used. 
+Since the number of parameters to be estimated is lesser than the sample sizes, we do not expect over fitting, and hence, regularisation is not used. 
 
 \subsubsection{Surface plots of Approximated function}
 Surface plots obtained for various train sizes are as follows: 
@@ -382,7 +382,7 @@ where $D$ is a hyperparameter. The basis function
 \begin{equation}
     \phi_{i} = \exp\Big(\frac{-|\vec{x} - \vec{\mu}_i|^2}{\sigma^2}\Big)
 \end{equation}
-where $i = 1,2 ... D-1$. The $\mu$ are the mean vectors for $D-1$ kernels made from the data set. The value of the mean vectors are found using the KMeans clustering algorithm. In this work, the \tt{sklearn} KMeans function was used. The optimum number of clusters for the dataset 2 - ``\texttt{function\_12d.csv}'' was found to be 10 clusters. For the dataset 3 - ``\tt{1\_bias\_clean.csv}'', the optimum number of clusters are 9.
+where $i = 0,2 ... D-1$. The $\mu$ are the mean vectors for $D-1$ kernels made from the data set. The value of the mean vectors are found using the KMeans clustering algorithm. In this work, the \tt{sklearn} KMeans function was used. The optimum number of clusters for the dataset 2 - ``\texttt{function\_12d.csv}'' was found to be 10 clusters. For the dataset 3 - ``\tt{1\_bias\_clean.csv}'', the optimum number of clusters are 9.
 
 \subsection{Dataset 2}
 Using Gaussian-basis functions for the regression, three cases of regularization were carried out as follows:
@@ -400,6 +400,7 @@ The variation of cross-validation error with the number of clusters is as in \au
     \label{fig:ds2_noreg_gaus}
 \end{figure}
 
+\noi
 Using the model with 18 clusters on the training and test data, the function in \autoref{fig:surf_ds2_gaus} was built. 
 \begin{figure}[H]
     \centering
@@ -421,7 +422,9 @@ The performance on training and test data are shown in figure
 \subsubsection{Quadratic regularization}
 Performing Quadratic regularization as described in section 2, a gridsearch was performed for the best regularization parameter and number of clusters, as given in table 
 \input{tables/t3_D2_l2}
-The best model on validation data does not require any regularization. The optimum number of clusters is similar to the no regularization case of 18. Applying this model on the training and test data, we get the figure \ref{fig:gaus_ds2_l2}
+
+\noi
+The best model on validation data does not require any regularization. The optimum number of clusters is similar to the no regularization case of 18. Applying this model on the training and test data, we get the \autoref{fig:gaus_ds2_l2}
 \begin{figure}
     \centering
     \includegraphics[scale=0.25]{images/train_ds2_L2reg.png}
@@ -430,7 +433,7 @@ The best model on validation data does not require any regularization. The optim
     \label{fig:gaus_ds2_l2}
 \end{figure}
 \subsubsection{Tikhonov regularization}
-The Tikhonov regularization term is given by $\vec{\omega}$ = $(\Phi*T\Phi + \lambda \Tilde{\Phi})^{-1} \Phi^T \vec{t}$. The $\Tilde{\Phi}$ term is defined as 
+The Tikhonov regularization term is given by $\vec{\omega}$ = $(\Phi^T\Phi + \lambda \Tilde{\Phi})^{-1} \Phi^T \vec{t}$. The $\Tilde{\Phi}$ term is defined as 
 \begin{equation}
     \Tilde{\Phi} = [\Tilde{\phi}]_{i,j = 1}^{K}
 \end{equation}
@@ -445,7 +448,7 @@ Running gridsearch on regularization parameter and number of clusters, the resul
 
 \noi
 We can see in the tables that no regularization is required, and the optimal number of clusters is 17 (similar to the previous two cases).
-Applying this model on training and test data, we get the figure \ref{fig:gaus_ds2_tikh}
+Applying this model on training and test data, we get the \autoref{fig:gaus_ds2_tikh}
 \begin{figure}
     \centering
     \includegraphics[scale=0.25]{images/train_ds2_tikhreg.png}
@@ -492,14 +495,14 @@ As the dataset was a real world dataset, the following preprocessing steps were 
 
 
 \subsubsection{No Regularization}
-The hyperparameter - number of clusters was sweeped and the value that resulted in the lowest validation SSE was chosen. The following cluster numbers were swept for: [1, 2, 3, 4, 5, 6, 7, 8, 9, 15, 20, 25, 30, 40, 50, 60, 70, 80, 90, 100].
+The hyperparameter - number of clusters was sweeped and the value that resulted in the lowest validation RMSE was chosen. The following cluster numbers were swept for: [1, 2, 3, 4, 5, 6, 7, 8, 9, 15, 20, 25, 30, 40, 50, 60, 70, 80, 90, 100].
 
 \paragraph{Predicting: \tt{Next\_Tmin}}
-The $E_{rms}$ on the training and validation dataset and the SSE distances of samples to their closest cluster center obtained across the number of clusters is as follows:
+The $E_{rms}$ on the training and validation dataset and the RMSE distances of samples to their closest cluster center obtained across the number of clusters is as follows:
 \begin{figure}[H]
      \centering
      \includegraphics[scale=0.4]{images/t3_d3/no_reg/tmin_errors.png}
-     \caption{K-Means inertia, SSE on training and validation data from the left to right respectively.}
+     \caption{K-Means inertia, RMSE on training and validation data from the left to right respectively.}
 \end{figure}
 
 \vspace{-1em}
@@ -584,10 +587,10 @@ Optimal parameters using quadratic regularization is given by $\vec{\omega^*}$ =
 $\lambda$ is the regularization parameter. The RMSE on the cross-validation set was calculated for each value. The best performing model was selected as the one having least RMSE on CV data \\
 
 \noi
-The hyperparameter - number of clusters and $\lambda$ were sweeped and the value that resulted in the lowest validation SSE was chosen. The following cluster numbers were swept for: [1, 2, 3, 4, 5, 6, 7, 8, 9, 15, 20, 25, 30, 40, 50, 60, 70, 80, 90, 100] and the following $\lambda$ values were sweeped: [0.01, 0.1,  1.0, 5.0, 10.0].
+The hyperparameter - number of clusters and $\lambda$ were sweeped and the value that resulted in the lowest validation RMSE was chosen. The following cluster numbers were swept for: $\{1\} \cup \{10:200:10\}$ and the following $\lambda$ values were sweeped: [0.01, 0.1,  1.0, 5.0, 10.0].
 
 \paragraph{Predicting: \tt{Next\_Tmin}}
-The Erms on the training and validation dataset and the SSE distances of samples to their closest cluster center obtained across the number of clusters is as follows:
+The Erms on the training and validation dataset and the RMSE distances of samples to their closest cluster center obtained across the number of clusters is as follows:
 \input{tables/tmin_l2}
 
 \noi
@@ -654,7 +657,9 @@ As defined in section 3.1, tikhonov regularization was applied to data set 3. Us
 The following table gives the Erms using different combinations of hyperparameter values:
 
 \input{tables/t3_D3_tikh_min}
-As seen in the table, the optimum value of the hyperparameters for  \tt{Next\_Tmin} is \textbf{90} clusters and $\lambda$ value of \textbf{10}. Using these values on the training and test data gives us the scatter plots in figure \ref{fig:ds3_tikh_min}
+
+\noi
+As seen in the table, the optimum value of the hyperparameters for  \tt{Next\_Tmin} is \textbf{90} clusters and $\lambda$ value of \textbf{10}. Using these values on the training and test data gives us the scatter plots in \autoref{fig:ds3_tikh_min}
 \begin{figure}
     \centering
     \includegraphics[scale=0.4]{images/train_ds3_tikh_min.png}
@@ -672,7 +677,7 @@ The lowest Erms values obtained are as follows:
 The following table gives the Erms using different combinations of hyperparameter values:
 
 \input{tables/t3_D3_tikh_max}
-As seen in the table, the optimum value of the hyperparameters for  \tt{Next\_Tmax} is \textbf{90} clusters and $\lambda$ value of \textbf{0.01}. Using these values on the training and test data gives us the scatter plots in figure \ref{fig:ds3_tikh_max}
+As seen in the table, the optimum value of the hyperparameters for  \tt{Next\_Tmax} is \textbf{90} clusters and $\lambda$ value of \textbf{0.01}. Using these values on the training and test data gives us the scatter plots in \autoref{fig:ds3_tikh_max}
 \begin{figure}
     \centering
     \includegraphics[scale=0.4]{images/train_ds3_tikh_max.png}
@@ -695,9 +700,9 @@ The lowest Erms values obtained are as follows:
 From the above plots we observe that:
 \begin{itemize}
     \itemsep0em
-    \item The model predictions are better when Tikhonov regularization is applied. The $E_{rms}$ when quadratic regularization is applied is marginally higher than when $\lambda$ is 0.
+    \item The model predictions for \tt{Next\_Tmax} are better when Tikhonov regularization is applied and No Regularization predicts \tt{Next\_Tmin} better. The $E_{rms}$ when quadratic regularization is applied is marginally higher than when $\lambda$ is 0.
     \item The predictions of the model is better when the number of clusters considered is larger and hence, the $E_{rms}$ is smaller.
-    \item In case of no-regularization, we observed that the training, validation and testing $E_{rms}$ increased at the highest number of clusters considered. This could be potentially due to improper initialization.
+    \item In case of no-regularization, we observed that the training, validation and testing $E_{rms}$ increased at the highest number of clusters considered (100/200). This could be potentially due to improper initialization.
     \item In addition we see that the variance in the prediction is lower when the number of clusters considered is lower. This can be observed in the plots below:
     \begin{figure}[H]
         \centering
