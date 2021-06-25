@@ -66,7 +66,7 @@
 	    
 	    Team Members: \\
 	    \vspace{0.5em}
-	   	\input{team_details}
+	   	\input{tables/team_details}
 
 		\vspace{1em}
 
@@ -96,7 +96,7 @@ Varying the hyperparameter : Learning Rate ($\eta$) for the Perceptron model, th
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Classes 0 and 1}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\input{1A_perceptron_acc_01}
+\input{tables/1A_perceptron_acc_01}
 
 \noi
 The accuracy is 100\% for all values of the hyperparameters. Taking the default value of 0.01, the accuracy on the test data is \textbf{100\%}. The confusion matrices for the training and test data are as in \autoref{fig:perc_conf_01}.
@@ -120,7 +120,7 @@ The decision region plot for the perceptron classifier is in \autoref{fig:perc_d
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Classes 0 and 2}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\input{1A_perceptron_acc_02}
+\input{tables/1A_perceptron_acc_02}
 
 \noi
 The accuracy is 100\% for all values of the hyperparameters. Taking the default value of 0.01, the accuracy on the test data is \textbf{100\%}. The confusion matrices for the training and test data are as in \autoref{fig:perc_conf_02}.
@@ -144,7 +144,7 @@ The decision region plot for the perceptron classifier is in \autoref{fig:perc_d
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Classes 0 and 3}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\input{1A_perceptron_acc_03}
+\input{tables/1A_perceptron_acc_03}
 
 The accuracy is 100\% for all values of the hyperparameters. Taking the default value of 0.01, the accuracy on the test data is \textbf{100\%}. The confusion matrices for the training and test data are as in \autoref{fig:perc_conf_03}.
 \begin{figure}[H]
@@ -165,7 +165,7 @@ The decision region plot for the perceptron classifier is in \autoref{fig:perc_d
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Classes 1 and 2}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\input{1A_perceptron_acc_12}
+\input{tables/1A_perceptron_acc_12}
 
 The accuracy on the CV data is best for $\eta = 0.05$. Using this value for the perceptron model, the accuracy on the test data is \textbf{100\%}. The confusion matrices for the training and test data are as in \autoref{fig:perc_conf_12}.
 
@@ -187,7 +187,7 @@ The decision region plot for the perceptron classifier is in \autoref{fig:perc_d
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Classes 1 and 3}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\input{1A_perceptron_acc_13}
+\input{tables/1A_perceptron_acc_13}
 The accuracy is 100\% for all values of the hyperparameters. Taking the default value of 0.01, the accuracy on the test data is \textbf{100\%}. The confusion matrices for the training and test data are as in \autoref{fig:perc_conf_13}.
 \begin{figure}[H]
     \centering
@@ -210,7 +210,7 @@ The decision region plot for the perceptron classifier is in \autoref{fig:perc_d
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Classes 2 and 3}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\input{1A_perceptron_acc_23}
+\input{tables/1A_perceptron_acc_23}
 The accuracy on the CV data is best for $\eta$ greater than or equal to 0.005. Using the default value of $\eta = 0.01$ for the perceptron model, the accuracy on the test data is \textbf{100\%}. The confusion matrices for the training and test data are as in \autoref{fig:perc_conf_23}.
 \begin{figure}[H]
     \centering
@@ -257,7 +257,7 @@ Hence, a total of 432 parameter combinations were sweeped for and analyzed.
 
 \subsubsection{Classification Accuracies}
 The classification accuracies on the training and validation datasets (30\% of the \colortt{dev.csv}) are as follows:
-\input{1A_MLFFNN}
+\input{tables/1A_MLFFNN}
 
 \subsubsection{Best Model}
 The parameter combination were additionally sorted based on minimum fitting time (least fitting time - first) and the model that gave the best accuracy the fastest (and potentially the most minimal model that best fits the data), was chosen. Hence the best parameter combination chosen is:
@@ -406,7 +406,7 @@ The dataset 1A has 4 class labels: [0.0,1.0,2.0,3.0], and 2 dimensional feature 
 \subsubsection{Classification Accuracies}
 The hyper-parameter C is varied in the range [0.1,1,10,100,1000] and corresponding accuracy over train data and cross validation data is obtained as follows: 
 
-\input{1A_svm_acc}
+\input{tables/1A_svm_acc}
 \noi
 Since the accuracy is independent of the value of hyper-parameter C, the default value C=1 is used for the production of plots and confusion matrices.The accuracy obtained on test data set is also 1.00 
 
@@ -539,7 +539,7 @@ Hence, a total of 432 parameter combinations were sweeped for and analyzed.
 
 \subsubsection{Classification Accuracies}
 The classification accuracies on the training and validation datasets (30\% of the \colortt{dev.csv}) are as follows:
-\input{1B_MLFFNN}
+\input{tables/1B_MLFFNN}
 
 \subsubsection{Best Model}
 The parameter combination were additionally sorted based on minimum fitting time (least fitting time - first) and the model that gave the best accuracy the fastest (and potentially the most minimal model that best fits the data), was chosen. Hence the best parameter combination chosen is:
@@ -838,7 +838,7 @@ The following values of hyper-parameters are tried resulting in $4*6*2*4=192$ di
 
 \noi
 The function \tt{GridSearchCV} returns the validation and train accuracy for all the models in the form of a numpy array. Accuracy table for the 10 models with the highest validation accuracy is: 
-\input{1B_polysvm_acc}
+\input{tables/1B_polysvm_acc}
 
 \noi
 Since the validation accuracy is highest for [C:1000,degree:5,gamma:0.1,Coef0:100], those hyper-parameters are used to predict the class labels for the test dataset, obtaining an accuracy of \textbf{1.00}. Those hyper-parameters are further used to obtain the confusion matrices and to plot the decision boundaries. 
@@ -873,7 +873,7 @@ While using this kernel, the number of hyper-parameters to be set are comparativ
 
 Corresponding to different combinations of the above hyper-parameter values, 20 different models are trained. The training accuracy and cross-validation accuracy are obtained as follows:  
 \noi
-\input{1B_rbfsvm_acc}
+\input{tables/1B_rbfsvm_acc}
 
 \noi
 The validation accuracy is highest for [C:1.0, gamma:1.0]. Hence those hyper-parameters are used for further calculations. Accuracy on test data with those hyper-parameters is obtained to be \textbf{100\%}. 
@@ -898,10 +898,10 @@ The validation accuracy is highest for [C:1.0, gamma:1.0]. Hence those hyper-par
 
 \noi
 \subsubsection{Observations}
-\begin{enumerate}
-\item The distinguishing feature between \autoref{myfig:gauss_db} and \autoref{myfig:poly_db} is the behavior at the edges. Also, the decision boundary obtained using polynomial kernel has a discontinuity in the region $x_1 \in (-0.5,0.5)$ and $x_2 \in (3,4)$
-\item The distribution of support vectors is very distinct. In polynomial kernel, the support vectors are majorly near the center. While in the gaussian kernel, the support vectors are more uniformly distributed.
-\end{enumerate}
+\begin{itemize}
+    \item The distinguishing feature between \autoref{myfig:gauss_db} and \autoref{myfig:poly_db} is the behavior at the edges. Also, the decision boundary obtained using polynomial kernel has a discontinuity in the region $x_1 \in (-0.5,0.5)$ and $x_2 \in (3,4)$
+    \item The distribution of support vectors is very distinct. In polynomial kernel, the support vectors are majorly near the center. While in the gaussian kernel, the support vectors are more uniformly distributed.
+\end{itemize}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \break
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -932,7 +932,7 @@ Hence, a total of 1728 parameter combinations were sweeped for and analyzed.
 
 \subsubsection{Classification Accuracies}
 The classification accuracies on the training and validation datasets (30\% of the \colortt{dev.csv}) are as follows:
-\input{2A_MLFFNN}
+\input{tables/2A_MLFFNN}
 
 \subsubsection{Best Model}
 The parameter combination were additionally sorted based on minimum fitting time (least fitting time - first) and the model that gave the best accuracy the fastest (and potentially the most minimal model that best fits the data), was chosen. Hence the best parameter combination chosen is:
@@ -969,7 +969,7 @@ Similar to the section \ref{section:gaussian}, an svm classifier with Gaussian k
 
 \subsubsection{Optimal Hyper-parameter and accuracy}
 Approximately 1500 models were trained, performance of few of those models is as listed below (in order of decreasing validation accuracy)\\
-\input{2A_svm_acc}
+\input{tables/2A_svm_acc}
 
 The best hyper-parameter settings are: [c=1.0, gamma=1.0]. Test accuracy with those hyper-parameters is obtained to be \textbf{0.547}
 

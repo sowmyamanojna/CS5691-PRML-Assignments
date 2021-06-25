@@ -1,0 +1,25 @@
+\def\arraystretch{1.25}
+\begin{table}[H]
+\centering
+{\small
+\begin{tabular}{l l l l l l c c}
+\hline
+\hline
+\textbf{\# Components} & \textbf{\# Neurons} & \textbf{Learning Rate} & \textbf{Batch Size} & \textbf{$\alpha$} & \textbf{Accuracy} & \textbf{Validation Accuracy} \\
+\hline
+\hline
+16 & (50, 50) & invscaling & auto & 0.001 & 79.02 & 52.23 \\
+16 & (50, 50) & adaptive & auto & 0.001 & 79.02 & 52.23 \\
+16 & (50, 50) & constant & auto & 0.001 & 79.02 & 52.23 \\
+20 & (50, 50) & constant & auto & 0.010 & 82.93 & 51.82 \\
+20 & (50, 50) & adaptive & auto & 0.010 & 82.93 & 51.82 \\
+20 & (50, 50) & invscaling & auto & 0.010 & 82.93 & 51.82 \\
+8 & (75, 75) & invscaling & 100 & 0.010 & 75.45 & 51.82 \\
+19 & (25, 25) & adaptive & auto & 0.001 & 68.05 & 51.42 \\
+19 & (25, 25) & constant & auto & 0.001 & 68.05 & 51.42 \\
+19 & (25, 25) & invscaling & auto & 0.001 & 68.05 & 51.42 \\
+\hline
+\end{tabular}
+\caption{Best 10 Train and Validation Accuracies obtained after performing a \colortt{GridSearch} on 1728 parameter combinations.}
+}
+\end{table}
