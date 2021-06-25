@@ -152,12 +152,13 @@ The decision boundary obtained (with $k=1$) is linear in form.
 
 \break
 \subsection{Naive-Bayes classifier with a Gaussian distribution for each class}
+\label{naive-bayes}
 \subsubsection{Mathematical Formulation}
 The Bayes Classifiers are probabilistic classifiers based on the Bayes theorem:
 
 \begin{equation}
 \label{eqn nb}
-    p(y_{i}|\vec{x})=\frac{p(\vec{x}|y_{i})*p(y_{i})}{p(\vec{x})}
+    p(y_{i}|\vec{x})=\frac{p(\vec{x}|y_{i}) \times p(y_{i})}{p(\vec{x})}
 \end{equation}\\
 
 \noi
@@ -194,7 +195,7 @@ For the discussion that follows for dataset 1A, we assume that $p(\vec{x}|y_{i})
 
 \begin{equation}
 \label{gaussian}
-    p(\vec{x}|y_{i})=\frac{1}{(2\pi)^{d/2}*|C_{i}|^{1/2}}\;\exp{\Big(\frac{-(\vec{x}-\vec{\mu_{i}})^{T}*C_{i}^{-1}*(\vec{x}-\vec{\mu_{i}})}{2}}\Big)
+    p(\vec{x}|y_{i})=\frac{1}{(2\pi)^{d/2}*|C_{i}|^{1/2}}\;\exp{\Big(\frac{-(\vec{x}-\vec{\mu_{i}})^{T}C_{i}^{-1}(\vec{x}-\vec{\mu_{i}})}{2}}\Big)
 \end{equation}
 
 \noi
@@ -461,7 +462,7 @@ The confusion matrices for the training and test datasets using the best model i
 \end{figure}
 
 \subsubsection{Decision surface}
-The decision surface plot and the contour plot for the best model is figure \ref{fig:dec1bGMMdiag}. As we can see in the decision region plots, the contours follow the non-linear shape of the data. The level curves are ellipses parallel to the coordinate access, since diagonal covariance matrices were used. \autoref{fig:dec1bGMMdiag}.
+The decision surface plot and the contour plot for the best model is \autoref{fig:dec1bGMMdiag}. As we can see in the decision region plots, the contours follow the non-linear shape of the data. The level curves are ellipses parallel to the coordinate access, since diagonal covariance matrices were used. \autoref{fig:dec1bGMMdiag}.
 \begin{figure}[H]
     \centering
     \hspace{4em}\includegraphics[scale=0.5]{images/1B/decisionReg_ds2.png}
@@ -472,8 +473,10 @@ The decision surface plot and the contour plot for the best model is figure \ref
 
 \subsection{Bayes Classifier with KNN}
 \subsubsection{Mathematical Formulation}
-While the main principle remains the same as discussed in section (1.2), we now use non-parametric methods to evaluate the class conditional probability $p(\vec{x}|y_{i})$.
-\\Suppose the number of data points in the hyper-volume v around $\vec{x}$ be N, the number of data point corresponding to class i be $N_i$, then:
+While the main principle remains the same as discussed in \autoref{naive-bayes}, we now use non-parametric methods to evaluate the class conditional probability $p(\vec{x}|y_{i})$.\\
+
+\noi
+Suppose the number of data points in the hyper-volume v around $\vec{x}$ be N, the number of data point corresponding to class i be $N_i$, then:
 
 \begin{equation}
     p(\vec{x}|y_{i})=\frac{N_{i}}{N*V}
@@ -487,11 +490,10 @@ The probability density can be estimated in two ways :
 \end{itemize}
 
 \noi
-For this case, we use the KNN method to evaluate the class conditional probability densities.
-\\ 
+For this case, we use the KNN method to evaluate the class conditional probability densities.\\
 The class label $i$ that maximizes \autoref{eqn nb} is chosen as the label for $\vec{x}$. 
 
-\subsubsection{Model Performance for varying values of $k$}
+\subsubsection{Model Performance for varying values of \textit{k}}
 The model is tested for $k=10$ and $k=20$. The accuracy table and confusion matrix are as follows:
 \input{tables/acc_1B_nb}
 
@@ -535,7 +537,7 @@ The testing accuracy obtained for varying $q_i$ for each class is as follows:
 \end{figure}
 
 \subsubsection{Best Model}
-Based on the accuracies obtained on the training, validation and test dataset, the best $q_i$ for the three classes has been chosen as $6$. The accuracies obtained in tabular format is as follows:
+Based on the accuracies obtained on the training, validation and test dataset, the best $q_i$ for the three classes has been chosen as $4$. The accuracies obtained in tabular format is as follows:
 \input{tables/acc_2A_full}
 
 \noi
@@ -544,13 +546,13 @@ The confusion matrix obtained for the model with $q_i=4$ are as follows:
     \centering
     \includegraphics[scale=0.5]{images/2A/2A_full_train_conf.png}
     \includegraphics[scale=0.5]{images/2A/2A_full_val_conf.png}
-    \caption{Training and Validation confusion matrices for the best model with $q_i=6$, on the left and right respectively}
+    \caption{Training and Validation confusion matrices for the best model with $q_i=4$, on the left and right respectively}
 \end{figure}
 
 \begin{figure}[H]
     \centering
     \includegraphics[scale=0.5]{images/2A/2A_full_test_conf.png}
-    \caption{Testing confusion matrix for the best model with $q_i=6$.}
+    \caption{Testing confusion matrix for the best model with $q_i=4$.}
 \end{figure}
 
 \noi
@@ -643,7 +645,7 @@ The highest accuracy on validation dataset is for 16 gaussian components. Applyi
 The varying length classification is done as follows:
 \begin{itemize}
     \itemsep0em
-    \item Each image has a $36*23$ feature parameters.
+    \item Each image has a $36\times 23$ feature parameters.
     \item Each of these $36$ rows are considered as features and a GMM (full covariance/diagonal covariance) is fit on each of the features.
     \item The Expectation-step and Maximization-step are performed on the data, as is in case of static length pattern.
     \item For each of the data points, 
@@ -690,11 +692,12 @@ The class-wise accuracy obtained on the dev dataset, for varying $q$'s is as fol
 \input{tables/acc_2B_diag_dev}
 
 \noi
-From the tables above, we see that the maximum accuracy for the classes: coast, highway, mountain and open country are for 5 GMMs per feature. However, the accuracy for the class tall buildings increases with increasing number of GMM components.
+From the tables above, we see that the maximum accuracy for the classes: highway, mountain and open country are for 5 GMMs per feature. However, the accuracy for the class tall buildings increases with increasing number of GMM components and the maximum accuracy for the class coast is obtained at 14 GMMs per feature.
 
 \subsubsection{Best Model}
 The highest accuracy on validation dataset is for 5 gaussian components for each feature. The overall training accuracy for the best model chosen is: 94.71544715447155\\
 
+\noi
 Applying this model to predict the test data, we get an accuracy of \textbf{73.65\%}. The confusion matrices for this model on training, validation and test data is as follows:
 \begin{figure}[H]
     \centering
