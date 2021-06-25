@@ -281,3 +281,12 @@ TSWLatexianTemp*
 # ipynb checkpoint notebooks
 *.ipynb_checkpoints
 *__pycache__
+
+# sty
+*.sty
+
+# Ignore the ignore, wandb folder
+*ignore/
+*wandb/
+*.vscode/
+report_additional.pdf
