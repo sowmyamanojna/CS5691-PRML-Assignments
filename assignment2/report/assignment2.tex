@@ -650,10 +650,10 @@ The varying length classification is done as follows:
     \item The Expectation-step and Maximization-step are performed on the data, as is in case of static length pattern.
     \item For each of the data points, 
     \begin{equation}
-    p (X|\lambda_i ) = \prod_{t=1}^T p(x_t|\lambda_i) = \prod_{t=1}^T \sum_{q=1}^Q w_{iq}\mathcal{N}(x_t|\mu_{iq}, \Sigma_{iq})f
+    p (X|\lambda_i ) = \prod_{t=1}^T p(x_t|\lambda_i) = \prod_{t=1}^T \sum_{q=1}^Q w_{iq}\mathcal{N}(x_t|\mu_{iq}, \Sigma_{iq})
     \end{equation}
     is calculated to perform classification.
-    \item In order to circumvent the problem associated with floating point precession, the gaussian probabilities for each of the 36 features were normalized across classes and the product was then performed.
+    \item In order to circumvent the problem associated with floating point precession, the Gaussian probabilities for each of the 36 features were normalized across classes and the product was then performed.
     \item The data point is then allotted to the class that has the maximum probability.
 \end{itemize}
 

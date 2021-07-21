@@ -232,8 +232,9 @@ The decision region plot for the perceptron classifier is in \autoref{fig:perc_d
 \subsubsection{Observations}
 From the above obtained decision boundary plots we can observe that:
 \begin{itemize}
-\item The decision boundaries are linear
-\item The decision boundaries obtained are not optimal in nature and tend to be extremely close to either of the claases depending on the initial conditions used.
+    \itemsep0em
+    \item The decision boundaries are linear
+    \item The decision boundaries obtained are not optimal in nature and tend to be extremely close to either of the claases depending on the initial conditions used.
 \end{itemize}
 
 \break
@@ -287,11 +288,15 @@ The classification accuracy of the best model on the testing data is: \textbf{10
 \end{figure}
 
 \subsubsection{Decision Region}
-The decision region plots obtained is as follows:
+The decision region plots obtained. From the \autoref{fig:1A_MLFFNN}, we can see that the decision boundaries aren't linear and that they are slightly curved (nonlinear) at the intersection. This is potentially because of the smooth non-linearity of the \tt{tanh} activation function.\\
+
+\noi
+The plot obtained is as follows:
 \begin{figure}[H]
     \centering
     \includegraphics[scale=0.6]{images/1A_MLFFNN_Decision_Plot.png}
     \caption{Decision Region Plot obtained for the best parameter combination.}
+    \label{fig:1A_MLFFNN}
 \end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -305,18 +310,18 @@ The Support Vector Machines (SVMs) are supervised learning models that can be us
 \noindent
 For a hyperplane of the form:
 \begin{equation}
-    g(\vec{x})=\vec{w^{T}}*\vec{x}-w_{0}=0
+    g(\vec{x})=\vec{w}^T\vec{x}-w_{0}=0
 \end{equation}
 \noi
 The distance of any point $\vec{x}$ from the hyperplane is then equivalent to: 
 \begin{equation}
-    r=\frac{g(\vec{x})}{||w||}
+    r=\frac{g(\vec{x})}{||\vec{w}||}
 \end{equation}
 
 \noi
 For a canonically seperating hyperplane, 
 \begin{equation}
-    |g_c(\vec{x^*})|=1
+    |g_c(\vec{x}^*)|=1
 \end{equation}
 
 \noi
@@ -370,10 +375,10 @@ The task is now to find $\vec{\alpha}$ for which $L_D(\vec{\alpha)}$ is optimal 
 
 \subsubsection{\tt{sklearn svm.SVC()}}
 \label{subsubsection:svm module}
-The svm.SVC() is a pre-defined module for Support Vector Classification task. The important optional arguments of this classifier are: 
+The \tt{svm.SVC()} is a pre-defined module for Support Vector Classification task. The important optional arguments of this classifier are: 
 \begin{itemize}
-    \item \tt{kernel} : Specifies the kernel type to be used in the algorithm, available options are: [\tt{linear},\tt{poly},\tt{rbf},\tt{sigmoid},\tt{precomputed}].
-    The default kernel is the rbf(/gaussian). 
+    \itemsep0em
+    \item \tt{kernel} : Specifies the kernel type to be used in the algorithm, available options are: 
     \begin{itemize}
         \item Linear kernel: $<x,x'>$
         \item Polynomial kernel: $(\gamma<x,x'>+r)^{d}$
@@ -382,7 +387,7 @@ The svm.SVC() is a pre-defined module for Support Vector Classification task. Th
     \end{itemize} 
 
     \noi
-    For dataset 1A, linear kernel is used. 
+    The default kernel is the rbf(/gaussian). For dataset 1A, linear kernel is used. 
     \item \tt{C}: strictly positive float. By default it is 1.0. The strength of regularization is inversely proportional to C. For dataset 1A, C is varied from 0.1 to 1000. 
     \item \tt{degree}: This is relevant only when the kernel is set to polynomial and is ignored by all other kernel values.
     \item \tt{gamma}: float or [\tt{scale}, \tt{auto}]. Set to \tt{scale} by default, it is the kernel coefficient for \tt{rbf}, \tt{poly} and \tt{sigmoid}.
@@ -392,14 +397,16 @@ The svm.SVC() is a pre-defined module for Support Vector Classification task. Th
 \subsubsection{Pairwise SVM}
 The dataset 1A has 4 class labels: [0.0,1.0,2.0,3.0], and 2 dimensional feature vectors. Those are linearly separable as can be seen in the plot above.
 \begin{itemize}
+    \itemsep0em
     \item Data pre-processing:
     \begin{itemize}
+        \itemsep0em
         \item There are no missing values in the data.
         \item The ranges of feature vectors are nearly same, hence scaling is not essential. 
     \end{itemize}
     \item The data is then split according to the class labels to further build one-vs-one svm models.
-    \item sklearn.svm.SVC(),with a linear kernel is then trained using a pair of classes at once, hence, number of models trained is $\frac{3(3+1)}{2}=6$. 
-    \item The decision boundary and support vectors are then obtained for each of those models. However, the decision region for y[i] vs y[j] model is defined only for x1 and x2 range where y[i] and y[j] exist in the training data
+    \item \tt{sklearn.svm.SVC()},with a linear kernel is then trained using a pair of classes at once, hence, number of models trained is $\frac{3(3+1)}{2}=6$. 
+    \item The decision boundary and support vectors are then obtained for each of those models. However, the decision region for $y[i]$ vs $y[j]$ model is defined only for $x_1$ and $x_2$ range where $y[i]$ and $y[j]$ exist in the training data
     \item To predict the class label for a test point: we obtain 6 labels from the 6 different models trained earlier. From those 6 labels, the label occurring with the most frequency is chosen as the label for the test point, a collective decision region and confusion matrix are thus obtained.
 \end{itemize}
 
@@ -408,10 +415,10 @@ The hyper-parameter C is varied in the range [0.1,1,10,100,1000] and correspondi
 
 \input{tables/1A_svm_acc}
 \noi
-Since the accuracy is independent of the value of hyper-parameter C, the default value C=1 is used for the production of plots and confusion matrices.The accuracy obtained on test data set is also 1.00 
+Since the accuracy is independent of the value of hyper-parameter C, the default value $C=1$ is used for the production of plots and confusion matrices.The accuracy obtained on test data set is also 100 \%.
 
 \subsubsection{Confusion Matrices}
-Since the accuracy obtained is 1.00, the confusion matrices are diagonal. 
+Since the accuracy obtained is 100\%, the confusion matrices are diagonal. 
 \begin{figure}[H]
 \centering
     \includegraphics[scale=0.4]{images/1A_confmatrix_train.png}
@@ -507,11 +514,12 @@ Since the accuracy obtained is 1.00, the confusion matrices are diagonal.
 
 \subsubsection{Conclusion}
 Observations from one-vs-one decision boundary plots:
-\begin{enumerate}
+\begin{itemize}
+    \itemsep0em
     \item The separating hyper-planes are linear.
     \item The hyper-planes formed by the Support Vectors are parallel to the separating hyper-plane. 
     \item Since no training data points lie between the supporting vector hyper-plane and the separating hyper-plane, it is a hard margin solution. 
-\end{enumerate}
+\end{itemize}
 
 
 \break
@@ -569,11 +577,15 @@ The classification accuracy of the best model on the testing data is: \textbf{96
 \end{figure}
 
 \subsubsection{Decision Region}
+The decision region plots obtained. From the \autoref{fig:1B_MLFFNN}, we can see that the decision boundaries aren't linear. However, they comprise of multiple small linear segments. This is potentially because of the linear discontinuous nature of the \tt{ReLU} activation function.\\
+
+\noi
 The decision region plots obtained is as follows:
 \begin{figure}[H]
     \centering
     \includegraphics[scale=0.55]{images/1B_MLFFNN_Decision_Plot.png}
     \caption{Decision Region Plot obtained for the best parameter combination.}
+    \label{fig:1B_MLFFNN}
 \end{figure}
 
 \subsubsection{Surface Plots}
@@ -841,7 +853,7 @@ The function \tt{GridSearchCV} returns the validation and train accuracy for all
 \input{tables/1B_polysvm_acc}
 
 \noi
-Since the validation accuracy is highest for [C:1000,degree:5,gamma:0.1,Coef0:100], those hyper-parameters are used to predict the class labels for the test dataset, obtaining an accuracy of \textbf{1.00}. Those hyper-parameters are further used to obtain the confusion matrices and to plot the decision boundaries. 
+Since the validation accuracy is highest for [C:1000,degree:5,gamma:0.1,Coef0:100], those hyper-parameters are used to predict the class labels for the test dataset, obtaining an accuracy of \textbf{100\%}. Those hyper-parameters are further used to obtain the confusion matrices and to plot the decision boundaries. 
 
 \subsubsection{Confusion matrices for Train and Test data: Polynomial Kernel}
 
